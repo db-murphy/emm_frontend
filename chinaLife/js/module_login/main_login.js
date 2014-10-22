@@ -1,3 +1,7 @@
 define(function (require,exports,module){
-	//alert(1);
+
+	/**
+	* 依赖模块
+	**/
+	var common = require('../moudule_common/common.js');
 });
