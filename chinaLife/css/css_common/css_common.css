@@ -1,0 +1,155 @@
+/**
+ * 字体大小
+ */
+body{
+	font-size: 12px;
+}
+
+label {
+	font-weight: normal;
+}
+
+/**
+ * 添加页面提示文字样式
+ */
+.col-sm-7 textarea + font {
+	font-size: 12px;
+	color: #929292;
+	float: right;
+	margin: -26px 10px 0px 0px;
+}
+
+/**
+ * 内容区的最小高度
+ */
+.container{
+	min-height: 563px;
+}
+
+/**
+ * 文本域不能拖拽
+ */
+.form-group .col-sm-7 > textarea{
+	max-height: 74px; 
+	max-width: 487px;
+	height: 74px;
+	width: 487px;
+}
+
+.form-group .appDescribe > textarea{
+	max-height: 74px; 
+	max-width: 651px;
+	height: 74px;
+	width: 651px;
+} 
+
+.form-group .appInfoDescribe > textarea{
+	max-height: 74px; 
+	max-width: 660px;
+	height: 74px;
+	width: 660px;
+} 
+/**
+ * 添加页面右侧底部按钮
+ */
+.form-group .text-right .btn{
+	width: 100px;
+}
+
+/**
+ * 底部
+ */
+.bs-footer {
+	color: #777;
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+}
+
+.panel {
+	margin-bottom: 0;
+}
+
+.navbar,.breadcrumb{
+	margin-bottom: 6px;
+}
+
+.table thead tr td:first-child,.table thead tr td:last-child{
+	text-align: center;
+}
+
+.table thead tr{
+	font-weight: bold;
+	color: #999;
+}
+
+.table tbody tr td:first-child{
+	color: #999;
+}
+
+#countPeople{
+	display:inline;
+	position: relative;
+	top: -31px;
+	right: 15px;
+}
+/**
+ * 缩进
+ */
+.dropdown-menu a.indent,.dropdown-menu a.indent:hover,.dropdown-menu a.indent:focus{
+	padding-left: 36px;
+}
+
+.nav-stacked li a.indent,.nav-stacked li a.indent:hover,.nav-stacked li a.indent:focus{
+	padding-left: 31px;
+}
+
+#serve_list dl dt img{
+	width: 50px;
+}
+/**
+ * 应用详情
+ */
+#id_caption .form-group, #id_developer .form-group{
+	margin-bottom: 0;
+}
+
+#id_caption .form-group label, #id_developer .form-group label{
+	margin-top: -8px;
+}
+
+#id_caption .form-group label:last-child, #id_developer .form-group label:last-child{
+	margin-top: 0;
+}
+
+/**
+ * 添加页面的提交按钮
+ */
+.col-sm-9 .btn{
+	width: 100px;	
+}
+
+/**
+ * 面包屑背景
+ */
+.breadcrumb{
+	background-color: #FFF;
+}
+
+.breadClass{
+	color: #999;
+}
+
+label.valid {
+  width: 24px;
+  height: 24px;
+  background: url(img/valid.png) center center no-repeat;
+  display: inline-block;
+  text-indent: -9999px;
+}
+label.error {
+	font-weight: bold;
+	color: red;
+	padding: 2px 8px;
+	margin-top: 2px;
+}
