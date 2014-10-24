@@ -6,6 +6,11 @@ define(function (require,exports,module){
     var BasePath ="http://218.247.15.102/appfuse_emm_backend/api/v1/";
 
     /**
+    *登陆接口
+    **/
+    var loginUrl = 'user/login.json';
+
+    /**
      * 顶部导航栏配置参数
      */
     var menuJson = [ 
@@ -59,7 +64,8 @@ define(function (require,exports,module){
     module.exports = {
 
         BasePath:BasePath,
-        menuJson:menuJson
+        menuJson:menuJson,
+        loginUrl:loginUrl
         
     };
 

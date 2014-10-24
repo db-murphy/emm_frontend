@@ -1,6 +1,7 @@
 define(function (require,exports,module){
 
 	var variables = require('../moudule_variables/variables.js');
+	var utils = require('../moudule_utils/utils.js');
 
 	/**
 	 * ajax全局拦截
@@ -8,6 +9,7 @@ define(function (require,exports,module){
 	$.ajaxSetup({
 		timeout : 3000,
 		global : true,
+		async: true,
 		error : function(xhr, status, e) {
 			showAlert('请求出错','','');
 		},
@@ -18,7 +20,7 @@ define(function (require,exports,module){
 		beforeSend : function(request) {
 
 			var tokenId = window.sessionStorage.getItem('TOKENID');
-			if (NullToStr(tokenId) == "") {
+			if (utils.NullToStr(tokenId) == "") {
 				var url = window.location.href;
 				if(url.indexOf("login.html")<0){
 					window.location.href = "login.html";
@@ -39,6 +41,46 @@ define(function (require,exports,module){
 			verification(data, textStatus, jqXHR);
 		}
 	});
+
+	/**
+	*封装http请求
+	**/
+	function https(json,httpType,url,dataFormat,fnScc){
+		$.ajax({
+			type: httpType,
+			url: variables.BasePath + url,
+			dataType: dataFormat,
+			data: json,
+			success: function(data){
+				fnScc&&fnScc(data);
+			}
+		});
+	};
+
+	/**
+	 * 创建Loading的DIV标签,并且追加到页面最下方
+	 */
+	function createLoadingDiv() {
+		var loadDiv = '<div id="loading"><div class="modal fade  bs-example-modal-sm" isShow=true id="loadingModalMes" tabindex="-1" role="dialog" aria-labelledby="loading" aria-hidden="false">'
+				+ '<div class="modal-dialog" style="width: 210px;height: 100px;margin-top:20%;">' + '<div class="modal-content" style="background-color:#000000;opacity: 0.3;">'
+				+ '<div class="modal-body" id="messages">' + '<span id="mess"><img src="img/common/loader.gif"/>&nbsp;&nbsp;&nbsp;&nbsp;<font color="white">正在加载，请稍后......</font></span>'
+				+ '</div></div></div></div>';
+		$(document.body).append(loadDiv);
+	}
+
+	/**
+	 * 显示Loading
+	 */
+	function showLoading() {
+		$("#loadingModalMes").modal('show');
+	}
+
+	/**
+	 * 隐藏Loading
+	 */
+	function hideLoading() {
+		$("#loadingModalMes").modal('hide');
+	}
 
 	/**
 	 * 获取URL参数
@@ -144,7 +186,9 @@ define(function (require,exports,module){
 	module.exports = {
 
 		create_header:create_header,
-		create_footer:create_footer
+		create_footer:create_footer,
+		showLoading:showLoading,
+		createLoadingDiv:createLoadingDiv
 		
 	};
 
