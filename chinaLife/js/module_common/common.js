@@ -1,7 +1,10 @@
 define(function (require,exports,module){
 
-	var variables = require('../moudule_variables/variables.js');
-	var utils = require('../moudule_utils/utils.js');
+	/**
+	* 依赖模块
+	**/
+	var variables = require('../module_variables/variables.js');
+	var utils = require('../module_utils/utils.js');
 
 	/**
 	 * ajax全局拦截
@@ -183,12 +186,16 @@ define(function (require,exports,module){
 		$('body').append(html);
 	};
 
+	/**
+	* 接口导出
+	**/
 	module.exports = {
 
 		create_header:create_header,
 		create_footer:create_footer,
 		showLoading:showLoading,
-		createLoadingDiv:createLoadingDiv
+		createLoadingDiv:createLoadingDiv,
+		https:https
 		
 	};
 
