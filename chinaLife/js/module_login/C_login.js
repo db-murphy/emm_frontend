@@ -3,11 +3,11 @@ define(function (require,exports,module){
 	/**
 	* 依赖模块
 	**/
-	var common = require('module_common/common.js');
-	var variables = require('module_variables/variables.js');
-	var M = require('module_msg/Model.js');
-	var V_login = require('./V_login.js');
-	var createSendMsg = require('module_send_msg/send_msg.js');
+	var common = require('module_common/common');
+	var variables = require('module_variables/variables');
+	var M = require('module_msg/Model');
+	var V_login = require('./V_login');
+	var createSendMsg = require('module_send_msg/send_msg');
 
 	/**
 	* 创建Loading模块标签,并且追加到页面最下方
