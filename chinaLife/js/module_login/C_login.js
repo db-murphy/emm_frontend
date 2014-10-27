@@ -6,7 +6,7 @@ define(function (require,exports,module){
 	var common = require('module_common/common.js');
 	var variables = require('module_variables/variables.js');
 	var M = require('module_msg/Model.js');
-	var V_login = require('module_login/V_login.js');
+	var V_login = require('./V_login.js');
 	var createSendMsg = require('module_send_msg/send_msg.js');
 
 	/**

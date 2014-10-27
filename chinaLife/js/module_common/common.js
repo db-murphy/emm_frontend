@@ -3,8 +3,8 @@ define(function (require,exports,module){
 	/**
 	* 依赖模块
 	**/
-	var variables = require('../module_variables/variables.js');
-	var utils = require('../module_utils/utils.js');
+	var variables = require('module_variables/variables.js');
+	var utils = require('module_utils/utils.js');
 
 	/**
 	 * ajax全局拦截

@@ -7,7 +7,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="framework/js/jquery.min.js"></script>
 		<script src="framework/js/bootstrap.js"></script>
-		<script src="js/sea.js"></script>
+		<script src="framework/js/sea.js"></script>
 		<link rel="stylesheet" href="framework/css/framework_main.css" />
 		<link rel="stylesheet" href="css/css_common/css_common.css" />
 		<link rel="stylesheet" href="css/css_login/css_login.css" />
@@ -38,6 +38,16 @@
 		</div>
 	</body>
 	<script type="text/javascript">
+		/**
+		*配置基础路径
+		**/
+		seajs.config({
+		  base: "./js"
+		});
+
+		/**
+		*使用主模块
+		**/
 		seajs.use('module_login/Main_login.js');
 	</script>
 </html>

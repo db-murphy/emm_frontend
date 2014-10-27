@@ -3,7 +3,7 @@ define(function (require,exports,module){
 	/**
 	* 依赖模块
 	**/
-	var C_login = require('module_login/C_login.js');
+	var C_login = require('./C_login.js');
 
 	/**
 	* 创建Loading模块标签,并且追加到页面最下方
