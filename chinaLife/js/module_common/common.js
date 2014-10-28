@@ -46,6 +46,45 @@ define(function (require,exports,module){
 	});
 
 	/**
+	 * 显示alert提示框
+	 * @param content 弹出框显示的内容
+	 */
+	function showAlert(content,url,event){
+		$("#id_windowDiv").remove();
+		createWindow(url,event);
+		$("#id_window_title").html("提示:");
+		$("#id_window_content").html(content);
+		$('#id_window').modal('show');
+		console.log(url);
+	}
+
+	/**
+	 * 创建提示框Confirm和Alert的DIV标签,并且追加到页面最下方
+	 */
+	function createWindow(url, event) {
+		var windowDiv = '<div id="id_windowDiv">'+
+			'<div class="modal fade" id="id_window" tabindex="-1" role="dialog" aria-hidden="true">'+
+				   '<div class="modal-dialog">'+
+				      '<div class="modal-content" style="width:400px;margin-left:30%;">'+
+				         '<div class="modal-header">'+
+				            '<h4 class="modal-title" id="id_window_title" style="font-size:12px;"></h4>'+
+				         '</div>'+
+				         '<div class="modal-body" id="id_window_content" style="height:30px;font-size:16px;"></div>'+
+				         '<div class="modal-footer" id="id_window_footer" style="height:50px;">';
+						if(url != '' || event != ''){
+							windowDiv += '<button type="button" class="btn" data-dismiss="modal" id="id_window_closeBtn" onclick="returnUrl('+url+',\''+event+'\')" style="margin-top:-10px;">关闭</button>';
+						}else{
+							windowDiv += '<button type="button" class="btn" data-dismiss="modal" id="id_window_closeBtn" style="margin-top:-10px;">关闭</button>';
+						}
+				           
+						windowDiv += '</div>'+
+				      '</div>'+
+				   '</div>'+
+			'</div></div>';
+		$(document.body).append(windowDiv);
+	}
+
+	/**
 	*封装http请求
 	**/
 	function https(json,httpType,url,dataFormat,fnScc){

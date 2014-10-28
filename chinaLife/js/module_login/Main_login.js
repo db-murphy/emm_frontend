@@ -18,7 +18,7 @@ define(function (require,exports,module){
 	/**
 	* 回车键提交数据
 	**/
-	C_login.keyReturnActive();
+	//C_login.keyReturnActive();
 
 	/**
 	* 输入密码时实时判断密码长度
@@ -28,7 +28,7 @@ define(function (require,exports,module){
 	/**
 	* 点击文本框改变颜色
 	**/
-	C_login.giveInputColor();
+	//C_login.giveInputColor();
 
 	/**
 	* 点击登陆按钮

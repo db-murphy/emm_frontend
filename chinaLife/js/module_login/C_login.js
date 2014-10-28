@@ -20,45 +20,15 @@ define(function (require,exports,module){
 	* 输入框获取焦点
 	**/
 	function giveInputFocus(){
-		$(".username").focus();
-	};
-
-	/**
-	* 回车键提交数据
-	**/
-	function keyReturnActive(){
-		$(document).keydown(function(ev) {
-			var oEvent = ev || event;
-			var iCode = oEvent.keyCode;
-
-			if (iCode == 13) {
-				$("#submitBtn").click();
-				return false;
-			}
-		});
+		$("#username").focus();
 	};
 	
 	/**
 	* 输入密码时实时判断密码长度
 	**/
 	function listenPwdLength(){
-		$('#password').keydown(function(){
+		$('#passwords').keydown(function(){
 			passwordLength();
-		});
-	};
-
-	/**
-	* 点击文本框改变颜色
-	**/
-	function giveInputColor(){
-		$('.username').click(function(){
-			$('.username').attr("style","");
-			$('#username').html('');
-			$('#mes').html('');
-		});
-		$('.password').click(function(){
-			$('.passwords').attr("style","");
-			$('#passwords').html('');
 		});
 	};
 	
@@ -67,26 +37,38 @@ define(function (require,exports,module){
 	* 点击登陆按钮
 	**/
 	function loginSubmit(){
-		$('#submitBtn').click(function() {
-			var user_name = $('.username').val();
-	        var pwd = $('.password').val();
-			if($.trim(user_name)==='' && $.trim(pwd)===''){
-				$('.username').attr("style","border-color:#f00;border-bottom-color:#f00;");
-				$('.password').attr("style","border-color:#f00;border-bottom-color:#f00;");
-				$('#username').html('用户名不能为空');
-				$('#passwords').html('请输入密码');
-				return false;
-			}
-			if($.trim(user_name)===''){
-				$('.username').attr("style","border-color:#f00;border-bottom-color:#f00;");
-				$('#username').html('用户名不能为空');
-				return false;
-			}
-			if($.trim(pwd)===''){
-				$('.password').attr("style","border-color:#f00;border-bottom-color:#f00;");
-				$('#passwords').html('请输入密码');
-				return false;
-			}
+		$('#login_form').submit(function() {
+
+			var bPass = false;
+			var user_name = $('#username').val();
+	        var pwd = $('#passwords').val();
+	        var oFormListUsr = $('#username').closest('.form-group');
+	        var oFormListPass = $('#passwords').closest('.form-group');
+
+	        /**
+			*校验表单
+			**/
+	        if($.trim(user_name)===''){
+	        	oFormListUsr.addClass('has-error');
+	        	bPass = false;
+	        }else{
+	        	oFormListUsr.removeClass('has-error');
+	        	bPass = true;
+	        };
+
+	        if($.trim(pwd)===''){
+	        	oFormListPass.addClass('has-error');
+	        	bPass = false;
+
+	        }else{
+	        	oFormListPass.removeClass('has-error');
+	        	bPass = true;
+	        };
+
+	        if(!bPass){
+	        	$('#login_reminder').text('账户或密码不能为空');
+	        	return false;
+	        };
 
 			/**
 			*登陆请求
@@ -96,6 +78,7 @@ define(function (require,exports,module){
 				V_login.loginActiveScc(data);
 			});
 
+			return false;
 	    });
 	};
 	
@@ -104,22 +87,20 @@ define(function (require,exports,module){
 	* 判断密码长度
 	**/
 	function passwordLength(){
-		var pwd = $('.password').val();
-		$('#password').html('');
-		$('#mes').html('');
+		var pwd = $('#passwords').val();
+		var oFormListPass = $('#passwords').closest('.form-group');
+
 		if($.trim(pwd).length + 1 >= 6){
-			$('.password').attr("style","");
+			oFormListPass.removeClass('has-error');
 		}else if($.trim(pwd).length < 6){
-			$('.password').attr("style","border-color:#f00;border-bottom-color:#f00;");
+			oFormListPass.addClass('has-error');
 		}
 	};
 
 	module.exports = {
 		createLoadingBox:createLoadingBox,
 		giveInputFocus:giveInputFocus,
-		keyReturnActive:keyReturnActive,
 		listenPwdLength:listenPwdLength,
-		giveInputColor:giveInputColor,
 		loginSubmit:loginSubmit
 	};
 });

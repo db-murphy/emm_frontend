@@ -5,8 +5,8 @@ define(function (require,exports,module){
 	**/
 	function login_send_msg(){
 
-		var user_name = $('.username').val();
-        var pwd = $('.password').val();
+		var user_name = $('#username').val();
+        var pwd = $('#passwords').val();
 
         return {
         	username: user_name,
