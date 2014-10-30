@@ -102,13 +102,19 @@ define(function (require,exports,module){
 	/**
 	 * 创建Loading的DIV标签,并且追加到页面最下方
 	 */
-	function createLoadingDiv() {
-		var loadDiv = '<div id="loading"><div class="modal fade  bs-example-modal-sm" isShow=true id="loadingModalMes" tabindex="-1" role="dialog" aria-labelledby="loading" aria-hidden="false">'
-				+ '<div class="modal-dialog" style="width: 210px;height: 100px;margin-top:20%;">' + '<div class="modal-content" style="background-color:#000000;opacity: 0.3;">'
-				+ '<div class="modal-body" id="messages">' + '<span id="mess"><img src="img/common/loader.gif"/>&nbsp;&nbsp;&nbsp;&nbsp;<font color="white">正在加载，请稍后......</font></span>'
-				+ '</div></div></div></div>';
-		$(document.body).append(loadDiv);
-	}
+	function createLoadingDiv(){
+		var htmlArr = [
+			'<div id="loadingModalMes" class="modal fade bs-example-modal-lg mylodding" tabindex="-1"  role="dialog"  aria-hidden="true">',
+				'<div class="modal-dialog modal-lg">',
+					'<div class="modal-content">',
+						'<div class="myContent">正在加载...</div>',
+					'</div>',
+				'</div>',
+			'</div>'
+		];
+
+		$(document.body).append(htmlArr.join(''));
+	};
 
 	/**
 	 * 显示Loading
