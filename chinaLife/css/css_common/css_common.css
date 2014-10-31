@@ -1,0 +1,57 @@
+/**
+*lodding模态框
+**/
+.mylodding .modal-dialog{
+  width:200px;
+  height:80px;
+  position:absolute;
+  left:50%;
+  top:50%;
+  margin:-40px 0px 0px -100px;
+}
+.mylodding .modal-content{
+  height:80px; 
+  background:#fff;
+}
+.mylodding .myContent{
+  background:url(../../img/common/loadding.gif) left center no-repeat;
+  width:120px;
+  height:80px;
+  margin:0 auto;
+  line-height:80px;
+  text-align:right;
+}
+
+/**
+*顶部固定导航栏
+**/
+.privite-navbar-fixed .navbar-collapse{
+	padding:0px 15px;
+}
+
+/**
+*自定义脚部主题
+**/
+.bs-footer{
+	text-align:center;
+	margin-top:20px;
+	color: #777;
+	font-size:12px;
+}
+/**
+*padding类
+**/
+.padding-top-7{
+  padding-top:7px;
+}
+
+
+/**
+*字体颜色类
+**/
+.font-red{
+  color:red;
+}
+.font-blue{
+  color:blue;
+}

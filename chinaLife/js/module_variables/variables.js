@@ -86,7 +86,7 @@ define(function (require,exports,module){
      * 顶部导航栏
     **/
     var header1Arr = [
-            '<nav class="navbar navbar-default privite-navbar-fixed navbar-fixed-top" role="navigation">',
+            '<nav class="navbar navbar-default privite-navbar-fixed " role="navigation">',
               '<div class="container-fluid">',
                 '<div class="navbar-header">',
                   '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">',
