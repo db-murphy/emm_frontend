@@ -38,11 +38,31 @@
 	color: #777;
 	font-size:12px;
 }
+
+
 /**
-*padding类
+*上边距
 **/
 .padding-top-7{
   padding-top:7px;
+}
+/**
+*左边距
+**/
+.padding-left-15{
+  padding-left:15px;
+}
+.margin-left-15{
+  margin-left:15px;
+}
+/**
+*右边距
+**/
+.padding-right-15{
+  padding-left:15px;
+}
+.margin-right-15{
+  margin-right:15px;
 }
 
 
@@ -54,4 +74,21 @@
 }
 .font-blue{
   color:blue;
+}
+
+/**
+*浮动类
+**/
+.float-right{
+  float:right;
+}
+
+/**
+*自定义panel类
+**/
+.hasButtonHead{
+  position:relative;
+}
+.hasButtonHead .panel-title{
+  display:inline-block;
 }
