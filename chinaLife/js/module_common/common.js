@@ -146,7 +146,7 @@ define(function (require,exports,module){
 		var html5 = variables.menuhtmlJson.header3Arr.join('');
 		var new_html = html1 + html2 + html3 + html4 + html5;
 
-		$('body').prepend(new_html);
+		$('#pageWrap').prepend(new_html);
 	};
 
 	/**
@@ -186,7 +186,7 @@ define(function (require,exports,module){
 	**/
 	function create_footer() {
 		var html = variables.menuhtmlJson.footerHtml.join('');
-		$('body').append(html);
+		$('#pageWrap').append(html);
 	};
 
 	/**

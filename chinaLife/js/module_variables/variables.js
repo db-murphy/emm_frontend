@@ -19,7 +19,7 @@ define(function (require,exports,module){
     var menuJson = [ 
         {
             "id" : "0",
-            "url" : "appProjectList.html#0",
+            "url" : "proM_main.html#0",
             "text" : "项目管理",
             "leaf" : true,
             "class":""

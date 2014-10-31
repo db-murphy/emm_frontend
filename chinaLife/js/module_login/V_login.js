@@ -16,7 +16,7 @@ define(function (require,exports,module){
 				window.sessionStorage.setItem('username',user_name);
 				window.sessionStorage.setItem('id',data.data.id);
 				window.sessionStorage.setItem('TOKENID',data.status.msg);
-				window.location.href = 'html/main.html#0';	
+				window.location.href = 'html/main.html';	
 			}else{
 				$('#login_reminder').html('用户名/密码错误,请重新输入');
 			}
