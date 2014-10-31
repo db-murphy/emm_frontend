@@ -26,7 +26,7 @@ define(function (require,exports,module){
 			if (utils.NullToStr(tokenId) == "") {
 				var url = window.location.href;
 				if(url.indexOf("login.html")<0){
-					window.location.href = "login.html";
+					window.location.href = "../login.html";
 				}			
 			}
 			request.setRequestHeader('TOKENID', tokenId);
@@ -103,17 +103,7 @@ define(function (require,exports,module){
 	 * 创建Loading的DIV标签,并且追加到页面最下方
 	 */
 	function createLoadingDiv(){
-		var htmlArr = [
-			'<div id="loadingModalMes" class="modal fade bs-example-modal-lg mylodding" tabindex="-1"  role="dialog"  aria-hidden="true">',
-				'<div class="modal-dialog modal-lg">',
-					'<div class="modal-content">',
-						'<div class="myContent">正在加载...</div>',
-					'</div>',
-				'</div>',
-			'</div>'
-		];
-
-		$(document.body).append(htmlArr.join(''));
+		$(document.body).append(variables.htmlJson.loddingHtmlArr.join(''));
 	};
 
 	/**
@@ -141,95 +131,84 @@ define(function (require,exports,module){
 		return null;
 	};
 
-	function menuActive() {
-		var mid = getUrlParam("mid");
-		var length = variables.menuJson.length;
-		var menuHtml = '';
-		for (var i = 0; i < length; i++) {
-			var menu = variables.menuJson[i];
-			if (menu.leaf) {
-				if (menu.id === mid) {
-					menuHtml += '<li id="menu_' + menu.id + '" class="active" >'
-				} else {
-					menuHtml += '<li id="menu_' + menu.id + ' ">'
-				};
-
-				menuHtml += '<a href="javascript:gotoUrl(\'' + menu.id + '\',\''
-						+ menu.url + '\');">' + menu.text + '</a>';
-				menuHtml += '</li>';
-			}
-		}
-		return menuHtml;
-	}
-
 	function gotoUrl(id, url) {
 		location.href = url + "?mid=" + id;
 	};
 
 	/**
-	* 创建顶部导航栏
+	 * 创建顶部导航栏
 	**/
 	function create_header(){
-		var topMenuHTML = "";
-			topMenuHTML += '<nav class="navbar navbar-default" role="navigation">';
-			topMenuHTML += '<div class="container-fluid">';
-			topMenuHTML += '<div class="navbar-header">';
-			topMenuHTML += '<button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle" type="button">';
-			topMenuHTML += '<span class="sr-only">Toggle navigation</span>';
-			topMenuHTML += '<span class="icon-bar"></span>';
-			topMenuHTML += '<span class="icon-bar"></span>';
-			topMenuHTML += '<span class="icon-bar"></span>';
-			topMenuHTML += '</button>';
-			topMenuHTML += '<a href="main.html" class="navbar-brand">NQSky EMM</a>';
-			topMenuHTML += '</div>';
-			topMenuHTML += '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">';
-			topMenuHTML += '<ul class="nav navbar-nav">';
-			var menuHtml = menuActive();
-			topMenuHTML += menuHtml;
-			topMenuHTML += '</ul>';
-			topMenuHTML += '<ul class="nav navbar-nav navbar-right">'
-			topMenuHTML += '<li>';
-			topMenuHTML += '<p class="navbar-text">';
-			topMenuHTML += '当前登录用户：';
-			topMenuHTML += '</p>';
-			topMenuHTML += '</li>';
+		var html1 = variables.menuhtmlJson.header1Arr.join('');
+		var html2 = createMainList(variables.menuJson);
+		var html3 = variables.menuhtmlJson.header2Arr.join('');
+		var html4 = createMainList(variables.userMenu);
+		var html5 = variables.menuhtmlJson.header3Arr.join('');
+		var new_html = html1 + html2 + html3 + html4 + html5;
 
-			topMenuHTML += '<li id="menu_right" class="dropdown">';
-			topMenuHTML += '<a id="a_userName" href="#" class="dropdown-toggle" data-toggle="dropdown"></a>';
-			topMenuHTML += '<ul class="dropdown-menu">';
-
-			topMenuHTML += '<li id="menu_right_1">';
-			topMenuHTML += '<a href="service.html?mr=1">服务管理</a>';
-			topMenuHTML += '</li>';
-			topMenuHTML += '<li class="divider"></li>';
-			topMenuHTML += '<li id="menu_right_2">';
-			topMenuHTML += '<a href="#" role="button" data-toggle="modal" data-target="#changePswModal" onclick="modelChangePsws()">修改密码</a>';
-			topMenuHTML += '</li>';
-			topMenuHTML += '<li class="divider"></li>';
-			topMenuHTML += '<li onclick="logout();">';
-			topMenuHTML += '<a href="javascript:logout();">注销</a>';
-			topMenuHTML += '</li>';
-			topMenuHTML += '</ul>';
-			topMenuHTML += '</li>';
-			topMenuHTML += '</ul>';
-			topMenuHTML += '</div>';
-			topMenuHTML += '</div>';
-			topMenuHTML += '</nav>';
-			$('body').prepend(topMenuHTML);
+		$('body').prepend(new_html);
 	};
 
 	/**
-	* 生成页脚
+	 * 生成导航栏主菜单html
+	**/
+	function createMainList(arr){
+		var newHtmlArr = [];
+		var newHtml = '';
+
+		for(var i=0; i<arr.length; i++){
+			if(arr[i].class == 'divider'){
+				newHtml = '<li class="'+arr[i].class+'">'+arr[i].text+'</li>';
+			}else{
+				newHtml = '<li class="'+arr[i].class+'"><a href="'+arr[i].url+'">'+arr[i].text+'</a></li>';
+			};
+			newHtmlArr.push(newHtml);
+		};
+		return newHtmlArr.join('');
+	};
+
+	/**
+	 * 根据url的hash值来确定当前处在那个模块
+	**/
+	function resertMenu(){
+		var hashNow = window.location.hash.substring(1);
+
+		for(var i=0; i<variables.menuJson.length; i++){
+			variables.menuJson[i].class = '';
+			if(variables.menuJson[i].id == hashNow){
+				variables.menuJson[i].class = 'active';
+			};
+		};
+	};
+
+	/**
+	 * 生成页脚
 	**/
 	function create_footer() {
-		var arr =[
-			'<footer class="bs-footer" role="contentinfo">',
-				'当前版本:V 0.5.2.80',
-			'</footer>'
-		]; 
-		var html = arr.join('');
+		var html = variables.menuhtmlJson.footerHtml.join('');
 		$('body').append(html);
 	};
+
+	/**
+	* 赋值用户名
+	**/
+	function valuationUsername() {
+		var userName = window.sessionStorage.getItem('username');
+		if(!userName){
+			userName = '暂无';
+		};
+		$(".user_name").text(userName);
+	};
+
+	/**
+	 * 校验 登陆,超时 等 其他需要预先处理的事情
+	 */
+	function verification(data, textStatus, jqXHR) {
+		if (data == -999) {
+			alert('未登陆或登陆超时');
+			window.location.href = '../login.html';
+		}
+	}
 
 	/**
 	* 接口导出
@@ -240,7 +219,9 @@ define(function (require,exports,module){
 		create_footer:create_footer,
 		showLoading:showLoading,
 		createLoadingDiv:createLoadingDiv,
-		https:https
+		https:https,
+		resertMenu:resertMenu,
+		valuationUsername:valuationUsername
 		
 	};
 

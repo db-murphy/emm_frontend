@@ -67,3 +67,20 @@
   line-height:80px;
   text-align:right;
 }
+
+/**
+*顶部固定导航栏
+**/
+.privite-navbar-fixed .navbar-collapse{
+	padding:0px 15px;
+}
+
+/**
+*自定义脚部主题
+**/
+.bs-footer{
+	text-align:center;
+	margin-top:20px;
+	color: #777;
+	font-size:12px;
+}
