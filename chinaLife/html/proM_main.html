@@ -29,42 +29,47 @@
 			  <table class="table table-hover table-bordered">
 			  	<thead>
 			  		<tr>
-			  			<th>序号</th>
+			  			<th class="text_center">序号</th>
 			  			<th>项目名称</th>
 			  			<th>所属分类</th>
 			  			<th>项目描述</th>
 			  			<th>创建时间</th>
-			  			<th>操作</th>
+			  			<th class="text_center">操作</th>
 			  		</tr>
 			  	</thead>
 			  	<tbody id="id_grid_list">
-			  		<tr>
-			  			<td>j</td>
-			  			<td>j</td>
-			  			<td>j</td>
-			  			<td>j</td>
-			  			<td>j</td>
-			  			<td>j</td>
-			  		</tr>
-			  		<tr>
-			  			<td>j</td>
-			  			<td>j</td>
-			  			<td>j</td>
-			  			<td>j</td>
-			  			<td>j</td>
-			  			<td>j</td>
-			  		</tr>
-			  		<tr>
-			  			<td>j</td>
-			  			<td>j</td>
-			  			<td>j</td>
-			  			<td>j</td>
-			  			<td>j</td>
-			  			<td>j</td>
-			  		</tr>
+			  		<!-- <tr>
+			  			<td align="center">1</td>
+			  			<td>测试</td>
+			  			<td>办公</td>
+			  			<td>项目描述</td>
+			  			<td>2014-10-23 14:35:08</td>
+			  			<td align="center">
+			  				<a href="#">应用</a>|
+			  				<a href="#">编辑</a>|
+			  				<a href="#" class="font-red">删除</a>
+			  			</td>
+			  		</tr> -->
 			  	</tbody>
 			  </table>
 			</div>
+		</div>
+		<div class="row margin-left-15 margin-right-15">
+		 	<div class="mypaginationBox clearfix">
+		 		<ul id="pagination" class="pagination margin_none">
+					<li class="backBtn"><a href="#">&laquo;</a></li>
+					<li class="fowrdBtn"><a href="#">&raquo;</a></li>
+				</ul>
+		 		<div class="paginationText">
+		 			<span>第</span>
+		 			<span class="min_app_count">...</span>
+		 			<span>-</span>
+		 			<span class="max_app_count">...</span>
+		 			<span>个项目  共计</span>
+		 			<span class="app_total">...</span>
+		 			<span>个项目</span>
+		 		</div>
+		 	</div>
 		</div>
 	</div>
 </body>
@@ -79,6 +84,6 @@
 	/**
 	*进入主模块
 	**/
-	seajs.use('module_projectManagement/main');
+	seajs.use('module_projectManagement/main.js');
 </script>
 </html>

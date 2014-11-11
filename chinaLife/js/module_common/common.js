@@ -1,5 +1,4 @@
 define(function (require,exports,module){
-
 	/**
 	* 依赖模块
 	**/
@@ -93,7 +92,8 @@ define(function (require,exports,module){
 			url: variables.BasePath + url,
 			dataType: dataFormat,
 			data: json,
-			success: function(data){
+			success: function(data, textStatus, jqXHR){
+				verification(data, textStatus, jqXHR);
 				fnScc&&fnScc(data);
 			}
 		});
@@ -221,7 +221,8 @@ define(function (require,exports,module){
 		createLoadingDiv:createLoadingDiv,
 		https:https,
 		resertMenu:resertMenu,
-		valuationUsername:valuationUsername
+		valuationUsername:valuationUsername,
+		verification:verification
 		
 	};
 

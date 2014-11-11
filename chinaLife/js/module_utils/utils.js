@@ -186,7 +186,8 @@ define(function (require,exports,module){
 
 		setLoad:setLoad,
 		ErrorInfo:ErrorInfo,
-		NullToStr:NullToStr
+		NullToStr:NullToStr,
+		UnixToDate:UnixToDate
 		
 	};
 });
