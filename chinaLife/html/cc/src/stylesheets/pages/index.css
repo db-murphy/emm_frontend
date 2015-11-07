@@ -1,0 +1,9 @@
+.bar{
+	border: 1px solid red;
+	height: 100%;
+	width: 100px;
+	display: block;
+}
+a{
+	color: red;
+}
