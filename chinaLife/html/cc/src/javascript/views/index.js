@@ -1,6 +1,6 @@
 define(function (require,exports,module){
 	function render_list(data) {
-		console.log(data);
+		//console.log(data);
 	}
 
 	// 处理价格信息

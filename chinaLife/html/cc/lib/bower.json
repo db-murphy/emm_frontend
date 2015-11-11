@@ -1,0 +1,24 @@
+{
+  "name": "m.red.ui",
+  "description": "m.red.ui",
+  "main": "",
+  "moduleType": [],
+  "authors": [
+    "cdhuangxiaolong@jd.com"
+  ],
+  "license": "MIT",
+  "homepage": "db-murphy.github.io",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "zepto": "~1.1.6",
+    "seajs": "~3.0.0",
+    "iscroll": "~5.1.3",
+    "Swiper": "swiper#~3.1.7"
+  }
+}

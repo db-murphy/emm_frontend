@@ -25,10 +25,6 @@ define(function (require, exports, module){
 	// ------------------
 	controller.create_tab();
 
-	// 顶部tab切换
-	// ------------------
-	controller.tab_check();
-
 	// 回到顶部按钮
 	// ------------------
 	controller.back_to_top();

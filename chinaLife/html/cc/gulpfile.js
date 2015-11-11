@@ -17,6 +17,7 @@
     var transport = require("gulp-seajs-transport");
     var imagemin = require('gulp-imagemin');
     var cache = require('gulp-cache');
+    var nano = require('gulp-cssnano');
     var pages_names;
 
     // 压缩并合并css文件
@@ -24,7 +25,7 @@
     gulp.task('min_css', function() {
       gulp.src(['./src/stylesheets/base/*.css', './src/stylesheets/helpers/*.css', './src/stylesheets/components/*.css'])
         .pipe(concat('common.min.css'))
-        .pipe(minify_css())
+        .pipe(nano())
         .pipe(gulp.dest('./build/css'))
         .on('end', function() {
             pages_names = shelljs.ls('./src/stylesheets/pages');
@@ -45,7 +46,7 @@
 
         gulp.src(['./build/css/common.min.css', './src/stylesheets/pages/' + page_now + '.css'])
             .pipe(concat(page_now + '.min.css'))
-            .pipe(minify_css())
+            .pipe(nano())
             .pipe(gulp.dest('./build/css'))
             .on('end', function() {
                 concat_pages(pages_names, callback);
@@ -65,12 +66,12 @@
     // ==========================
     gulp.task('image_min', function() {
         gulp.src('./src/images/**/*')
-            .pipe(cache(imagemin({
+            .pipe(imagemin({
                 optimizationLevel: 7, //类型：Number  默认：3  取值范围：0-7（优化等级）
                 progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
                 interlaced: true, //类型：Boolean 默认：false 隔行扫描gif进行渲染
                 multipass: true //类型：Boolean 默认：false 多次优化svg直到完全优化
-            })))
+            }))
             .pipe(gulp.dest('./build/images'));
     });
 
@@ -101,7 +102,7 @@
 
     // 监听文件变化
     // ==========================
-    gulp.task('watch', ['watch_css', 'watch_js', 'watch_images']);
+    gulp.task('watch', ['default', 'watch_css', 'watch_js', 'watch_images']);
 
     // 默认任务
     // ==========================
