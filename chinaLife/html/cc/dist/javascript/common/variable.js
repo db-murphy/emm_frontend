@@ -1,1 +1,0 @@
-define("common/variable",[],function(o,c,e){var p={head_url:"//m.jd.com/app/header.action",footer_url:"//m.jd.com/app/footer.action",price_info_url:"http://pm.3.cn/prices/mgets",stock_info_url:"/sg4jdappjson/checkStockBySkuids.html"};e.exports={api:p}});

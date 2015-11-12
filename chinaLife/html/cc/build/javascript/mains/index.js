@@ -1,1 +1,0 @@
-define("mains/index",["controllers/index"],function(e,t,r){var i=e("controllers/index");i.create_header(),i.create_footer(),i.create_list(),i.create_tab(),i.back_to_top(),i.layzr_init(),i.get_price_info(),i.get_stock_info()});
