@@ -1,1 +1,0 @@
-define("mains/index",["controllers/index","common/tool"],function(e,o,t){var c=e("controllers/index"),n=e("common/tool");c.create_header(),c.create_footer(),c.create_list(),c.create_tab(),c.tab_check(),c.back_to_top(),n.lazyload.init(),c.get_price_info(),c.get_stock_info()});
