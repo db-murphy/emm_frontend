@@ -17,7 +17,6 @@
     var transport = require("gulp-seajs-transport");
     var imagemin = require('gulp-imagemin');
     var cache = require('gulp-cache');
-    var nano = require('gulp-cssnano');
     var pages_names;
 
     // 压缩并合并css文件
@@ -25,33 +24,20 @@
     gulp.task('min_css', function() {
       gulp.src(['./src/stylesheets/base/*.css', './src/stylesheets/helpers/*.css', './src/stylesheets/components/*.css'])
         .pipe(concat('common.min.css'))
-        .pipe(nano())
+        .pipe(minify_css())
         .pipe(gulp.dest('./build/css'))
         .on('end', function() {
-            pages_names = shelljs.ls('./src/stylesheets/pages');
-            concat_pages(pages_names, function() {
-                shelljs.rm('./build/css/common.min.css');
-            });
+            gulp.src(['./src/stylesheets/pages/*.css'])
+                .pipe(minify_css())
+                .pipe(rename(function (path) {
+                    path.basename += ".min";
+                }))
+                .pipe(gulp.dest('./build/css'));
+
+            gulp.src(['./src/fonts/**/*'])
+                .pipe(gulp.dest('./build/fonts'));
         });
     });
-
-    function concat_pages(pages_names, callback) {
-        if(!pages_names.length) {
-            callback();
-            return;
-        }
-        var page_now = pages_names.pop();
-
-        page_now = page_now.split('.')[0];
-
-        gulp.src(['./build/css/common.min.css', './src/stylesheets/pages/' + page_now + '.css'])
-            .pipe(concat(page_now + '.min.css'))
-            .pipe(nano())
-            .pipe(gulp.dest('./build/css'))
-            .on('end', function() {
-                concat_pages(pages_names, callback);
-            });
-    }
 
     // 压缩js文件
     // ==========================
