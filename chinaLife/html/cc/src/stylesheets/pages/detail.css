@@ -1,0 +1,10 @@
+.bar{
+	color: black;
+}
+nav{
+	height: 200px;
+	width: 100px;
+}
+.active{
+	width: 300px;
+}
