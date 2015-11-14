@@ -1,0 +1,916 @@
+<!-- HTML5 DOCTYPE -->
+<!DOCTYPE html>
+<html style="font-size:20px;">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="闪购">
+        <meta name="aplus-terminal" content="1">
+        <meta name="aplus-touch" content="1">
+        <link rel="stylesheet" href="./v3/css/shanggou_m.src.css" />
+        <link rel="stylesheet" href="http://static.360buyimg.com/shangou/redm/v3/css/lunbo.css" />
+        <script language="javascript" src="http://static.360buyimg.com/shangou/redm/v3/js/zepto.min.js">
+        </script>
+        <script language="javascript">
+            (function() {
+                resizeRoot();
+                handleResize();
+            })($);
+            function handleResize() {
+                $(window).resize(function() {
+                    resizeRoot();
+                });
+            }
+            function resizeRoot() {
+                var fs = $(window).width() / 320 * 20;
+                if (fs >= 40) {
+                    fs = 40;
+                }
+                $("html").css("font-size", fs + "px");
+            }
+
+            function getBrandOccupiedImg() {
+            	return "";
+            }
+
+			function getActOccupiedImg() {
+				return "http://static.360buyimg.com/shangou/redm/v3/img/actOccupied.png";
+			}
+
+			function getForecastOccupiedImg() {
+				return "http://static.360buyimg.com/shangou/redm/v3/img/forecastOccupiedImg.png";
+			}
+        </script>
+        
+        <body>
+            <style type="text/css">
+    /* Common */
+    .new-header-append{font-size:16px;line-height:1.25em;min-width:320px;font-size:1em;font-family:'microsoft yahei',Verdana,Arial,Helvetica,sans-serif;color:#000;-webkit-text-size-adjust:none}
+    .new-header-append,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+    .new-tbl-type{display:table;width:100%}
+    .new-tbl-cell{display:table-cell}
+    /* header */
+    .new-jd-logo{position:relative;padding:0 10px}
+    .new-hlogo-btn{position:absolute;top:0;right:10px}
+    .new-m-myjd,.new-m-cart{display:inline-block;width:30px;height:39px}
+    .new-m-myjd span,.new-m-cart span{display:inline-block;width:26px;height:21px;margin-top:13px;background:url(http://st.360buyimg.com/m/images/touch2013/icon2b.png?v=jd2015082018) 4px 0 no-repeat;background-size:180px 180px;text-indent:-9999px}
+    .new-m-cart span{width:24px;height:21px;background-position:-24px 0}
+    .new-header{position:relative;z-index:8888;height:44px;background:#e4393c}
+    .new-header-v1{background:#edecec}
+    .new-header h2{height:44px;line-height:44px;font-weight:normal;font-size:16px;color:#fff;text-align:center}
+    .new-header-v1 h2{color:#000}
+    .new-a-home{position:absolute;top:6px;left:6px;width:56px;height:32px;background:url(http://st.360buyimg.com/m/images/touch2013/icon.png?v=jd2015082018) 0 0 no-repeat;font-size:14px;line-height:32px;color:#6e6e6e;text-indent:18px}
+    .new-a-out{position:absolute;top:6px;right:12px;width:32px;height:30px;background:url(http://st.360buyimg.com/m/images/touch2013/icon.png?v=jd2015082018) -23px -1474px;text-indent:-9999px}
+    .new-a-out .new-logo{display:inline-block;width:52px;height:29px;background:url(http://st.360buyimg.com/m/images/touch2013/icon.png?v=jd2015082018) 1px -546px no-repeat}
+    .new-a-back{position:absolute;top:6px;left:6px;width:30px;height:32px}
+    .new-a-back span{display:inline-block;width:10px;height:18px;margin-top:6px;background:url(http://st.360buyimg.com/m/images/touch2013/icon2b.png?v=jd2015082018) -60px 0 no-repeat;background-size:180px 180px;text-indent:-9999px}
+    .new-a-back2{background:url(http://st.360buyimg.com/m/images/touch2013/icon.png?v=jd2015082018) no-repeat scroll 3px -1431px;height: 32px;left: 6px;position: absolute;text-indent: -9999px;top: 6px;width: 30px}
+    .new-a-back-v1{background-position:3px -1431px}
+    .new-a-edit{position:absolute;top:6px;right:12px;width:37px;height:30px;background:url(http://st.360buyimg.com/m/images/touch2013/icon.png?v=jd2015082018) 7px -669px no-repeat;font-size:14px;line-height:32px;color:#6e6e6e;text-align:center;text-indent:-9999px}
+    .new-a-jd{position:absolute;top:6px;right:7px;width:37px;height:30px}
+    .new-a-jd span{display:inline-block;width:21px;height:21px;margin:5px 0 0 8px;background:url(http://st.360buyimg.com/m/images/touch2013/icon2b.png?v=jd2015082018) -125px -24px no-repeat;background-size:180px 180px;text-indent:-9999px}
+    .new-a-edit{background-position:16px -605px}
+    .new-header .new-srch-box{width:auto;margin:0 70px 0 12px;padding-right:90px;background-color:#fff}
+    .new-header .new-srch-box-v1{width:84%;margin-left:40px;padding-right:0}
+    .new-header .new-srch-box-v2{padding-right:30px}
+    .new-header .new-srch-box-v3{width:62%;margin-left:40px;padding-right:30px}
+    .new-header .new-srch-box-v1 .new-srch-input{margin-right:0}
+    .new-header .new-srch-lst{position:absolute;top:31px;left:-1px;z-index:100;width:100%}
+    .new-a-cancel{position:absolute;top:0;left:0;width:40px;height:44px;line-height:44px;font-size:14px;color:#fff;text-align:center}
+    .new-header .new-s-close{right:3px}
+    .new-header .new-s-close-v1{right:55px}
+    .new-a-search{position:absolute;top:6px;right:16px;width:37px;height:30px;line-height:30px;font-size:16px;font-weight:bold;color:#fff}
+    /* tab */
+    .new-jd-tab{border-bottom:1px solid #d0cece;background-color:#fff}
+    .new-jd-tab .new-tbl-cell{width:25%;padding:9px 0;font-size:12px;color:#fff;text-align:center}
+    .new-jd-tab .new-tbl-cell span{vertical-align:text-top}
+    .new-jd-tab .new-tbl-cell .icon,.new-jd-tab .new-tbl-cell .icon2,.new-jd-tab .new-tbl-cell .icon3,.new-jd-tab .new-tbl-cell .icon4{display:inline-block;width:22px;height:22px;background:url(http://st.360buyimg.com/m/images/touch2013/icon2b.png?v=jd2015082018) -60px -25px no-repeat;background-size:180px 180px;text-indent:-9999px}
+    .new-jd-tab .new-tbl-cell .icon2{width:26px;background-position:0 -25px}
+    .new-jd-tab .new-tbl-cell .icon3{width:25px;background-position:-29px -25px}
+    .new-jd-tab .new-tbl-cell .icon4{width:22px;background-position:-85px -25px}
+    .new-jd-tab .new-tbl-cell .icon.on{background-position:-157px 0}
+    .new-jd-tab .new-tbl-cell .icon2.on{background-position:-154px -24px}
+    .new-jd-tab .new-tbl-cell .icon3.on{background-position:-154px -49px}
+    .new-jd-tab .new-tbl-cell .icon4.on{background-position:-155px -74px}
+    .new-jd-tab .new-tbl-cell .txt{display:block}
+    
+    .new-header-download-con {bottom: 0;position: fixed;width: 100%;z-index: 11109;}
+    .new-header-download-con .new-header-down_app {background: none repeat scroll 0 0 rgba(68, 68, 79, 0.95);display: block;height: 4.4em;line-height: 4.285em; margin: 0 auto;max-width: 640px;min-width: 320px;position: relative;vertical-align: middle;width: 100%;}
+    .new-header-download-con .new-header-download-logo {background: url("data:image/png;base64,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") repeat scroll 0 0 / 100% 100% rgba(0, 0, 0, 0);display: inline-block;height: 2.785em;margin-left: 10px;vertical-align: middle;width: 2.785em;}
+    .new-header-download-con .new-header-alogo {display: inline-block;line-height: 1.2em;margin-left: 1px;vertical-align: middle;width: 50%;}
+    .new-header-download-con .new-header-alogo p {font-family: "microsoft yahei",Verdana,Arial,Helvetica,sans-serif;}
+    .new-header-download-con .new-header-alogo .new-header-client-name {color: #fff;font-size: 0.875em;line-height: 1.3em;}
+    .new-header-download-con .new-header-alogo .new-header-client-logon {color: #fff;display: none;font-size: 0.875em;}
+    .new-header-download-con .new-header-open_now {display: inline-block;float: right;margin-right: 20px;vertical-align: middle;}
+    .new-header-download-con .new-header-open_now .new-header-open_btn {background-color: #fff;border-radius: 0.3em;margin-top: 5px;padding: 0.3em;text-align: center;vertical-align: middle;}
+    
+    .new-header-download-con .new-header-open_now a {text-decoration: none;color: #000;font-family: "microsoft yahei",Verdana,Arial,Helvetica,sans-serif;font-size: 1em;}
+    .new-header-download-con .new-header-close-btn-con {background-color: #1c1c1f;border-bottom-left-radius: 1.25em;display: block; height: 1.25em;position: absolute;right: 0;top: 0;width: 1.25em;}
+    .new-header-download-con .new-header-close-btn-con .new-header-close-btn-icon {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAMAAAAMs7fIAAAAYFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////98JRy6AAAAH3RSTlMA3y8CBhXI8CEM5vaOnvzrziYzmLwb2YizuKVJQ3llnWPsLgAAAHxJREFUGNNNz0sCgyAMRdGnIij0o1JttZ/sf5cNYKJ38uDMgo8bWmi/r4EjWpSeRBssZRIgj37gqVoBmoDe7nThvTEIzQJKubqAUmBQCkneOIqU8rP8myuV7t0JwvTIpOBGGKFmKwCYNb06xDJI9Mp32R2EFtSVZxCK6/gH/5oO+3ZD3/wAAAAASUVORK5CYII=") no-repeat scroll 0 0 / 100% 100% rgba(0, 0, 0, 0);display: inline-block;height: 0.6em;position: absolute;right: 3px;top: 3px;width: 0.6em;}
+</style>
+            <!--<div class="new-header new-header-append">
+        <a href="javascript:_pageBack();" class="new-a-back"><span>返回</span></a>
+                    <h2>京东闪购·品牌特卖</h2>
+                <a href="javascript:void(0)" id="btnJdkey" onclick="_toggleJdKey()" class="new-a-jd"><span>京东键</span></a>
+    </div>-->
+            <!-- S 顶部tab栏 -->
+            <div class="header">
+                <nav class="tabnav" id="J_tab">
+                    <div class="tabs-wp">
+                        <a class="tab tab-new active" href="/sg4jdapp/index.html?vs=jdapp&notLoadHead=">十点上新</a>
+                        <div class="tab-cnt">
+                            <div class="clearfix tab-bd">
+                                <a class="tab">最后疯抢</a>
+                                <a class="tab">服饰</a>
+                                <a class="tab">鞋包</a>
+                                <a class="tab">运动</a>
+                                <a class="tab">居家</a>
+                                <a class="tab">亲子</a>
+                                <a class="tab">美妆</a>
+                                <a class="tab">奢品</a>
+                                <a class="tab">鞋包</a>
+                                <a class="tab">运动</a>
+                                <a class="tab">居家</a>
+                                <a class="tab">亲子</a>
+                                <a class="tab active">美妆</a>
+                                <a class="tab">奢品</a>
+                                <a class="tab">即将特卖</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            
+            <div class="content-wp">
+                <div class="mod_slider">
+                    <div class="inner" id="idContainer">
+                        <ul id="idSlider" class="pic_list" style="width:100%;">
+                            <li class="item" style="width:100%;">
+                                <a class="J_ping" href='http://sale.jd.com/app/act/MLjAigUp6mu.html' report-eventid='Mflashbuy_FocusPic'
+                                report-eventparam='1_http://sale.jd.com/app/act/MLjAigUp6mu.html' page_name='http://m.red.jd.com/sg4jdapp/index.html'>
+                                    <img src="http://img11.360buyimg.com/red/jfs/t1558/177/1449902433/176321/f5add6ac/55c8721cN2338cf5b.jpg!q85.jpg"
+                                    onerror="" />
+                                </a>
+                            </li>
+                            <li class="item" style="width:100%;">
+                                <a class="J_ping" href='http://sale.jd.com/app/act/T6Wvt5xK1ZV.html' report-eventid='Mflashbuy_FocusPic'
+                                report-eventparam='2_http://sale.jd.com/app/act/T6Wvt5xK1ZV.html' page_name='http://m.red.jd.com/sg4jdapp/index.html'>
+                                    <img src="http://img14.360buyimg.com/red/jfs/t1546/115/1444702875/64466/4923a3ef/55c8725aNf49e33c9.jpg!q85.jpg"
+                                    onerror="" />
+                                </a>
+                            </li>
+                            <li class="item" style="width:100%;">
+                                <a class="J_ping" href='http://sale.jd.com/app/act/eTgqMkIoDUjOEY0.html'
+                                report-eventid='Mflashbuy_FocusPic' report-eventparam='3_http://sale.jd.com/app/act/eTgqMkIoDUjOEY0.html'
+                                page_name='http://m.red.jd.com/sg4jdapp/index.html'>
+                                    <img src="http://img14.360buyimg.com/red/jfs/t1390/2/1322792841/133460/f6a41ca9/55c46cd6N13a6e177.jpg!q85.jpg"
+                                    onerror="" />
+                                </a>
+                            </li>
+                            <li class="item" style="width:100%;">
+                                <a class="J_ping" href='http://sale.jd.com/app/act/QchSuGTa7d5Cr3JK.html'
+                                report-eventid='Mflashbuy_FocusPic' report-eventparam='4_http://sale.jd.com/app/act/QchSuGTa7d5Cr3JK.html'
+                                page_name='http://m.red.jd.com/sg4jdapp/index.html'>
+                                    <img src="http://img12.360buyimg.com/red/jfs/t1600/324/1411925387/210958/da5b7c3b/55c874f5N6d95d082.jpg!q85.jpg"
+                                    onerror="" />
+                                </a>
+                            </li>
+                            <li class="item" style="width:100%;">
+                                <a class="J_ping" href='http://sale.jd.com/app/act/ERUGF1S3vQe.html' report-eventid='Mflashbuy_FocusPic'
+                                report-eventparam='5_http://sale.jd.com/app/act/ERUGF1S3vQe.html' page_name='http://m.red.jd.com/sg4jdapp/index.html'>
+                                    <img src="http://img14.360buyimg.com/red/jfs/t1414/84/1455640934/220519/56da7164/55c87537N850b57f3.jpg!q85.jpg"
+                                    onerror="" />
+                                </a>
+                            </li>
+                            <li class="item" style="width:100%;">
+                                <a class="J_ping" href='http://sale.jd.com/app/act/WG2VcjhXvS6lNCrp.html'
+                                report-eventid='Mflashbuy_FocusPic' report-eventparam='6_http://sale.jd.com/app/act/WG2VcjhXvS6lNCrp.html'
+                                page_name='http://m.red.jd.com/sg4jdapp/index.html'>
+                                    <img src="http://img12.360buyimg.com/red/jfs/t1516/255/1455145672/50819/6be6fecf/55c875bbN3a160915.jpg!q85.jpg"
+                                    onerror="" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bar_wrap">
+                        <ul class="bar" id="idNum">
+                            <li class="cur">
+                            </li>
+                            <li class="cur">
+                            </li>
+                            <li class="cur">
+                            </li>
+                            <li class="cur">
+                            </li>
+                            <li class="cur">
+                            </li>
+                            <li class="cur">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- E 顶部tab栏 -->
+                <!-- S tab展示区 -->
+                <!-- S 今日上新 -->
+                <div class=" J_tabitem tab_content show">
+                    <div class="event_list show">
+                        <a href='/sg4jdapp/detail.html?actId=57660&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="彪马鞋服专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state1">
+                            </p>
+                            <img src="" dataimg="http://img11.360buyimg.com/red/jfs/t1591/89/1185080235/208608/5b3312c0/55bedb98N74851aa6.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img12.360buyimg.com/red/jfs/t616/108/1002749704/5114/1c18b550/54a2446bN889056f2.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    彪马鞋服专场
+                                </strong>
+                                <em class="discount fr">
+                                    3折起
+                                </em>
+                            </p>
+                            <p class='countdown type2'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        22
+                                    </em>
+                                    小时
+                                </span>
+                            </p>
+                            <p class="man">
+                                满300元,减30元
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=56916&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="Ecco男女鞋包专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <img src="" dataimg="http://img10.360buyimg.com/red/jfs/t1537/314/1172647150/222634/b2f25df8/55bb3b71Nb214bbdb.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img10.360buyimg.com/red/jfs/t1516/349/981066395/3286/58a94ec8/55b71512Ned3ba22f.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    Ecco男女鞋包专场
+                                </strong>
+                                <em class="discount fr">
+                                    2折起
+                                </em>
+                            </p>
+                            <p class='countdown type1'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        4
+                                </span>
+                                天
+                                </em>
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57662&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="美特斯邦威女装专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state1">
+                            </p>
+                            <img src="" dataimg="http://img13.360buyimg.com/red/jfs/t1366/109/1228356111/133786/b39a795/55c1ab77N4a7632c3.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img12.360buyimg.com/red/jfs/t1138/272/54430548/2666/fdc13ec6/54f69671N1227ba84.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    美特斯邦威女装专场
+                                </strong>
+                                <em class="discount fr">
+                                    1.2折起
+                                </em>
+                            </p>
+                            <p class='countdown type2'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        22
+                                    </em>
+                                    小时
+                                </span>
+                            </p>
+                            <p class="man">
+                                满119元,减20元
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=54648&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="美国POLO男包专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state5">
+                                京东自营
+                            </p>
+                            <img src="" dataimg="http://img14.360buyimg.com/red/jfs/t1597/297/715774597/136280/6c2f29b7/55a5d8c6N3c2ffcff.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img13.360buyimg.com/red/jfs/t700/83/282849903/2244/193d8f49/549d385dNc129afbf.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    美国POLO男包专场
+                                </strong>
+                                <em class="discount fr">
+                                    1.1折起
+                                </em>
+                            </p>
+                            <p class='countdown type1'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        5
+                                </span>
+                                天
+                                </em>
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57664&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="卡帝乐鳄鱼服饰专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state1">
+                            </p>
+                            <img src="" dataimg="http://img10.360buyimg.com/red/jfs/t1435/189/1113456817/115056/52cefeb7/55bb34e3Nff8b802a.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img11.360buyimg.com/red/jfs/t1180/312/179023942/7396/26000af4/55079d9dNdc50dd98.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    卡帝乐鳄鱼服饰专场
+                                </strong>
+                                <em class="discount fr">
+                                    1折起
+                                </em>
+                            </p>
+                            <p class='countdown type2'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        22
+                                    </em>
+                                    小时
+                                </span>
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57598&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="耐克运动鞋服专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <img src="" dataimg="http://img13.360buyimg.com/red/jfs/t1444/194/827337834/65282/b900826e/55adbf93N889e5e6a.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img11.360buyimg.com/red/jfs/t640/89/1007069236/1875/5c40fe6e/54a133eeN46b4be83.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    耐克运动鞋服专场
+                                </strong>
+                                <em class="discount fr">
+                                    3折起
+                                </em>
+                            </p>
+                            <p class='countdown type1'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        2
+                                </span>
+                                天
+                                </em>
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57666&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="派克兰帝童装专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state1">
+                            </p>
+                            <img src="" dataimg="http://img11.360buyimg.com/red/jfs/t1372/196/1026716401/136156/775575f4/55b86a16N5c7b5b61.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img11.360buyimg.com/red/jfs/t667/186/1046437511/24031/e61d364f/54a9fcf8N8467109b.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    派克兰帝童装专场
+                                </strong>
+                                <em class="discount fr">
+                                    2.3折起
+                                </em>
+                            </p>
+                            <p class='countdown type2'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        22
+                                    </em>
+                                    小时
+                                </span>
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57766&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="cachecache女装专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <img src="" dataimg="http://img11.360buyimg.com/red/jfs/t1390/168/1035333024/46734/c8b2e713/55b99a96N31ab3385.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img11.360buyimg.com/red/jfs/t454/17/987787523/2943/a0909531/54a221caN10eabc0f.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    cachecache女装专场
+                                </strong>
+                                <em class="discount fr">
+                                    2.2折起
+                                </em>
+                            </p>
+                            <p class='countdown type1'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        2
+                                </span>
+                                天
+                                </em>
+                            </p>
+                            <p class="man">
+                                满299元,减20元
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57794&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="天美意鞋包专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <img src="" dataimg="http://img14.360buyimg.com/red/jfs/t1447/80/1332534776/226128/f6512729/55c32408N98227801.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img14.360buyimg.com/red/jfs/t610/354/969362051/13292/3166ca5a/54a20b68N0f9aa920.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    天美意鞋包专场
+                                </strong>
+                                <em class="discount fr">
+                                    2折起
+                                </em>
+                            </p>
+                            <p class='countdown type1'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        2
+                                </span>
+                                天
+                                </em>
+                            </p>
+                            <p class="man">
+                                满499元,减50元
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57865&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="公牛世家男鞋专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state1">
+                            </p>
+                            <img src="" dataimg="http://img11.360buyimg.com/red/jfs/t1438/225/1279427165/209390/f0fd348c/55c1c52dNfb063e2a.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img10.360buyimg.com/red/jfs/t745/204/345526895/3915/79d83125/54a3b57fNdc9d201b.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    公牛世家男鞋专场
+                                </strong>
+                                <em class="discount fr">
+                                    2折起
+                                </em>
+                            </p>
+                            <p class='countdown type2'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        22
+                                    </em>
+                                    小时
+                                </span>
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57710&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="361度运动专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state5">
+                                京东自营
+                            </p>
+                            <img src="" dataimg="http://img14.360buyimg.com/red/jfs/t1510/84/1283166737/50625/c526b2a3/55c2eecdNf560208e.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img10.360buyimg.com/red/jfs/t619/264/978355618/2891/b9716cc7/54a0b34eN788da70b.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    361度运动专场
+                                </strong>
+                                <em class="discount fr">
+                                    1折起
+                                </em>
+                            </p>
+                            <p class='countdown type1'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        5
+                                </span>
+                                天
+                                </em>
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57867&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="罗莱家纺专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state1">
+                            </p>
+                            <img src="" dataimg="http://img11.360buyimg.com/red/jfs/t1666/112/864291342/125569/c38396e3/55b9e586N825f04b0.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img10.360buyimg.com/red/jfs/t778/169/510570523/1629/e2e7ae2c/54b8b8b4Nd90b607e.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    罗莱家纺专场
+                                </strong>
+                                <em class="discount fr">
+                                    1.8折起
+                                </em>
+                            </p>
+                            <p class='countdown type2'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        22
+                                    </em>
+                                    小时
+                                </span>
+                            </p>
+                            <p class="man">
+                                每满400元,减80元
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57409&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="MT箱包专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state5">
+                                京东自营
+                            </p>
+                            <img src="" dataimg="http://img14.360buyimg.com/red/jfs/t1285/154/974205671/79100/18868dc/55af392eNb098c56c.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img11.360buyimg.com/red/jfs/t643/6/969389573/16223/b93492e/549d116aNbfe8117d.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    MT箱包专场
+                                </strong>
+                                <em class="discount fr">
+                                    0.7折起
+                                </em>
+                            </p>
+                            <p class='countdown type1'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        5
+                                </span>
+                                天
+                                </em>
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57871&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="桑罗真丝特惠专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state1">
+                            </p>
+                            <img src="" dataimg="http://img12.360buyimg.com/red/jfs/t1441/186/1270926953/81673/2ce7b9e4/55c1e115N47333971.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img14.360buyimg.com/red/jfs/t1474/156/799276160/2445/787fb3c0/55ac5b48Ndddf9933.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    桑罗真丝特惠专场
+                                </strong>
+                                <em class="discount fr">
+                                    2.4折起
+                                </em>
+                            </p>
+                            <p class='countdown type2'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        22
+                                    </em>
+                                    小时
+                                </span>
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=56548&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="皮尔卡丹男装专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <img src="" dataimg="http://img14.360buyimg.com/red/jfs/t1591/315/945145127/147490/6429fab8/55b36ab4N30e2082f.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img10.360buyimg.com/red/jfs/t1036/253/98840586/2733/89423000/54fe6188N98863010.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    皮尔卡丹男装专场
+                                </strong>
+                                <em class="discount fr">
+                                    1.4折起
+                                </em>
+                            </p>
+                            <p class='countdown type1'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        2
+                                </span>
+                                天
+                                </em>
+                            </p>
+                            <p class="man">
+                                满199元,减20元
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57873&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="同仁堂护肤专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state1">
+                            </p>
+                            <img src="" dataimg="http://img11.360buyimg.com/red/jfs/t1603/313/1066017539/215243/157a2e93/55b97deaNc57262ae.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img11.360buyimg.com/red/jfs/t580/54/1003635792/11911/9ec71f6b/54a26482N56ea0ede.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    同仁堂护肤专场
+                                </strong>
+                                <em class="discount fr">
+                                    1.4折起
+                                </em>
+                            </p>
+                            <p class='countdown type2'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        22
+                                    </em>
+                                    小时
+                                </span>
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57893&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="美国苹果男鞋专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state5">
+                                京东自营
+                            </p>
+                            <img src="" dataimg="http://img14.360buyimg.com/red/jfs/t1342/307/1415157587/175677/d3e7dce1/55c45657N2840050c.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img10.360buyimg.com/red/jfs/t655/206/989069037/2483/fba2d512/54a366b9N5ab0343c.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    美国苹果男鞋专场
+                                </strong>
+                                <em class="discount fr">
+                                    1折起
+                                </em>
+                            </p>
+                            <p class='countdown type1'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        5
+                                </span>
+                                天
+                                </em>
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57620&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="天王手表专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <p class="tips state5">
+                                京东自营
+                            </p>
+                            <img src="" dataimg="http://img13.360buyimg.com/red/jfs/t1291/344/987128654/114196/75bb0ef8/55af3e3cNf784ad18.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img14.360buyimg.com/red/jfs/t763/209/616845187/4815/55958a59/54c9ab90N08f9d2fd.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    天王手表专场
+                                </strong>
+                                <em class="discount fr">
+                                    1.5折起
+                                </em>
+                            </p>
+                            <p class='countdown type1'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        2
+                                </span>
+                                天
+                                </em>
+                            </p>
+                        </a>
+                        <a href='/sg4jdapp/detail.html?actId=57706&vs=jdapp&actDetailSource=1&notLoadHead='
+                        class="banner_info J_ping" report-eventid="MFlashbuy_NewArrivalFloor" report-eventparam="抹茶生活女装专场"
+                        page_name="http://m.red.jd.com/sg4jdapp/index.html">
+                            <img src="" dataimg="http://img13.360buyimg.com/red/jfs/t1594/230/1228918439/50652/37e58aef/55c03311N76e5be2c.jpg"
+                            alt="" onerror="this.src=getActOccupiedImg()" class="cover lazy" />
+                            <p class="fn">
+                                <img src="" dataimg="http://img12.360buyimg.com/red/jfs/t607/279/1140322853/5102/48669805/54b778adN4fb4a682.jpg"
+                                alt="" class="brand fl lazy" onerror="this.src=getBrandOccupiedImg()" />
+                                <strong class="title">
+                                    抹茶生活女装专场
+                                </strong>
+                                <em class="discount fr">
+                                    1折起
+                                </em>
+                            </p>
+                            <p class='countdown type1'>
+                                <i class='timemark'>
+                                </i>
+                                <span>
+                                    剩
+                                    <em>
+                                        2
+                                </span>
+                                天
+                                </em>
+                            </p>
+                            <p class="man">
+                                满399元,减100元
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <!-- E 今日上新 -->
+                <!-- S 底部 -->
+                <a class="logo" href="#">
+                </a>
+                <!-- 滚动条超过2屏高度后，显示返回顶部按钮，给shangou_backtop添加“shangou_backtop_show" -->
+                <a class="shangou_backtop J_ping" id="backToTop" style="display:none;"
+                href="#" report-eventid="MFlashbuy_Top" report-eventparam="" page_name="http://m.red.jd.com/sg4jdapp/detail.html">
+                    回到顶部
+                </a>
+            </div>
+
+            
+            <!-- E 底部 -->
+            <input type="hidden" autocomplete="off" id="page" value="1" />
+            <input type="hidden" autocomplete="off" id="totalPage" value="1" />
+            <input type="hidden" autocomplete="off" id="vs" value="jdapp" />
+            <input type="hidden" autocomplete="off" id="sid" value="" />
+            <input type="hidden" autocomplete="off" id="title" value="京东闪购·品牌特卖" />
+            <input type="hidden" autocomplete="off" id="link" value="" />
+            <input type="hidden" autocomplete="off" id="lazyLoad" value="off" />
+            <input type="hidden" autocomplete="off" id="picQua" value="85" />
+            <script type="text/javascript">
+                var notLoadHead = "";
+                var jap = {
+                    siteId: 'MO-J2011-1',
+                    topic: 'traffic-jdm',
+                    account: '',
+                    skuid: '',
+                    shopid: '',
+                    orderid: '',
+                    adsCookieName: 'mt_subsite',
+                    jumpAppEnable: 0,
+                    __cookie_jda: '__tra',
+                    __cookie_jdb: '__trb',
+                    __cookie_jdc: '__trc',
+                    __cookie_jdu: '__tru',
+                    __cookie_jdv: '__trv'
+                };
+            </script>
+            <script type="text/javascript" src="http://misc.360buyimg.com/jdf/1.0.0/unit/ja/1.0.0/ja.js">
+            </script>
+        </body>
+        <script language="javascript" src="http://static.360buyimg.com/shangou/redm/v3/js/lazyload.js">
+        </script>
+        <script language="javascript" src="http://static.360buyimg.com/shangou/redm/v3/js/4jdapp/base.js">
+        </script>
+        <script charset="utf-8" src="http://static.360buyimg.com/shangou/redm/v3/js/4jdapp/v2/index.v2.js">
+        </script>
+        <script charset="utf-8" src="http://static.360buyimg.com/shangou/redm/v3/js/common.js">
+        </script>
+        <script language="javascript">
+            $(document).ready(function() {
+                lazyload.init();
+            });
+            function submitMaidian2(eventId, page_name) {
+                try {
+                    var click = new MPing.inputs.Click(eventId); // 构造click 请求
+                    click.page_name = page_name; // 设置click的参数  
+                    click.updateEventSeries(); // 更新事件串
+                    var mping = new MPing(); // 构造上报实例
+                    mping.send(click); // 上报click
+                } catch(e) {}
+            }
+            // 最新ja埋点方式:browsNO写死为1
+            function submitAjaxLoadPageStat(pageURL) {
+                try {
+                    lg('redAjaxLoadPV', '1.0', {
+                        'pageName': pageURL,
+                        'browsNO': 1
+                    });
+                } catch(e) {
+                    if (Console && Console.log) {
+                        Console.log("submitAjaxLoadPageStat error:pageURL=" + pageURL);
+                    }
+                }
+            }
+            // 分享内容设置
+            try {
+                var url = location.origin + location.pathname;
+                var jdapp = {};
+                var param = [];
+                param[0] = "京东闪购-名品特卖";
+                param[1] = "";
+                param[2] = "http://m.red.jd.com/sg4jdapp/index.html?notLoadHead=1";
+                param[3] = "http://img14.360buyimg.com/movie/jfs/t1462/228/769219697/7501/408cee33/55a8a95aNeec3e31a.png?t=1508102305";
+
+                jdapp.version = navigator.userAgent.split(";");
+
+                if (jdapp.version[1].toLowerCase() == "iphone") {
+                    location.href = "openapp.jdmobile://communication?params={\"action\":\"syncShareData\",\"title\":\"" + param[0] + "\",\"content\":\"" + param[1] + "\",\"shareUrl\":\"" + param[2] + "\",\"iconUrl\":\"" + param[3] + "\"}";
+                } else if (jdapp.version[1].toLowerCase() == "android") {
+                    shareHelper.setShareInfo(param[0], param[1], param[2], param[3]);
+                }
+            } catch(e) {
+
+}
+        </script>
+
+</html>
+<script language="javascript">
+    var homeModule = "http://red.jd.com/";
+    var redapphost = "";
+    var dpi = "";
+    var height = window.screen.height;
+    var width = window.screen.width;
+    var agent = navigator.userAgent + "";
+    agent = agent.toLowerCase();
+    if (agent.indexOf("iphone") > -1 || agent.indexOf("ipad") > -1) {
+        var dpr = window.devicePixelRatio;
+        height = height * dpr;
+        width = width * dpr;
+    }
+    dpi = height + "*" + width;
+</script>
+<script type="text/javascript">
+    window.jQuery = window.Zepto;
+</script>
+<!--<script src="http://h5.m.jd.com/active/track/mping.min.js"></script>-->
+<script type="text/javascript">
+    try {
+        var pv = new MPing.inputs.PV();
+        var mping = new MPing();
+        mping.send(pv);
+        MPing.inputs.Click.attachEvent();
+    } catch(e) {}
+</script>
+<script type="text/javascript" src="http://wl.jd.com/wl.js">
+</script>

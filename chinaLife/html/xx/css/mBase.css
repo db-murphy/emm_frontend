@@ -1,0 +1,593 @@
+/**
+ * base style
+ */
+/**
+ * mixins
+ */
+/**
+ * reset style
+ */
+/*内外边距通常让各个浏览器样式的表现位置不同*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section
+	{
+	margin: 0;
+	padding: 0;
+}
+/*去掉各Table  cell 的边距并让其边重合*/
+a,button,input {
+	-webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+	-webkit-tap-highlight-color: transparent; /* Android */
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*IE bug fixed: th 不继承 text-align*/
+th {
+	text-align: inherit;
+}
+/*对齐是排版最重要的因素, 别让什么都居中*/
+caption,th {
+	text-align: left;
+}
+/*去除默认边框*/
+img {
+	border: 0;
+}
+/*解决 IE6-7 图片缩放锯齿问题*/
+img {
+	-ms-interpolation-mode: bicubic;
+}
+/*ie6 7 8(q) bug 显示为行内表现*/
+iframe {
+	display: block;
+}
+/*去掉列表前的标识, li 会继承，大部分网站通常用列表来很多内容，所以应该当去*/
+ul,ol,li {
+	list-style: none;
+}
+
+hr {
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	height: 0;
+}
+
+button,input,select,textarea { /*表单元素不继承父级 font 的问题*/
+	font-family: inherit;
+	font-size: 100%;
+	vertical-align: middle;
+}
+
+button:focus,input:focus,select:focus,textarea:focus {
+	/*去chrome focus默认的高亮边框*/
+	outline: none;
+}
+
+textarea { /*去IE6/7/8/9中默认的竖直滚动条*/
+	overflow: auto;
+	vertical-align: top;
+}
+
+button,input { /*IE6/7中padding会随文字长度变化*/
+	*overflow: visible;
+	/*firefox 4+ 中 !important*/
+	line-height: normal;
+}
+
+button,input[type="button"],input[type="reset"],input[type="submit"] {
+	cursor: pointer;
+}
+/*不可点击按钮*/
+button[disabled],input[disabled] {
+	cursor: default;
+}
+
+input[type="checkbox"],input[type="radio"] {
+	/*统一设置盒模型 （IE8/9中盒模型是content-box）*/
+	box-sizing: border-box;
+	/*IE8/9中去掉多余的padding*/
+	padding: 0;
+	/*IE6/7中的默认*/
+	*background-color: transparent;
+}
+/**
+ * html5  reset style
+ */
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary
+	{
+	display: block;
+}
+/*如同img标签*/
+audio,canvas,video {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+audio
+:not
+ 
+(
+[
+controls
+]
+ 
+)
+{ /*没有controls属性统一不显示，*/
+display
+:
+ 
+none
+;
+/*防止IOS5下多余的高度*/
+
+	
+height
+:
+ 
+0;
+}
+
+/*foundation复制过来的模板样式
+*/
+/**,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}*/
+.left {
+	float: left !important;
+}
+
+.right {
+	float: right !important;
+}
+
+.clearfix {
+	*zoom: 1;
+}
+
+.clearfix:before,.clearfix:after {
+	content: " ";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.row {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0;
+	margin-bottom: 0;
+	max-width: 62.5rem;
+	*zoom: 1;
+}
+
+.row:before,.row:after {
+	content: " ";
+	display: table;
+}
+
+.row:after {
+	clear: both;
+}
+
+.row.collapse>.column,.row.collapse>.columns {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.row.collapse .row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.row .row {
+	width: auto;
+	margin-left: -0.9375rem;
+	margin-right: -0.9375rem;
+	margin-top: 0;
+	margin-bottom: 0;
+	max-width: none;
+	*zoom: 1;
+}
+
+.row .row:before,.row .row:after {
+	content: " ";
+	display: table;
+}
+
+.row .row:after {
+	clear: both;
+}
+
+.row .row.collapse {
+	width: auto;
+	margin: 0;
+	max-width: none;
+	*zoom: 1;
+}
+
+.row .row.collapse:before,.row .row.collapse:after {
+	content: " ";
+	display: table;
+}
+
+.row .row.collapse:after {
+	clear: both;
+}
+
+.column,.columns {
+	padding-left: 0.9375rem;
+	padding-right: 0.9375rem;
+	width: 100%;
+	float: left;
+}
+
+.column,.columns {
+	padding-left: 0.7rem;
+	padding-right: 0.7rem;
+	float: left;
+}
+
+.small-1 {
+	width: 8.33333%;
+}
+
+.small-2 {
+	width: 16.66667%;
+}
+
+.small-3 {
+	width: 25%;
+}
+
+.small-4 {
+	width: 33.33333%;
+}
+
+.small-5 {
+	width: 41.66667%;
+}
+
+.small-6 {
+	width: 50%;
+}
+
+.small-7 {
+	width: 58.33333%;
+}
+
+.small-8 {
+	width: 66.66667%;
+}
+
+.small-9 {
+	width: 75%;
+}
+
+.small-10 {
+	width: 83.33333%;
+}
+
+.small-11 {
+	width: 91.66667%;
+}
+
+.small-12 {
+	width: 100%;
+}
+
+[class *="column"]+[class *="column"]:last-child {
+	float: right;
+}
+
+[class *="column"]+[class *="column"].end {
+	float: left;
+}
+
+.small-offset-0 {
+	margin-left: 0% !important;
+}
+
+.small-offset-1 {
+	margin-left: 8.33333% !important;
+}
+
+.small-offset-2 {
+	margin-left: 16.66667% !important;
+}
+
+.small-offset-3 {
+	margin-left: 25% !important;
+}
+
+.small-offset-4 {
+	margin-left: 33.33333% !important;
+}
+
+.small-offset-5 {
+	margin-left: 41.66667% !important;
+}
+
+.small-offset-6 {
+	margin-left: 50% !important;
+}
+
+.small-offset-7 {
+	margin-left: 58.33333% !important;
+}
+
+.small-offset-8 {
+	margin-left: 66.66667% !important;
+}
+
+.small-offset-9 {
+	margin-left: 75% !important;
+}
+
+.small-offset-10 {
+	margin-left: 83.33333% !important;
+}
+
+.small-offset-11 {
+	margin-left: 91.66667% !important;
+}
+
+.small-reset-order,.small-reset-order {
+	margin-left: 0;
+	margin-right: 0;
+	left: auto;
+	right: auto;
+	float: left;
+}
+
+.over {
+	color: #494949;
+	font: 0.875rem 微软雅黑;
+	text-align: center;
+	padding: 1rem 0rem;
+}
+
+.prodoct {
+	border-top: 1px solid #f9f9f9;
+	/*padding-top: 1rem;*/
+}
+
+.prodoct .part {
+	position: relative;
+	margin: 0.5rem 1rem;
+}
+
+.prodoct .part a {
+	text-decoration: none;
+}
+
+.prodoct .part .countdown,.coupon-info {
+	z-index: 1;
+	position: absolute;
+	font: 14px/24px "microsoft yahei";
+	background-color: rgba(0, 0, 0, 0.3);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#4d000000,
+		EndColorStr=#4d000000 );
+	color: #fff;
+}
+
+.prodoct .part .countdown {
+	top: 0;
+	right: 0;
+	padding: 0 3px 0 22px;
+	background-position: 3px center;
+	background-image: url(/img/i-timer.png);
+	background-repeat: no-repeat;
+}
+
+.prodoct .part .picshow {
+	position: relative;
+	background-color: #fff;
+	box-shadow: 1px 1px 3px #cdcdcd;
+}
+
+.prodoct .part .picshow img {
+	width: 100%;
+	display: block;
+}
+
+.prodoct .part .picshow .title {
+	position: relative;
+	height: 34px;
+	color: #494949;
+	font: 14px/34px 'microsoft yahei';
+}
+
+.prodoct .part .picshow .title p {
+	overflow: hidden;
+	padding-right: 4rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.prodoct .part .picshow .title .discount {
+	position: absolute;
+	bottom: 0;
+	width: 70px;
+	right: 0;
+	height: 100%;
+	/*background-color: #B81D23;*/
+	text-align: center;
+	color: #B81D23;
+	line-height: 34px;
+}
+
+.prodoct .part .circle {
+	float: left;
+	height: 30px;
+	/* margin-right: 12px; */
+}
+
+.prodoct .part .circle img {
+	margin: 2px 0 5px 6px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 90px;
+    height: 21px;
+}
+
+.prodoct .title-txt {
+	white-space: nowrap;
+	overflow: hidden;
+	width: 45%;
+	text-overflow: ellipsis;
+}
+
+.shouye-container .coupon-info {
+	bottom: 30px;
+	width: 100%;
+	line-height: 24px;
+}
+
+.coupon-info em {
+	float: right;
+	margin-right: 10px;
+	font-style: normal;
+}
+
+.red-attention {
+	position: absolute;
+	left: 79px;
+	bottom: 56px;
+	width: 121px;
+	height: 35px;
+	background-color: rgba(0, 0, 0, 0.65);
+	text-align: center;
+	border-radius: 2px;
+	border: 1px solid #3d3c3b;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, .5)
+}
+
+.red-attention .icon-succ,.red-attention .icon-cancel {
+	display: block;
+	padding-top: 8px;
+	font-size: 12px;
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, .6)
+}
+
+.tbl-type {
+	display: table;
+	width: 100%;
+}
+.tbl-cell {
+	display: table-cell;
+}
+.detail-tbn2 {
+	padding: 5px 0;
+	background: #f1f1f5;
+}
+.detail-tbn2 .tbl-cell {
+	width: 50%;
+	text-align: center;
+}
+
+.detail-tbn2 .tbl-cell a {
+	display: block;
+	height: 35px;
+	margin: 0 10px;
+	border-radius: 3px;
+	line-height: 35px;
+	color: #fff;
+}
+.btn-buy {
+	background: #c00;
+}
+.btn-cart {
+	background: #6cb248;
+}
+.detail-tbn2 .tbl-cell .btn-buy-def,.detail-tbn2 .tbl-cell .btn-cart-def
+	{
+	background: #666;
+	color: #a3a3a3;
+}
+
+.btn-buy span,.btn-cart span,.btn-buy-def span,.btn-cart-def span {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	margin-right: 5px;
+	background: url(/images/touch2013/icon_detail.png) -74px 0 no-repeat;
+	background-size: 100px 100px;
+	vertical-align: -2px;
+}
+.detail-option a {
+	display: inline-block;
+	padding: 0;
+}
+.btn-cart span {
+	background-position: -60px -27px;
+}
+
+.btn-buy-def span {
+	background-position: -26px -53px;
+}
+
+.btn-cart-def span {
+	background-position: -48px -51px;
+}
+.cart-pop {
+	position: absolute;
+	left: 30px;
+	bottom: 1px;
+	width: 228px;
+	background-color: rgba(0, 0, 0, .65);
+	color: #fff;
+	border-radius: 2px;
+	border: 1px solid #3d3c3b;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+}
+
+.cart-pop .ico-succ {
+	padding: 11px 15px 9px 52px;
+	background: url(/images/html5/new/icon_suc.png) 11px 20px no-repeat;
+	border-bottom: 1px solid rgba(130, 128, 127, .5);
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 1);
+}
+
+.cart-pop .att-succ {
+	font-size: 16px;
+}
+
+.cart-pop .cart-succ {
+	font-size: 14px;
+}
+
+.cart-pop .ico-succ span {
+	display: block;
+}
+
+.cart-pop .cp-lnk {
+	display: table;
+	width: 100%;
+}
+
+.cart-pop .cp-lnk a {
+	display: table-cell;
+	width: 50%;
+	padding: 7px 0 9px;
+	font-size: 14px;
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 1);
+	text-align: center;
+}
+
+.cart-pop .bar {
+	height: 17px;
+	margin-top: 4px;
+	background: rgba(130, 128, 127, .65);
+}
