@@ -25,6 +25,12 @@
 .ion-android-arrow-dropright:after{
 	content: '\f363';
 }
+.ion-time:after{
+	content: '\f3b3';
+}
+.ion-gift:after{
+	content: "\f3ee";
+}
 .ion-android-done:after{
 	content: '\f383';
 }
