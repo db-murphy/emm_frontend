@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html data-design-width="640" data-design-font="100">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="闪购">
+        <meta name="aplus-terminal" content="1">
+        <meta name="aplus-touch" content="1">
+        <meta name="format-detection" content="telephone=no, address=no">
+        <title>商品列表页</title>
+        <script type="text/javascript">
+        (function() {
+            var html_dom = document.getElementsByTagName('html')[0];
+            var design_width = parseInt(html_dom.dataset.designWidth, 10);
+            var design_font = parseInt(html_dom.dataset.designFont, 10);
+
+            resizeRoot();
+            
+            window.onresize = function() {
+                resizeRoot();
+            }
+
+            function resizeRoot() {
+                var client_width = document.documentElement.clientWidth;
+                var fs =client_width/design_width*design_font;
+
+                html_dom.style.fontSize = fs+"px";
+            }
+        })();
+        </script>
+        <link rel="stylesheet" type="text/css" href="../dist/css/common.min.css">
+        <link rel="stylesheet" type="text/css" href="../dist/css/goods_list.min.css">
+        <link rel="stylesheet" type="text/css" href="../lib/bower_components/Swiper/dist/css/swiper.min.css">
+    </head>
+    <body data-sid="" data-vs="" data-total-page="1" data-page="1" data-total-page="1" data-title="京东闪购·品牌特卖" data-link="" data-lazy-load="off" data-pic-qua="35">
+        <!-- 闪购html开始 -->
+        <div class="red-mobile-page">
+            <!-- 内容开始 -->
+            <div class="red-mobile-content">
+                <!-- 优惠券开始 -->
+                <section class="red-coupon">
+                    <div class="coupon-row mb5 one-col">
+                        <a href="javascript:;" class="coupon-col">
+                            <div class="coupon-price">
+                                <p><span class="price-type">&yen;</span>150</p>
+                                <span class="line"></span>
+                                <i class="font-icon ion-scissors"></i>
+                            </div>
+                            <div class="coupon-info">
+                                <div class="info-text">
+                                    <p>优惠券</p>
+                                    <p>满799元使用</p>
+                                </div>
+                                <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="coupon-row two-col">
+                        <a href="javascript:;" class="coupon-col timeout">
+                            <div class="coupon-price">
+                                <p><span class="price-type">&yen;</span>150</p>
+                                <span class="line"></span>
+                                <i class="font-icon ion-scissors"></i>
+                            </div>
+                            <div class="coupon-info">
+                                <div class="info-text">
+                                    <p>优惠券</p>
+                                    <p>满799元使用</p>
+                                </div>
+                                <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
+                            </div>
+                        </a>
+                        <a href="javascript:;" class="coupon-col">
+                            <div class="coupon-price">
+                                <p><span class="price-type">&yen;</span>150</p>
+                                <span class="line"></span>
+                                <i class="font-icon ion-scissors"></i>
+                            </div>
+                            <div class="coupon-info">
+                                <div class="info-text">
+                                    <p>优惠券</p>
+                                    <p>满799元使用</p>
+                                </div>
+                                <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+                <!-- 优惠券结束 -->
+                <!-- 筛选条件开始 -->
+                <nav class="red-operate">
+                    <a href="javascript:;">
+                        <p><span>显示有货</span><i class="font-icon ion-android-done"></i></p>
+                    </a>
+                    <a href="javascript:;">
+                        <p><span>价格</span><i class="font-icon ion-sort"></i></p>
+                    </a>
+                    <a href="javascript:;">
+                        <p><span>筛选</span><i class="icon-filter"></i></p>
+                    </a>
+                </nav>
+                <!-- 筛选条件结束 -->
+            </div>
+            <!-- 内容结束 -->
+        </div>
+        <!-- 闪购html结束 -->
+        <script type="text/javascript" src="//misc.360buyimg.com/jdf/1.0.0/unit/ja/1.0.0/ja.js"></script>
+        <script type="text/javascript" src="../lib/bower_components/zepto/zepto.min.js"></script>
+        <script type="text/javascript" src="../lib/bower_components/seajs/dist/sea.js"></script>
+        <script type="text/javascript" src="../lib/bower_components/Swiper/dist/js/swiper.min.js"></script>
+        <script type="text/javascript">
+        // 资源路径
+        // -------------------------
+        var source_path = 'http://static.360buyimg.com/shangou/redm/dist/javascript/';
+
+        seajs.config({
+            // 映射配置
+            // -----------------------
+            map: [
+                [source_path, 'http://127.0.0.1:7000/dist/javascript/']
+            ],
+
+            // 调试模式
+            // -----------------------
+            debug: false,
+
+            // Sea.js 的基础路径
+            // -----------------------
+            base: source_path,
+
+            // 文件编码
+            // -----------------------
+            charset: 'utf-8'
+        });
+
+        // 调用main文件
+        // -----------------------
+        seajs.use('mains/goods_list');
+        </script>
+    </body>
+</html>
