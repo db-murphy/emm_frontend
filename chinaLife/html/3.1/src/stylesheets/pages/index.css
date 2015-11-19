@@ -358,6 +358,11 @@ nav.red-mobile-nav{
 	line-height: 0.22rem;
 	padding-right: 0.12rem;
 }
+.goods-rec-slider-wrap .under-carriage{
+	font-size: 0.18rem;
+	color: #c2c2c2;
+	line-height: 0.22rem;
+}
 .goods-rec-slider-wrap .price-type{
 	font-size: 0.18rem;
 	display: inline-block;
