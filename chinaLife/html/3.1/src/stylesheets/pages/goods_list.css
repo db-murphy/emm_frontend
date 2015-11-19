@@ -198,6 +198,7 @@
  */
 .goods-info{
 	padding: 0.15rem 0.12rem;
+	margin-bottom: 0.2rem;
 }
 .goods-info .font-icon{
 	margin-right: 0.08rem;
@@ -225,6 +226,25 @@
 	float: left;
 	margin: 0 0.05rem 0.1rem 0.05rem;
 	width: 3.05rem;
+	overflow: hidden;
+}
+.goods-list .goods-img{
+	position: relative;
+}
+.goods-list .dry-up:after{
+	position: absolute;
+	width: 1rem;
+	height: 1rem;
+	text-align: center;
+	line-height: 1rem;
+	font-size: 0.24rem;
+	background: rgba(0, 0, 0, .6);
+	color: #fff;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	content: '已抢光';
+	border-radius: 50%;
 }
 .goods-list img{
 	display: block;
@@ -243,6 +263,29 @@
 	padding-bottom: 0.1rem;
 }
 .goods-list .price-type{
+	display: inline-block;
+	vertical-align: bottom;
+	font-size: 0.24rem;
+	height: 0.22rem;
+}
+.goods-list .new-price-number{
+	display: inline-block;
+	vertical-align: bottom;
+	padding-right: 0.2rem;
+}
+.goods-list .discount{
+	display: inline-block;
+	font-size: 0.2rem;
+	background: #f9384e;
+	width: 0.6rem;
+	height: 0.26rem;
+	line-height: 0.26rem;
+	text-align: center;
+	border-radius: 0.04rem;
+	color: #fff;
+	vertical-align: bottom;
+}
+.goods-list .price-type{
 	font-size: 0.24rem;
 }
 .goods-list .old-price{
@@ -250,4 +293,8 @@
 	color: #969696;
 	text-decoration: line-through;
 	padding-bottom: 0.15rem;
+}
+.goods-list .old-price-info{
+	display: inline-block;
+	padding-right: 0.1rem;
 }
