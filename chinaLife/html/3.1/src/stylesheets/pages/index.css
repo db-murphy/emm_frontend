@@ -1,8 +1,22 @@
-/*.red-mobile-page{
+/**
+ * 页面架构
+ */
+html, body{
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+.red-mobile-page{
 	position: absolute;
 	left: 0;
 	top: 0;
-}*/
+	bottom: 0;
+	right: 0;
+	background: #282828;
+}
+.view-scroller{
+	background: #fff;
+}
 
 /**
  * 导航部分

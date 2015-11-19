@@ -33,6 +33,10 @@ define(function (require, exports, module){
 	// ------------------
 	controller.create_goods_slider();
 
+	// 模拟页面滚动效果
+	// ------------------
+	controller.create_scroll();
+
 	// 回到顶部按钮
 	// ------------------
 	controller.back_to_top();

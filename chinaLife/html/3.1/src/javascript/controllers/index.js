@@ -95,6 +95,12 @@ define(function (require, exports, module){
 		}
 	}
 
+	// 模拟页面滚动效果
+	// ------------------
+	function create_scroll() {
+		var iscroller = new IScroll('.red-mobile-page');
+	}
+
 	// 回到顶部按钮
 	// ------------------
 	function back_to_top() {
@@ -172,6 +178,7 @@ define(function (require, exports, module){
 		get_stock_info     : get_stock_info,
 		layzr_init         : layzr_init,
 		create_top_slider  : create_top_slider,
-		create_goods_slider: create_goods_slider
+		create_goods_slider: create_goods_slider,
+		create_scroll      : create_scroll
 	};
 });
