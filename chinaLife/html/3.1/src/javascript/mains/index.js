@@ -33,17 +33,13 @@ define(function (require, exports, module){
 	// ------------------
 	controller.create_goods_slider();
 
-	// 模拟页面滚动效果
-	// ------------------
-	controller.create_scroll();
-
 	// 回到顶部按钮
 	// ------------------
 	controller.back_to_top();
 
 	// 懒加载
 	// ------------------
-	controller.layzr_init();
+	//controller.layzr_init();
 
 	// 获取价格信息
 	// ------------------
@@ -52,4 +48,8 @@ define(function (require, exports, module){
 	// 获取库存信息
 	// ------------------
 	controller.get_stock_info();
+
+	// 模拟页面滚动效果
+	// ------------------
+	controller.create_scroll();
 });

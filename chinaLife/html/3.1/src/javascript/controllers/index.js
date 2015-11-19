@@ -12,6 +12,8 @@ define(function (require, exports, module){
 	var tool         = require('common/tool');
 	var common_model = require('common/model');
 	var common_view  = require('common/view');
+	var variable     = require('common/variable');
+	var iscroller    = null;
 	
 	// 创建头部
 	// ------------------
@@ -19,6 +21,7 @@ define(function (require, exports, module){
 		common_model.get_header_html(function(data) {
 			common_view.render_header(data);
 		});
+		common_view.render_header(variable.header_html);
 	};
 
 	// 创建尾部
@@ -27,6 +30,7 @@ define(function (require, exports, module){
 		common_model.get_footer_html(function(data) {
 			common_view.render_footer(data);
 		});
+		common_view.render_footer(variable.footer_html);
 	};
 
 	// 生成列表
@@ -98,7 +102,18 @@ define(function (require, exports, module){
 	// 模拟页面滚动效果
 	// ------------------
 	function create_scroll() {
-		var iscroller = new IScroll('.red-mobile-page');
+		iscroller = new IScroll('.red-mobile-page', {
+			click: true,
+			probeType: 3
+		});
+
+		iscroller.on('beforeScrollStart', function() {
+			iscroller.refresh();
+		});
+
+		iscroller.on('scroll', function(scroller) {
+			console.log(this);
+		});
 	}
 
 	// 回到顶部按钮

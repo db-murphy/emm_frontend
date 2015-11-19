@@ -6,6 +6,7 @@ define(function (require,exports,module){
 	function get_header_html(callback) {
 		var body_dom = $('body');
 		var vs = body_dom.attr("vs");
+		
 		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs){
 			return;
 		}
@@ -18,6 +19,7 @@ define(function (require,exports,module){
 	function get_footer_html(callback) {
 		var body_dom = $('body');
 		var vs = body_dom.attr("vs");
+
 		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs){
 			return;
 		}

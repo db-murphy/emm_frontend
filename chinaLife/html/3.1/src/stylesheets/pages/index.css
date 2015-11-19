@@ -18,17 +18,24 @@ html, body{
 	background: #fff;
 }
 
+/*.new-header-append.new-jd-tab{
+	line-height: normal;
+}*/
+.jd-nav{
+	font-size: 12px;
+}
+
 /**
  * 导航部分
  */
 nav.red-mobile-nav{
-	position: fixed;
+	/*position: fixed;*/
 	height: 0.7rem; /**70px**/
-	top: 0;
+	/*top: 0;
 	left: 0;
-	right: 0;
+	right: 0;*/
 	background: #161616;
-	z-index: 2;
+	/*z-index: 2;*/
 }
 .red-mobile-nav .nav-active-slider{
 	position: absolute;
@@ -82,7 +89,7 @@ nav.red-mobile-nav{
  * 内容区域
  */
 .red-mobile-content{
-	padding-top: 0.7rem;
+	/*padding-top: 0.7rem;*/
 }
 
 /**

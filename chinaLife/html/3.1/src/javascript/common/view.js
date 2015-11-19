@@ -3,30 +3,19 @@ define(function (require,exports,module){
 	// 渲染头部
 	// ---------------------
 	function render_header(data) {
-		$("body").prepend(data);
-		$(".header").css({
-			"position": "relative"
-		});
-		$(".content-wp").css({
-			"margin-top": 0
-		});
+		var jquery_dom = $(data);
+		var head = $('head');	
+		var jd_nav = $('.jd-nav');	
 
-		$(window).scroll(function(){
-			var top = $("body").scrollTop();
-			if(top >= 44) {
-				$(".header").css({
-					"position": "fixed"
-				});
-				$(".content-wp").css({
-					"margin-top": "2.15rem"
-				});
-			} else if(top < 44) {
-				$(".header").css({
-					"position": "relative"
-				});
-				$(".content-wp").css({
-					"margin-top": 0
-				});
+		$.each(jquery_dom, function(i, dom) {
+			if(dom.tagName == 'SCRIPT') {
+				dom.innerHTML = '/*我是三方头部js*/' + dom.innerHTML;
+				head.append(dom);
+			}else if(dom.tagName == 'STYLE') {
+				dom.innerHTML = '/*我是三方头部css*/' + dom.innerHTML;
+				head.append(dom);
+			}else{
+				jd_nav.append(dom);
 			}
 		});
 	}
@@ -34,7 +23,22 @@ define(function (require,exports,module){
 	// 渲染尾部
 	// ---------------------
 	function render_footer(data) {
-		$("body").append(data);
+		var jquery_dom = $(data);
+		var head = $('head');
+		var view_scroller = $('.view-scroller');	
+		var jd_footer = $('.jd-footer');	
+
+		$.each(jquery_dom, function(i, dom) {
+			if(dom.tagName == 'SCRIPT') {
+				dom.innerHTML = '/*我是三方尾部js*/' + dom.innerHTML;
+				head.append(dom);
+			}else if(dom.tagName == 'STYLE') {
+				dom.innerHTML = '/*我是三方尾部css*/' + dom.innerHTML;
+				head.append(dom);
+			}else{
+				jd_footer.append(dom);
+			}
+		});
 	}
 
 	module.exports = {
