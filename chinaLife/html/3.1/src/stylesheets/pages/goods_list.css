@@ -207,13 +207,13 @@
 	position: relative;
 }
 .goods-info .ion-gift{
-	width: 0.34rem;
-	height: 0.34rem;
-	background-size: 0.34rem 0.34rem;
+	width: 0.24rem;
+	height: 0.24rem;
+	background-size: 0.24rem 0.24rem;
 	position: absolute; 
 	left: 0;
 	top: 50%;
-	margin-top: -0.17rem;
+	margin-top: -0.12rem;
 }
 .goods-info .ion-time{
 	margin-right: 0.08rem;
