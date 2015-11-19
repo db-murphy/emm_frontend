@@ -200,18 +200,43 @@
 	padding: 0.15rem 0.12rem;
 	margin-bottom: 0.2rem;
 }
-.goods-info .font-icon{
+.goods-info p{
+	line-height: 0.18rem;
+}
+.goods-info .gift-info{
+	position: relative;
+}
+.goods-info .ion-gift{
+	width: 0.34rem;
+	height: 0.34rem;
+	background-size: 0.34rem 0.34rem;
+	position: absolute; 
+	left: 0;
+	top: 50%;
+	margin-top: -0.17rem;
+}
+.goods-info .ion-time{
 	margin-right: 0.08rem;
+	font-size: 0.2rem;
+	vertical-align: middle;
 }
 .gift-info{
 	color: #fc3451;
 	font-size: 0.2rem;
 	float: left;
+	padding-left: 0.32rem;
+}
+.gift-info span{
+	vertical-align: middle;
 }
 .count-down{
 	font-size: 0.2rem;
 	color: #000;
 	float: right;
+}
+.count-down span{
+	display: inline-block;
+	vertical-align: middle;
 }
 
 /**

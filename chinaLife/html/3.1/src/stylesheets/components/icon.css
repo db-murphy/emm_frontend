@@ -28,8 +28,9 @@
 .ion-time:after{
 	content: '\f3b3';
 }
-.ion-gift:after{
-	content: "\f3ee";
+.ion-gift{
+	display: inline-block;
+	background: url(../images/icon/gift.png) no-repeat left top;
 }
 .ion-android-done:after{
 	content: '\f383';
