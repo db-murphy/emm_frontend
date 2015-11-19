@@ -226,7 +226,7 @@ nav.red-mobile-nav{
 .advertisement-detail .time .time-text{
 	padding: 0 0.1rem;
 	line-height: normal;
-	font-size: 0.18rem;
+	font-size: 0.2rem;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
@@ -244,7 +244,7 @@ nav.red-mobile-nav{
     -webkit-font-smoothing: antialiased;
 }
 .advertisement-detail .price{
-	font-size: 0.2rem;
+	font-size: 0.22rem;
 	color: #fff;
 	border-bottom: 1px solid #fff;
 	line-height: normal;
@@ -253,11 +253,11 @@ nav.red-mobile-nav{
 	margin: 0 0.07rem;
 }
 .advertisement-detail .price span{
-	font-size: 0.3rem;
+	font-size: 0.32rem;
 	font-weight: bold;
 }
 .advertisement-detail .explain{
-	font-size: 0.18rem;
+	font-size: 0.2rem;
 	color: #fff;
 	line-height: 0.3rem;
 }
