@@ -9,6 +9,7 @@ define(function (require,exports,module){
 		for(var i = 0; i < data.length; i++){
 	        var jdPrice = "";
 	        var oldPrice="";
+
 	        if(data[i].p > 0) {
 	            jdPrice = formatPrice(data[i].p);
 	            oldPrice = formatPrice(data[i].m);
@@ -17,13 +18,12 @@ define(function (require,exports,module){
 	        }
 	        
 	        var value = data[i].id.split('_');
+
 	        if(value.length == 1) {
 	            var tempSku = value[0];
 	            var keyItem = "goodItem_" + tempSku;
-	            
 	            var jdPriceDoms = $("span[id='jd_price_" +tempSku+"']");
 	            var oldPriceDoms = $("span[id='old_price_" +tempSku+"']");
-	            
 	            var goodItem = $("div[id='"+keyItem+"']");
 	            
 	            if(jdPrice == "暂无价格"){
