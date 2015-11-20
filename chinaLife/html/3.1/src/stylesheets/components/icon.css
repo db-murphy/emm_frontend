@@ -50,6 +50,12 @@
 .ion-sort:before{
 	content: '\f365';
 }
+.ion-ios-arrow-thin-up:after{
+	content: '\f3d7';
+}
+.ion-android-arrow-up:after{
+	content: '\f366';
+}
 .icon-filter{
 	display: inline-block;
 	background: url(../images/icon/filter.png) no-repeat left top;

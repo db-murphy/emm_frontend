@@ -18,7 +18,7 @@ define(function (require,exports,module){
 				    	        '<a href="javascript:void(0)" id="btnJdkey" onclick="_toggleJdKey()" class="new-a-jd"><span>京东键</span></a>'+
 				    '</div>';
 
-	header_html += '<div class="new-jd-tab new-header-append" id="jdkey">'+
+	header_html += '<div class="new-jd-tab new-header-append" style="display: none" id="jdkey">'+
 				    	'<div class="new-tbl-type">'+
 				            '<a href="http://m.jd.com/index.html?sid=5e71d8c420e33238e15c022c6f15347a" class="new-tbl-cell">'+
 				            	'<span class="icon">首页</span>'+

@@ -9,6 +9,10 @@
 define(function (require, exports, module){
 	var controller = require('controllers/index');
 
+	// 模拟页面滚动效果
+	// ------------------
+	controller.create_scroll();
+
 	// 创建头部
 	// ------------------
 	controller.create_header();
@@ -17,9 +21,13 @@ define(function (require, exports, module){
 	// ------------------
 	controller.create_footer();
 
-	// 生成列表
+	// 获取价格信息
 	// ------------------
-	controller.create_list();
+	controller.get_price_info();
+
+	// 获取库存信息
+	// ------------------
+	controller.get_stock_info();
 
 	// 构造顶部滑动tab
 	// ------------------
@@ -36,20 +44,4 @@ define(function (require, exports, module){
 	// 回到顶部按钮
 	// ------------------
 	controller.back_to_top();
-
-	// 懒加载
-	// ------------------
-	//controller.layzr_init();
-
-	// 获取价格信息
-	// ------------------
-	controller.get_price_info();
-
-	// 获取库存信息
-	// ------------------
-	controller.get_stock_info();
-
-	// 模拟页面滚动效果
-	// ------------------
-	controller.create_scroll();
 });

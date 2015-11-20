@@ -128,7 +128,7 @@
 	width:60px;
 }
 .w70{
-	width:70px;
+	width:0.7rem;
 }
 .w80{
 	width:80px;
@@ -303,6 +303,9 @@
 }
 .pt50{
 	padding-top:50px;
+}
+.pt70{
+	padding-top: 0.7rem;
 }
 .pt100{
 	padding-top:100px;

@@ -12,17 +12,23 @@ html, body{
 	top: 0;
 	bottom: 0;
 	right: 0;
-	background: #282828;
+}
+.scroll-view{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background: #313131;
+	top: 0;
+	overflow: hidden;
 }
 .view-scroller{
 	background: #fff;
 }
-
-/*.new-header-append.new-jd-tab{
-	line-height: normal;
-}*/
 .jd-nav{
 	font-size: 12px;
+	background: #fff;
 }
 
 /**
@@ -36,6 +42,15 @@ nav.red-mobile-nav{
 	right: 0;*/
 	background: #161616;
 	/*z-index: 2;*/
+}
+nav.nav-fixed{
+	position: fixed;
+	top: 0;
+	z-index: 2;
+}
+nav.nav-fixed.hide{
+	opacity: 0;
+	z-index: -1;
 }
 .red-mobile-nav .nav-active-slider{
 	position: absolute;

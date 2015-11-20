@@ -14,6 +14,30 @@ define(function (require, exports, module){
 	var common_view  = require('common/view');
 	var variable     = require('common/variable');
 	var iscroller    = null;
+
+	// 模拟页面滚动效果
+	// ------------------
+	function create_scroll() {
+		iscroller = new IScroll('.scroll-view', {
+			click: true,
+			probeType: 3
+		});
+
+		iscroller.on('beforeScrollStart', function() {
+			iscroller._resize();
+		});
+
+		iscroller.on('scrollEnd', function() {
+			$('#go-top .count').addClass('none');
+			$('#go-top .back').removeClass('none');
+		});
+
+		iscroller.on('transition', function() {
+			console.log(this.y);
+			$('#go-top .count').removeClass('none');
+			$('#go-top .back').addClass('none');
+		});
+	}
 	
 	// 创建头部
 	// ------------------
@@ -22,6 +46,7 @@ define(function (require, exports, module){
 			common_view.render_header(data);
 		});
 		common_view.render_header(variable.header_html);
+		
 	};
 
 	// 创建尾部
@@ -32,14 +57,6 @@ define(function (require, exports, module){
 		});
 		common_view.render_footer(variable.footer_html);
 	};
-
-	// 生成列表
-	// ------------------
-	function create_list() {
-		model.get_list(function(data) {
-			view.render_list(data);
-		});
-	}
 
 	// 构造顶部滑动tab
 	// ------------------
@@ -99,42 +116,11 @@ define(function (require, exports, module){
 		}
 	}
 
-	// 模拟页面滚动效果
-	// ------------------
-	function create_scroll() {
-		iscroller = new IScroll('.red-mobile-page', {
-			click: true,
-			probeType: 3
-		});
-
-		iscroller.on('beforeScrollStart', function() {
-			iscroller.refresh();
-		});
-
-		iscroller.on('scroll', function(scroller) {
-			console.log(this);
-		});
-	}
-
 	// 回到顶部按钮
 	// ------------------
 	function back_to_top() {
-		$(document).scroll(function(){
-			var scrollTop = $(window).scrollTop();
-			var wHeight   = $(window).height();
-			var back_top  = $(".shangou_backtop");
-
-			if(scrollTop >= wHeight){
-				$("#backToTop").attr("style","display:block;");
-				if(back_top){
-					back_top.addClass("shangou_backtop_show");
-				}
-			}else{
-				if(back_top){
-					back_top.removeClass("shangou_backtop_show");
-				}
-				$("#backToTop").attr("style","display:none;");
-			}
+		$('#go-top').click(function() {
+			iscroller.scrollTo(0, 0);
 		});
 	}
 
@@ -186,12 +172,10 @@ define(function (require, exports, module){
 	module.exports = {
 		create_header      : create_header,
 		create_footer      : create_footer,
-		create_list        : create_list,
 		create_tab         : create_tab,
 		back_to_top        : back_to_top,
 		get_price_info     : get_price_info,
 		get_stock_info     : get_stock_info,
-		layzr_init         : layzr_init,
 		create_top_slider  : create_top_slider,
 		create_goods_slider: create_goods_slider,
 		create_scroll      : create_scroll

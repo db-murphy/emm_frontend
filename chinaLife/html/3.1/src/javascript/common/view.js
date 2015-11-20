@@ -2,7 +2,7 @@ define(function (require,exports,module){
 	
 	// 渲染头部
 	// ---------------------
-	function render_header(data) {
+	function render_header(data, iscroller) {
 		var jquery_dom = $(data);
 		var head = $('head');	
 		var jd_nav = $('.jd-nav');	
@@ -17,6 +17,14 @@ define(function (require,exports,module){
 			}else{
 				jd_nav.append(dom);
 			}
+		});
+
+		var scroll_top = $('header').height();
+
+		$('.scroll-view').css('top', scroll_top + 'px');
+		$('#btnJdkey').click(function() {
+			scroll_top = $('header').height();
+			$('.scroll-view').css('top', scroll_top + 'px');
 		});
 	}
 
