@@ -73,34 +73,50 @@ define(function (require, exports, module){
 	// 构造顶部滑动tab
 	// ------------------
 	function create_tab() {
+		var this_swiper  = $('#red-nav');
 		var navSwiper = new Swiper('.red-mobile-nav',{
 			slidesPerView : 'auto',
 			loop: false,
+			preventClicks : false,
 			onTap: function(swiper) {
 				var click_slider = swiper.clickedSlide;
-				var this_swiper  = $(click_slider).closest('.swiper-container');
+				var href = click_slider.getElementsByTagName('a')[0].getAttribute('_href');
 
 				this_swiper.find('.swiper-slide').removeClass('active');
 				$(click_slider).addClass('active');
+				slide_to(swiper, click_slider, this_swiper, 800);
 
-				var swiper_width_half = parseInt(this_swiper.width() / 2, 10);
-				var offset_left       = click_slider.offsetLeft;
-				var max_translate     = swiper.maxTranslate();
-				var min_translate     = swiper.minTranslate();
-				var translate_to      = swiper_width_half - offset_left - click_slider.offsetWidth / 2;
-
-				if(translate_to > min_translate) {
-					translate_to = min_translate;
-				}else if(translate_to < max_translate) {
-					translate_to = max_translate;
+				if(href) {
+					setTimeout(function() {
+						window.location.href = href;
+					}, 800);
 				}
-				swiper.setWrapperTransition(800);
-				swiper.setWrapperTranslate(translate_to);
 			}
 		});
+		var active_slider = $('.swiper-slide.active', this_swiper).get(0);
+
+		slide_to(navSwiper, active_slider, this_swiper, 0);
 	};
 
-	//首页轮播效果
+	// swiper slideTo
+	// ------------------
+	function slide_to(swiper, active_slider, swiper_box, time) {
+		var swiper_width_half = parseInt(swiper_box.width() / 2, 10);
+		var offset_left       = active_slider.offsetLeft;
+		var max_translate     = swiper.maxTranslate();
+		var min_translate     = swiper.minTranslate();
+		var translate_to      = swiper_width_half - offset_left - active_slider.offsetWidth / 2;
+
+		if(translate_to > min_translate) {
+			translate_to = min_translate;
+		}else if(translate_to < max_translate) {
+			translate_to = max_translate;
+		}
+		swiper.setWrapperTransition(time);
+		swiper.setWrapperTranslate(translate_to);
+	}
+
+	// 首页轮播效果
 	// ------------------
 	function create_top_slider() {
 		if($('.red-slider-wraper').length) {
@@ -254,11 +270,12 @@ define(function (require, exports, module){
 		tool.lazyload.init({
 			iscroller: iscroller,
 			load_sucess: function(img) {
-				var item = $(img).closest('.red-advertisements-item');
+				var item        = $(img).closest('.red-advertisements-item');
 				var item_detail = item.find('.advertisement-detail');
-				var logo_img = item.find('.commercial-logo img');
-				var logo_url = logo_img.attr('data-logo-layzr');
+				var logo_img    = item.find('.commercial-logo img');
+				var logo_url    = logo_img.attr('data-logo-layzr');
 
+				// 加载logo图片
 				if(logo_url) {
 					var Img = new Image();
 

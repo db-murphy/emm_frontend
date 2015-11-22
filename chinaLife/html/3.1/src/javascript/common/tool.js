@@ -20,13 +20,13 @@ define(function (require, exports, module){
 	    
 	    img: {
 	        init: function(n) {
-	            var that = this;
-	            var img_lazy = $('img[data-layzr]');
+	            var that        = this;
+	            var img_lazy    = $('img[data-layzr]');
 	            var scroll_view = $('#scroll-view');
 	            
 	            function inViewport(el) {
-	                var top = scroll_view.offset().top;
-	                var btm = top + n.iscroller.wrapperHeight;
+	                var top       = scroll_view.offset().top;
+	                var btm       = top + n.iscroller.wrapperHeight;
 	                var el_bottom = $(el).offset().top + $(el).offset().height;
 
 	                return el_bottom >= top && el_bottom <= btm;
