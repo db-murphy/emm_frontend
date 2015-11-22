@@ -1,3 +1,12 @@
+/*!
+ * =================================================
+ * name: 首页model
+ * author: cdhuangxiaolong@jd.com
+ * time: 2015/11/02
+ * description: 负责首页数据请求
+ * =================================================
+ */
+
 define(function (require,exports,module){
 	var variable = require('common/variable');
 

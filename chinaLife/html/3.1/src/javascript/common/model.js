@@ -1,3 +1,12 @@
+/*!
+ * =================================================
+ * name: 公共model
+ * author: cdhuangxiaolong@jd.com
+ * time: 2015/11/02
+ * description: 负责公共数据请求, 例如头部请求, 脚部请求
+ * =================================================
+ */
+
 define(function (require,exports,module){
 	var variable = require('common/variable');
 

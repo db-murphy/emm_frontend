@@ -3,22 +3,32 @@
  * name: 闪购首页 controller文件
  * author: cdhuangxiaolong@jd.com
  * time: 2015/11/02
+ * description: 负责首页逻辑代码编写
  * =================================================
  */
 
 define(function (require, exports, module){
+	// 模块依赖
+	// ------------------
 	var model        = require('models/index');
 	var view         = require('views/index');
 	var tool         = require('common/tool');
 	var common_model = require('common/model');
 	var common_view  = require('common/view');
 	var variable     = require('common/variable');
-	var iscroller    = null;
 
+	/**
+	 * @ go_top_btn  回到顶部按钮
+	 * @ items       活动元素dom
+	 * @ fisrt_item  第一个活动dom
+	 * @ view_scroll 滚动模块
+	 * @ iscroller   iscroll对象
+	 */
 	var go_top_btn   = $('#go-top');
 	var items        = $('.red-advertisements-item');
 	var fisrt_item   = items.eq(0);
 	var view_scroll  = $('#view-scroller');
+	var iscroller    = null;
 
 	// 模拟页面滚动效果
 	// ------------------
@@ -30,6 +40,11 @@ define(function (require, exports, module){
 
 		// 每次滚动前重新计算滚动区域尺寸
 		iscroller.on('beforeScrollStart', function() {
+			iscroller._resize();
+		});
+
+		// 旋转设备时重新计算滚动区域尺寸
+		$(window).bind('orientationchange', function() {
 			iscroller._resize();
 		});
 	}
@@ -115,14 +130,14 @@ define(function (require, exports, module){
 	// ------------------
 	function back_to_top() {
 		/**
-		 * @item_height       单个活动区域高度
-		 * @wrapper_height    滚动wraper高度
-		 * @first_item_top    第一个活动相对纵坐标
-		 * @item_count_inview 滑过可视区的活动个数
-		 * @count_text        计数器dom
-		 * @back_text         回到顶部文字dom
-		 * @count_now         当前是第几个活动
-		 * @scroll_view_top   滚动wraper相对纵坐标
+		 * @ item_height       单个活动区域高度
+		 * @ wrapper_height    滚动wraper高度
+		 * @ first_item_top    第一个活动相对纵坐标
+		 * @ item_count_inview 滑过可视区的活动个数
+		 * @ count_text        计数器dom
+		 * @ back_text         回到顶部文字dom
+		 * @ count_now         当前是第几个活动
+		 * @ scroll_view_top   滚动wraper相对纵坐标
 		 */
 		var count_text     = $('#go-top .count');
 		var count_now      = $('.now', count_now);

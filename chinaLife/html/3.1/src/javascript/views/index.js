@@ -1,8 +1,13 @@
-define(function (require,exports,module){
-	function render_list(data) {
-		//console.log(data);
-	}
+/*!
+ * =================================================
+ * name: 首页view
+ * author: cdhuangxiaolong@jd.com
+ * time: 2015/11/02
+ * description: 负责首页数据渲染
+ * =================================================
+ */
 
+define(function (require,exports,module){
 	// 处理价格信息
 	// ---------------------
 	function render_price(data) {
@@ -79,7 +84,6 @@ define(function (require,exports,module){
 	}
 
 	module.exports = {
-		render_list: render_list,
 		render_price: render_price,
 		render_stock: render_stock
 	};

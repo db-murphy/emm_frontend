@@ -1,3 +1,12 @@
+/*!
+ * =================================================
+ * name: tool.js
+ * author: cdhuangxiaolong@jd.com
+ * time: 2015/11/02
+ * description: 包含一些工具类函数
+ * =================================================
+ */
+
 define(function (require,exports,module){
 	function Layzr(options) {
 	    // debounce

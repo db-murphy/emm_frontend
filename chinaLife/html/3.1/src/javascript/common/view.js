@@ -1,11 +1,29 @@
+/*!
+ * =================================================
+ * name: 公共view
+ * author: cdhuangxiaolong@jd.com
+ * time: 2015/11/02
+ * description: 公共数据页面渲染，包括渲染头部与脚部视图
+ * =================================================
+ */
+
 define(function (require,exports,module){
 	
 	// 渲染头部
 	// ---------------------
 	function render_header(data, iscroller) {
+		/**
+		 * @ jquery_dom 头部juqery对象
+		 * @ head       head标签
+		 * @ jd_nav     京东总部头部html
+		 * @ header     页面头部区域
+		 * @ scroll_top 滚动区域距离页面顶部的距离
+		 */
 		var jquery_dom = $(data);
-		var head = $('head');	
-		var jd_nav = $('.jd-nav');	
+		var head       = $('head');	
+		var jd_nav     = $('#jd-nav');
+		var header     = $('#header');
+		var scroll_top;
 
 		$.each(jquery_dom, function(i, dom) {
 			if(dom.tagName == 'SCRIPT') {
@@ -19,12 +37,17 @@ define(function (require,exports,module){
 			}
 		});
 
-		var scroll_top = $('header').height();
+		scroll_top = header.height();
+		$('#scroll-view').css('top', scroll_top + 'px');
 
-		$('.scroll-view').css('top', scroll_top + 'px');
 		$('#btnJdkey').click(function() {
-			scroll_top = $('header').height();
-			$('.scroll-view').css('top', scroll_top + 'px');
+			scroll_top = header.height();
+			$('#scroll-view').css('top', scroll_top + 'px');
+		});
+
+		$(window).bind('orientationchange', function() {
+			scroll_top = header.height();
+			$('#scroll-view').css('top', scroll_top + 'px');
 		});
 	}
 
