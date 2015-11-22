@@ -139,10 +139,14 @@ define(function (require, exports, module){
 		 * @ count_now         当前是第几个活动
 		 * @ scroll_view_top   滚动wraper相对纵坐标
 		 */
-		var count_text     = $('#go-top .count');
-		var count_now      = $('.now', count_now);
-		var back_text      = $('#go-top .back');
+		var count_text     = $('#count');
+		var count_now      = $('#now');
+		var back_text      = $('#back');
+		var total_text     = $('#total');
 		var item_count_inview, wrapper_height, item_height, first_item_top, scroll_view_top;
+
+		// 填充活动总数
+		total_text.text(items.length);
 
 		// 回到顶部
 		go_top_btn.tap(function() {
@@ -152,16 +156,20 @@ define(function (require, exports, module){
 
 		// 滚动之前(手指已经与屏幕接触)
 		iscroller.on('beforeScrollStart', function() {
-			wrapper_height = iscroller.wrapperHeight;
-			item_height    = fisrt_item.height();
-			first_item_top = fisrt_item.offset().top;
+			wrapper_height  = iscroller.wrapperHeight;
+			item_height     = fisrt_item.height();
+			first_item_top  = fisrt_item.offset().top;
 			scroll_view_top = view_scroll.offset().top;
-			first_item_top = first_item_top - scroll_view_top;
+			first_item_top  = first_item_top - scroll_view_top;
 		});
 
 		// 滚动时
 		iscroller.on('scroll', function() {
 			item_count_inview = Math.floor((wrapper_height + Math.abs(this.y) - first_item_top) / item_height);
+
+			if(item_count_inview > items.length) {
+				item_count_inview = items.length;
+			}
 
 			if(item_count_inview >= 1) {
 				count_now.text(item_count_inview);
@@ -179,6 +187,10 @@ define(function (require, exports, module){
 		// 滚动停止时
 		iscroller.on('scrollEnd', function() {
 			item_count_inview = Math.floor((wrapper_height + Math.abs(this.y) - first_item_top) / item_height);
+
+			if(item_count_inview > items.length) {
+				item_count_inview = items.length;
+			}
 
 			if(item_count_inview >= 1) {
 				go_top_btn.removeClass('none');
