@@ -13,11 +13,13 @@ define(function (require,exports,module){
 	// ---------------------
 	function render_header(data, iscroller) {
 		/**
+		 * -----------------------------------
 		 * @ jquery_dom 头部juqery对象
 		 * @ head       head标签
 		 * @ jd_nav     京东总部头部html
 		 * @ header     页面头部区域
 		 * @ scroll_top 滚动区域距离页面顶部的距离
+		 * -----------------------------------
 		 */
 		var jquery_dom = $(data);
 		var head       = $('head');	

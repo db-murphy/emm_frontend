@@ -45,4 +45,8 @@ define(function (require, exports, module){
 	// 回到顶部按钮
 	// ------------------
 	controller.back_to_top();
+
+	// 图片懒加载
+	// ------------------
+	controller.lazy_load();
 });

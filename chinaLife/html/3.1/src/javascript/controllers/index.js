@@ -18,11 +18,13 @@ define(function (require, exports, module){
 	var variable     = require('common/variable');
 
 	/**
+	 * --------------------------
 	 * @ go_top_btn  回到顶部按钮
 	 * @ items       活动元素dom
 	 * @ fisrt_item  第一个活动dom
 	 * @ view_scroll 滚动模块
 	 * @ iscroller   iscroll对象
+	 * --------------------------
 	 */
 	var go_top_btn   = $('#go-top');
 	var items        = $('.red-advertisements-item');
@@ -130,6 +132,7 @@ define(function (require, exports, module){
 	// ------------------
 	function back_to_top() {
 		/**
+		 * ---------------------------------------
 		 * @ item_height       单个活动区域高度
 		 * @ wrapper_height    滚动wraper高度
 		 * @ first_item_top    第一个活动相对纵坐标
@@ -138,6 +141,7 @@ define(function (require, exports, module){
 		 * @ back_text         回到顶部文字dom
 		 * @ count_now         当前是第几个活动
 		 * @ scroll_view_top   滚动wraper相对纵坐标
+		 * ---------------------------------------
 		 */
 		var count_text     = $('#count');
 		var count_now      = $('#now');
@@ -202,6 +206,13 @@ define(function (require, exports, module){
 			count_text.addClass('none');
 			back_text.removeClass('none');
 		});
+
+		// scroll没有移动
+		iscroller.on('scrollCancel', function() {
+			// 隐藏计数器
+			count_text.addClass('none');
+			back_text.removeClass('none');
+		});
 	}
 
 	// 获取价格信息
@@ -237,13 +248,31 @@ define(function (require, exports, module){
 	   }
 	}
 
-	// 懒加载init
+	// 懒加载
 	// ------------------
-	function layzr_init() {
-		var layzr = new tool.Layzr({
-		  callback: function(nodes) {
-		  	this.classList.add('fadeIn');
-		  }
+	function lazy_load() {
+		tool.lazyload.init({
+			iscroller: iscroller,
+			load_sucess: function(img) {
+				var item = $(img).closest('.red-advertisements-item');
+				var item_detail = item.find('.advertisement-detail');
+				var logo_img = item.find('.commercial-logo img');
+				var logo_url = logo_img.attr('data-logo-layzr');
+
+				if(logo_url) {
+					var Img = new Image();
+
+					Img.onload = function() {
+						logo_img.addClass('fadeIn');
+						logo_img.attr('src', logo_url);
+					}
+
+					Img.src = logo_url;
+				}
+
+				img.classList.add('fadeIn');
+				item_detail.removeClass('opy0');
+			}
 		});
 	}
 
@@ -258,6 +287,7 @@ define(function (require, exports, module){
 		get_stock_info     : get_stock_info,
 		create_top_slider  : create_top_slider,
 		create_goods_slider: create_goods_slider,
-		create_scroll      : create_scroll
+		create_scroll      : create_scroll,
+		lazy_load          : lazy_load
 	};
 });

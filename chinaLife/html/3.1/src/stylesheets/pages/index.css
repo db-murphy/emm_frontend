@@ -204,6 +204,8 @@ nav.nav-fixed.hide{
 	position: relative;
 	display: block;
 	margin-bottom: 0.05rem;
+	height: 3.1rem;
+	overflow: hidden;
 }
 .red-advertisements-item:last-child{
 	margin-bottom: 0;
@@ -228,6 +230,8 @@ nav.nav-fixed.hide{
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
+	-webkit-transition: opacity 1s linear;
+	transition: opacity 1s linear;
 }
 
 .advertisement-detail{
