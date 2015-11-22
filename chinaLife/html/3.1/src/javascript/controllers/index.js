@@ -272,6 +272,7 @@ define(function (require, exports, module){
 			load_sucess: function(img) {
 				var item        = $(img).closest('.red-advertisements-item');
 				var item_detail = item.find('.advertisement-detail');
+				var attention   = item.find('.attention-msg');
 				var logo_img    = item.find('.commercial-logo img');
 				var logo_url    = logo_img.attr('data-logo-layzr');
 
@@ -288,7 +289,13 @@ define(function (require, exports, module){
 				}
 
 				img.classList.add('fadeIn');
-				item_detail.removeClass('opy0');
+				if(item_detail.length) {
+					item_detail.removeClass('opy0');
+				}
+				
+				if(attention.length) {
+					attention.removeClass('opy0');
+				}
 			}
 		});
 	}

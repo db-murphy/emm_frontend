@@ -223,6 +223,8 @@ nav.nav-fixed.hide{
 	line-height: 0.28rem;
 	padding: 0 0.15rem;
 	background: rgba(0, 0, 0, 0.7);
+	-webkit-transition: opacity 1s linear;
+	transition: opacity 1s linear;
 }
 .red-advertisements-item .advertisement-detail{
 	position: absolute;
