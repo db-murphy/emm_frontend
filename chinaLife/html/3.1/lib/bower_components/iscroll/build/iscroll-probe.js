@@ -840,7 +840,6 @@ IScroll.prototype = {
 
 	_translate: function (x, y) {
 		if ( this.options.useTransform ) {
-			console.log(y);
 /* REPLACE START: _translate */
 
 			this.scrollerStyle[utils.style.transform] = 'translate(' + x + 'px,' + y + 'px)' + this.translateZ;
@@ -856,7 +855,6 @@ IScroll.prototype = {
 
 		this.x = x;
 		this.y = y;
-		this._execEvent('transition');
 
 	if ( this.indicators ) {
 		for ( var i = this.indicators.length; i--; ) {

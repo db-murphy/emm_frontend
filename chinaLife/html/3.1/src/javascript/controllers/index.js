@@ -15,6 +15,11 @@ define(function (require, exports, module){
 	var variable     = require('common/variable');
 	var iscroller    = null;
 
+	var go_top_btn   = $('#go-top');
+	var items        = $('.red-advertisements-item');
+	var fisrt_item   = items.eq(0);
+	var view_scroll  = $('#view-scroller');
+
 	// 模拟页面滚动效果
 	// ------------------
 	function create_scroll() {
@@ -23,19 +28,9 @@ define(function (require, exports, module){
 			probeType: 3
 		});
 
+		// 每次滚动前重新计算滚动区域尺寸
 		iscroller.on('beforeScrollStart', function() {
 			iscroller._resize();
-		});
-
-		iscroller.on('scrollEnd', function() {
-			$('#go-top .count').addClass('none');
-			$('#go-top .back').removeClass('none');
-		});
-
-		iscroller.on('transition', function() {
-			console.log(this.y);
-			$('#go-top .count').removeClass('none');
-			$('#go-top .back').addClass('none');
 		});
 	}
 	
@@ -46,7 +41,7 @@ define(function (require, exports, module){
 			common_view.render_header(data);
 		});
 		common_view.render_header(variable.header_html);
-		
+		iscroller._resize();
 	};
 
 	// 创建尾部
@@ -119,8 +114,66 @@ define(function (require, exports, module){
 	// 回到顶部按钮
 	// ------------------
 	function back_to_top() {
-		$('#go-top').click(function() {
+		/**
+		 * @item_height       单个活动区域高度
+		 * @wrapper_height    滚动wraper高度
+		 * @first_item_top    第一个活动相对纵坐标
+		 * @item_count_inview 滑过可视区的活动个数
+		 * @count_text        计数器dom
+		 * @back_text         回到顶部文字dom
+		 * @count_now         当前是第几个活动
+		 * @scroll_view_top   滚动wraper相对纵坐标
+		 */
+		var count_text     = $('#go-top .count');
+		var count_now      = $('.now', count_now);
+		var back_text      = $('#go-top .back');
+		var item_count_inview, wrapper_height, item_height, first_item_top, scroll_view_top;
+
+		// 回到顶部
+		go_top_btn.tap(function() {
 			iscroller.scrollTo(0, 0);
+			go_top_btn.addClass('none');
+		});
+
+		// 滚动之前(手指已经与屏幕接触)
+		iscroller.on('beforeScrollStart', function() {
+			wrapper_height = iscroller.wrapperHeight;
+			item_height    = fisrt_item.height();
+			first_item_top = fisrt_item.offset().top;
+			scroll_view_top = view_scroll.offset().top;
+			first_item_top = first_item_top - scroll_view_top;
+		});
+
+		// 滚动时
+		iscroller.on('scroll', function() {
+			item_count_inview = Math.floor((wrapper_height + Math.abs(this.y) - first_item_top) / item_height);
+
+			if(item_count_inview >= 1) {
+				count_now.text(item_count_inview);
+				go_top_btn.removeClass('none');
+			}else{
+				go_top_btn.addClass('none');
+			}
+
+			// 显示计数器
+			count_text.removeClass('none');
+			back_text.addClass('none');
+
+		});
+
+		// 滚动停止时
+		iscroller.on('scrollEnd', function() {
+			item_count_inview = Math.floor((wrapper_height + Math.abs(this.y) - first_item_top) / item_height);
+
+			if(item_count_inview >= 1) {
+				go_top_btn.removeClass('none');
+			}else{
+				go_top_btn.addClass('none');
+			}
+
+			// 隐藏计数器
+			count_text.addClass('none');
+			back_text.removeClass('none');
 		});
 	}
 
