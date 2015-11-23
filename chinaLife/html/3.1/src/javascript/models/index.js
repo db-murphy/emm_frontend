@@ -10,10 +10,6 @@
 define(function (require,exports,module){
 	var variable = require('common/variable');
 
-	function get_list(callback) {
-		callback && callback('我是数据');
-	}
-
 	// 获取价格数据
 	// ------------------
 	function get_price_data(arg, callback) {
@@ -44,7 +40,6 @@ define(function (require,exports,module){
 	}
 
 	module.exports = {
-		get_list: get_list,
 		get_price_data: get_price_data,
 		get_stock_data: get_stock_data
 	};

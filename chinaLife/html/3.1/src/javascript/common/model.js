@@ -14,9 +14,17 @@ define(function (require,exports,module){
 	// ---------------------------
 	function get_header_html(callback) {
 		var body_dom = $('body');
-		var vs = body_dom.attr("vs");
+		var vs = body_dom.attr("data-vs");
 		
-		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs){
+		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || '' == vs){
+			var header     = $('#header');
+			var scroll_top = header.height();
+
+			$('#scroll-view').css('top', scroll_top + 'px');
+			$(window).bind('orientationchange', function() {
+				scroll_top = header.height();
+				$('#scroll-view').css('top', scroll_top + 'px');
+			});
 			return;
 		}
 
@@ -27,7 +35,7 @@ define(function (require,exports,module){
 	// ---------------------------
 	function get_footer_html(callback) {
 		var body_dom = $('body');
-		var vs = body_dom.attr("vs");
+		var vs = body_dom.attr("data-vs");
 
 		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs){
 			return;
@@ -39,10 +47,10 @@ define(function (require,exports,module){
 	function get_header_footer_html(url, callback) {
 		var param = {};
 		var body_dom = $('body');
-		var vs = body_dom.attr("vs");
-		var sid = body_dom.attr("sid");
-		var title = body_dom.attr("title");
-		var link = body_dom.attr("link");
+		var vs = body_dom.attr("data-vs");
+		var sid = body_dom.attr("data-sid");
+		var title = body_dom.attr("data-title");
+		var link = body_dom.attr("data-link");
 
 		if(null != sid && sid.length>0){
 			param.sid = sid;

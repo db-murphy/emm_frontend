@@ -13,7 +13,7 @@ define(function (require,exports,module){
 	function render_price(data) {
 		for(var i = 0; i < data.length; i++){
 	        var jdPrice = "";
-	        var oldPrice="";
+	        var oldPrice = "";
 
 	        if(data[i].p > 0) {
 	            jdPrice = formatPrice(data[i].p);
@@ -27,21 +27,20 @@ define(function (require,exports,module){
 	        if(value.length == 1) {
 	            var tempSku = value[0];
 	            var keyItem = "goodItem_" + tempSku;
-	            var jdPriceDoms = $("span[id='jd_price_" +tempSku+"']");
-	            var oldPriceDoms = $("span[id='old_price_" +tempSku+"']");
-	            var goodItem = $("div[id='"+keyItem+"']");
+	            var goodItem = $("#goods-rec-wrapper li[data-goods-id='"+keyItem+"']");
 	            
 	            if(jdPrice == "暂无价格"){
-	                for(var index=0;index<goodItem.length;index++){
-	                    $(goodItem[index]).append("<span class='layer yahei'>已抢光<br><span class='arial en'>SOLDOUT</span></span>");
-	                }
-	                for(var index=0;index<jdPriceDoms.length;index++){
-	                    $(jdPriceDoms[index]).text("已下架");
+	                for(var index=0; index < goodItem.length; index++){
+	                	// 已抢光
+	                	$('.goods-img', goodItem.eq(index)).addClass('dry-up');
+
+	                	// 已下架
+	                	$('.goods-price', goodItem.eq(index)).html('<p class="under-carriage">已下架</p>');
 	                }
 	            }else{
-	                for(var index=0;index<jdPriceDoms.length;index++){
-	                    $(jdPriceDoms[index]).html("<span class='rmb_ico'>¥</span><span>"+jdPrice+"</span>");
-	                    $(oldPriceDoms[index]).html("<span class='rmb_ico'>¥</span><span>"+oldPrice+"</span>");
+	                for(var index=0; index < goodItem.length; index++){
+	                	$('.new-price-num', goodItem.eq(index)).text(jdPrice);
+	                	$('.old-price-num', goodItem.eq(index)).text(oldPrice);
 	                }
 	            }
 	        }
@@ -72,9 +71,11 @@ define(function (require,exports,module){
                         for(var i=0, t=list.length; i<t; i++) {
                             var ss = list[i];
                             var keyItem = "goodItem_" + ss;
-                            var goodItem = $("div[id='"+keyItem+"']");
-                            for(var index=0;index<goodItem.length;index++){
-                                $(goodItem[index]).append("<span class='layer yahei'>已抢光<br><span class='arial en'>SOLDOUT</span></span>");
+                            var goodItem = $("#goods-rec-wrapper li[data-goods-id='"+keyItem+"']");
+
+                            for(var index=0; index<goodItem.length; index++){
+                                // 已抢光
+	                			$('.goods-img', goodItem.eq(index)).addClass('dry-up');
                             }
                         }
                     }

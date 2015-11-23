@@ -56,9 +56,10 @@ define(function (require, exports, module){
 	function create_header() {
 		common_model.get_header_html(function(data) {
 			common_view.render_header(data);
+			iscroller._resize();
 		});
-		common_view.render_header(variable.header_html);
-		iscroller._resize();
+		//common_view.render_header(variable.header_html);
+		//iscroller._resize();
 	};
 
 	// 创建尾部
@@ -66,8 +67,9 @@ define(function (require, exports, module){
 	function create_footer() {
 		common_model.get_footer_html(function(data) {
 			common_view.render_footer(data);
+			iscroller._resize();
 		});
-		common_view.render_footer(variable.footer_html);
+		//common_view.render_footer(variable.footer_html);
 	};
 
 	// 构造顶部滑动tab
@@ -234,7 +236,8 @@ define(function (require, exports, module){
 	// 获取价格信息
 	// ------------------
 	function get_price_info() {
-		var skuidsv = '';
+		var goods_rec_wrapper = $('#goods-rec-wrapper');
+		var skuidsv = goods_rec_wrapper.attr('data-skus');
 
 		if(skuidsv != "" && skuidsv != null) {
 	        var strs = skuidsv.split(",");
@@ -256,7 +259,9 @@ define(function (require, exports, module){
 	// 获取库存信息
 	// ------------------
 	function get_stock_info() {
-		var skuidsv = '';
+		var goods_rec_wrapper = $('#goods-rec-wrapper');
+		var skuidsv = goods_rec_wrapper.attr('data-skus');
+
 		if(skuidsv != "" && skuidsv != null){
 			model.get_stock_data({"skuids": skuidsv}, function(data) {
 				view.render_stock(data);

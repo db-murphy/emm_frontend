@@ -84,8 +84,8 @@
                         <section class="pl15 pr15 pt20">
                             <h2 class="red-activity-title pb10">好货推荐</h2>
                             <div class="goods-rec-slider-wrap swiper-container">
-                                <ul class="swiper-wrapper" data-skus="">
-                                    <li class="swiper-slide">
+                                <ul class="swiper-wrapper" id="goods-rec-wrapper" data-skus="">
+                                    <li class="swiper-slide" data-goods-id="">
                                         <a href="javascript:;">
                                             <div class="goods-img dry-up">
                                                 <img src="../dist/images/goods.jpg">
@@ -96,7 +96,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li class="swiper-slide">
+                                    <li class="swiper-slide" data-goods-id="">
                                         <a href="javascript:;">
                                             <div class="goods-img">
                                                 <img src="../dist/images/goods1.jpg">
@@ -108,7 +108,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li class="swiper-slide">
+                                    <li class="swiper-slide" data-goods-id="">
                                         <a href="javascript:;">
                                             <div class="goods-img">
                                                 <img src="../dist/images/goods2.jpg">
@@ -120,7 +120,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li class="swiper-slide">
+                                    <li class="swiper-slide" data-goods-id="">
                                         <a href="javascript:;">
                                             <div class="goods-img dry-up">
                                                 <img src="../dist/images/goods.jpg">
@@ -131,7 +131,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li class="swiper-slide">
+                                    <li class="swiper-slide" data-goods-id="">
                                         <a href="javascript:;">
                                             <div class="goods-img">
                                                 <img src="../dist/images/goods1.jpg">
@@ -143,7 +143,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li class="swiper-slide">
+                                    <li class="swiper-slide" data-goods-id="">
                                         <a href="http://www.baidu.com">
                                             <div class="goods-img">
                                                 <img src="../dist/images/goods2.jpg">
@@ -295,7 +295,7 @@
         // -------------------------
         // http://static.360buyimg.com/shangou/redm/v3.1.1/dist/javascript/
         // ../dist/javascript/
-        var source_path = 'http://192.168.0.102:7000/dist/javascript/';
+        var source_path = 'http://192.168.191.4:7000/dist/javascript/';
 
         seajs.config({
             // 调试模式
