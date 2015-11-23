@@ -57,9 +57,8 @@ define(function (require,exports,module){
 	// ---------------------
 	function render_footer(data) {
 		var jquery_dom = $(data);
-		var head = $('head');
-		var view_scroller = $('.view-scroller');	
-		var jd_footer = $('.jd-footer');	
+		var head = $('head');	
+		var jd_footer = $('#jd-footer');	
 
 		$.each(jquery_dom, function(i, dom) {
 			if(dom.tagName == 'SCRIPT') {
