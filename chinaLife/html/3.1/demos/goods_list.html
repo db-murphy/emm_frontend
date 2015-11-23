@@ -2,7 +2,7 @@
 <html data-design-width="640" data-design-font="100">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-touch-fullscreen" content="yes">
@@ -39,119 +39,229 @@
     </head>
     <body data-sid="" data-vs="" data-total-page="1" data-page="1" data-total-page="1" data-title="京东闪购·品牌特卖" data-link="" data-lazy-load="off" data-pic-qua="35">
         <!-- 闪购html开始 -->
-        <div class="red-mobile-page">
-            <!-- 内容开始 -->
-            <div class="red-mobile-content">
-                <!-- 优惠券开始 -->
-                <section class="red-coupon">
-                    <div class="coupon-row mb5 one-col">
-                        <a href="javascript:;" class="coupon-col">
-                            <div class="coupon-price">
-                                <p><span class="price-type">&yen;</span>150</p>
-                                <span class="line"></span>
-                                <i class="font-icon ion-scissors"></i>
+        <div class="red-mobile-page" id="red-mobile-page">
+            <header id="header">
+                <!-- 三方导航开始 -->
+                <div class="jd-nav" id="jd-nav"></div>
+                <!-- 三方导航结束 -->
+            </header>
+            <!-- 隐藏状态的筛选条件开始 -->
+            <div class="fix-top fix-top-hiden" id="fix-top-hiden">
+                <nav class="red-operate">
+                    <a href="javascript:;" class="has-goods-btn">
+                        <p><span>显示有货</span><i class="font-icon ion-android-done"></i></p>
+                    </a>
+                    <a href="javascript:;" class="price-sort-btn">
+                        <p><span>价格</span><i class="font-icon ion-sort"></i></p>
+                    </a>
+                    <a href="javascript:;" class="filter_btn">
+                        <p><span>筛选</span><i class="icon-filter"></i></p>
+                    </a>
+                </nav>
+                <div class="goods-info clearfix">
+                    <p class="gift-info"><i class="ion-gift"></i><span>满1299元，加100元，送赠品<span></p>
+                    <p class="count-down"><i class="font-icon ion-time"></i><span>剩3天13小时26分30秒</p>
+                </div>
+            </div>
+            <!-- 隐藏状态的筛选条件结束 -->
+            <div class="scroll-view" id="scroll-view">
+                <div class="view-scroller" id="view-scroller">
+                    <!-- 内容开始 -->
+                    <div class="red-mobile-content">
+                        <!-- 优惠券开始 -->
+                        <section class="red-coupon">
+                            <div class="coupon-row mb5 one-col">
+                                <a href="javascript:;" class="coupon-col">
+                                    <div class="coupon-price">
+                                        <p><span class="price-type">&yen;</span>150</p>
+                                        <span class="line"></span>
+                                        <i class="font-icon ion-scissors"></i>
+                                    </div>
+                                    <div class="coupon-info">
+                                        <div class="info-text">
+                                            <p>优惠券</p>
+                                            <p>满799元使用</p>
+                                        </div>
+                                        <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="coupon-info">
-                                <div class="info-text">
-                                    <p>优惠券</p>
-                                    <p>满799元使用</p>
+                            <div class="coupon-row two-col">
+                                <a href="javascript:;" class="coupon-col timeout">
+                                    <div class="coupon-price">
+                                        <p><span class="price-type">&yen;</span>150</p>
+                                        <span class="line"></span>
+                                        <i class="font-icon ion-scissors"></i>
+                                    </div>
+                                    <div class="coupon-info">
+                                        <div class="info-text">
+                                            <p>优惠券</p>
+                                            <p>满799元使用</p>
+                                        </div>
+                                        <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" class="coupon-col">
+                                    <div class="coupon-price">
+                                        <p><span class="price-type">&yen;</span>150</p>
+                                        <span class="line"></span>
+                                        <i class="font-icon ion-scissors"></i>
+                                    </div>
+                                    <div class="coupon-info">
+                                        <div class="info-text">
+                                            <p>优惠券</p>
+                                            <p>满799元使用</p>
+                                        </div>
+                                        <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </section>
+                        <!-- 优惠券结束 -->
+                        <!-- 筛选条件开始 -->
+                        <div id="filter-box">
+                            <nav class="red-operate">
+                                <a href="javascript:;" class="has-goods-btn">
+                                    <p><span>显示有货</span><i class="font-icon ion-android-done"></i></p>
+                                </a>
+                                <a href="javascript:;" class="price-sort-btn">
+                                    <p><span>价格</span><i class="font-icon ion-sort"></i></p>
+                                </a>
+                                <a href="javascript:;" class="filter_btn">
+                                    <p><span>筛选</span><i class="icon-filter"></i></p>
+                                </a>
+                            </nav>
+                            <div class="goods-info clearfix">
+                                <p class="gift-info"><i class="ion-gift"></i><span>满1299元，加100元，送赠品<span></p>
+                                <p class="count-down"><i class="font-icon ion-time"></i><span>剩3天13小时26分30秒</p>
+                            </div>
+                        </div>
+                        <!-- 筛选条件结束 -->
+                        <!-- 商品列表开始 -->
+                        <section class="goods-list" id="goods-list">
+                            <a href="javascript:;">
+                                <div class="goods-img dry-up">
+                                    <img src="../dist/images/goods_list_default.jpg" class="animated" data-layzr="../dist/images/goods4.jpg" alt="商品图片">
                                 </div>
-                                <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
-                            </div>
-                        </a>
+                                <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸袖寸衫寸袖寸衫寸袖寸衫寸</p>
+                                <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                            </a>
+                            <a href="javascript:;">
+                                <div class="goods-img">
+                                    <img src="../dist/images/goods_list_default.jpg" class="animated" data-layzr="../dist/images/goods3.jpg" alt="商品图片">
+                                </div>
+                                <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                            </a>
+                            <a href="javascript:;">
+                                <div class="goods-img">
+                                    <img src="../dist/images/goods_list_default.jpg" class="animated" data-layzr="../dist/images/goods3.jpg" alt="商品图片">
+                                </div>
+                                <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫</p>
+                                <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                            </a>
+                            <a href="javascript:;">
+                                <div class="goods-img">
+                                    <img src="../dist/images/goods_list_default.jpg" class="animated" data-layzr="../dist/images/goods3.jpg" alt="商品图片">
+                                </div>
+                                <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫</p>
+                                <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                            </a>
+                            <a href="javascript:;">
+                                <div class="goods-img">
+                                    <img src="../dist/images/goods_list_default.jpg" class="animated" data-layzr="../dist/images/goods3.jpg" alt="商品图片">
+                                </div>
+                                <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫</p>
+                                <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                            </a>
+                            <a href="javascript:;">
+                                <div class="goods-img">
+                                    <img src="../dist/images/goods_list_default.jpg" class="animated" data-layzr="../dist/images/goods3.jpg" alt="商品图片">
+                                </div>
+                                <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫</p>
+                                <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                            </a>
+                            <a href="javascript:;">
+                                <div class="goods-img">
+                                    <img src="../dist/images/goods_list_default.jpg" class="animated" data-layzr="../dist/images/goods3.jpg" alt="商品图片">
+                                </div>
+                                <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫</p>
+                                <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                            </a>
+                        </section>
+                        <!-- 商品列表结束 -->
                     </div>
-                    <div class="coupon-row two-col">
-                        <a href="javascript:;" class="coupon-col timeout">
-                            <div class="coupon-price">
-                                <p><span class="price-type">&yen;</span>150</p>
-                                <span class="line"></span>
-                                <i class="font-icon ion-scissors"></i>
-                            </div>
-                            <div class="coupon-info">
-                                <div class="info-text">
-                                    <p>优惠券</p>
-                                    <p>满799元使用</p>
-                                </div>
-                                <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
-                            </div>
-                        </a>
-                        <a href="javascript:;" class="coupon-col">
-                            <div class="coupon-price">
-                                <p><span class="price-type">&yen;</span>150</p>
-                                <span class="line"></span>
-                                <i class="font-icon ion-scissors"></i>
-                            </div>
-                            <div class="coupon-info">
-                                <div class="info-text">
-                                    <p>优惠券</p>
-                                    <p>满799元使用</p>
-                                </div>
-                                <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                </section>
-                <!-- 优惠券结束 -->
-                <!-- 筛选条件开始 -->
-                <div class="fix-top">
-                    <nav class="red-operate">
-                        <a href="javascript:;">
-                            <p><span>显示有货</span><i class="font-icon ion-android-done"></i></p>
-                        </a>
-                        <a href="javascript:;">
-                            <p><span>价格</span><i class="font-icon ion-sort"></i></p>
-                        </a>
-                        <a href="javascript:;">
-                            <p><span>筛选</span><i class="icon-filter"></i></p>
-                        </a>
-                    </nav>
-                    <div class="goods-info clearfix">
-                        <p class="gift-info"><i class="ion-gift"></i><span>满1299元，加100元，送赠品<span></p>
-                        <p class="count-down"><i class="font-icon ion-time"></i><span>剩3天13小时26分30秒</p>
+                    <!-- 内容结束 -->
+                    <!-- 三方尾部开始 -->
+                    <div class="jd-footer" id="jd-footer"></div>
+                    <!-- 三方尾部结束 -->
+                </div>
+            </div>
+            <div class="go-top none" id="go-top">
+                <p class="count none" id="count"><span class="now" id="now">1</span><span class="total" id="total"></span></p>
+                <div class="back" id="back"><p class="arrow-ion"><span class="font-icon ion-android-arrow-up"></span></p><p class="back-text">顶部</p></div>
+            </div>
+            <section class="filter-modal" id="filter-modal">
+                <header>
+                    <span class="btn-3d fl">取消</span>
+                    <h3>筛选</h3>
+                    <span class="btn-3d fr">确定</span>
+                </header>
+                <div class="filter-content-box" id="filter-content-box">
+                    <div class="filter-content">
+                        <h4>类别</h4>
+                        <ul class="type-group clearfix" id="type-group">
+                            <li class="btn-checkbox all selected">全部</li>
+                            <li class="btn-checkbox">寸衫</li>
+                            <li class="btn-checkbox">鞋子</li>
+                            <li class="btn-checkbox">衣服</li>
+                            <li class="btn-checkbox">西瓜</li>
+                            <li class="btn-checkbox">番茄</li>
+                            <li class="btn-checkbox">鸡蛋</li>
+                            <li class="btn-checkbox">菜刀</li>
+                            <li class="btn-checkbox">菜鸟</li>
+                            <li class="btn-checkbox">火腿</li>
+                            <li class="btn-checkbox">炸弹</li>
+                            <li class="btn-checkbox">飞机</li>
+                            <li class="btn-checkbox">菜刀</li>
+                            <li class="btn-checkbox">菜鸟</li>
+                            <li class="btn-checkbox">火腿</li>
+                            <li class="btn-checkbox">炸弹</li>
+                            <li class="btn-checkbox">飞机</li>
+                            <li class="btn-checkbox">菜刀</li>
+                            <li class="btn-checkbox">菜鸟</li>
+                            <li class="btn-checkbox">火腿</li>
+                            <li class="btn-checkbox">炸弹</li>
+                            <li class="btn-checkbox">飞机</li>
+                            <li class="btn-checkbox">菜刀</li>
+                            <li class="btn-checkbox">菜鸟</li>
+                            <li class="btn-checkbox">火腿</li>
+                            <li class="btn-checkbox">炸弹</li>
+                            <li class="btn-checkbox">飞机</li>
+                        </ul>
                     </div>
                 </div>
-                <!-- 筛选条件结束 -->
-                <!-- 商品列表开始 -->
-                <section class="goods-list">
-                    <a href="javascript:;">
-                        <div class="goods-img dry-up">
-                            <img src="../dist/images/goods4.jpg" alt="商品图片">
-                        </div>
-                        <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫</p>
-                        <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
-                        <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
-                    </a>
-                    <a href="javascript:;">
-                        <div class="goods-img">
-                            <img src="../dist/images/goods3.jpg" alt="商品图片">
-                        </div>
-                        <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫</p>
-                        <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
-                        <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
-                    </a>
-                    <a href="javascript:;">
-                        <div class="goods-img">
-                            <img src="../dist/images/goods3.jpg" alt="商品图片">
-                        </div>
-                        <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫</p>
-                        <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
-                        <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
-                    </a>
-                </section>
-                <!-- 商品列表结束 -->
-            </div>
-            <!-- 内容结束 -->
+            </section>
         </div>
         <!-- 闪购html结束 -->
         <!--<script type="text/javascript" src="//misc.360buyimg.com/jdf/1.0.0/unit/ja/1.0.0/ja.js"></script>-->
         <script type="text/javascript" src="../lib/bower_components/zepto/zepto.min.js"></script>
         <script type="text/javascript" src="../lib/bower_components/seajs/dist/sea.js"></script>
+        <script type="text/javascript" src="../lib/bower_components/iscroll/build/iscroll-probe.min.js"></script>
         <script type="text/javascript" src="../lib/bower_components/Swiper/dist/js/swiper.min.js"></script>
         <script type="text/javascript">
         // 资源路径
         // -------------------------
         // http://static.360buyimg.com/shangou/redm/v3.1.1/dist/javascript/
-        var source_path = '../dist/javascript/';
+        // ../dist/javascript/
+        var source_path = 'http://192.168.0.103:7000/dist/javascript/';
 
         seajs.config({
             // 调试模式

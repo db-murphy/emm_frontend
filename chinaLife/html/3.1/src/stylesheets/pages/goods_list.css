@@ -1,4 +1,50 @@
 /**
+ * 页面布局
+ */
+html, body{
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+.red-mobile-page{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	-webkit-transition: all 500ms linear;
+	transition: all 500ms linear;
+}
+.scroll-view{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background: #313131;
+	top: 0;
+	overflow: hidden;
+}
+.view-scroller{
+	background: #fff;
+}
+.jd-nav{
+	font-size: 12px;
+	background: #fff;
+}
+
+.fix-top{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+}
+.fix-top-hiden{
+	z-index: -1;
+}
+
+/**
  * 优惠券
  */
 .coupon-row{
@@ -145,6 +191,7 @@
 	display: -ms-box;
 	display: -webkit-box;
 	display: box;
+	background: #fff;
 }
 .red-operate a{
 	display: block;
@@ -199,6 +246,7 @@
 .goods-info{
 	padding: 0.15rem 0.12rem;
 	margin-bottom: 0.2rem;
+	background: #fff;
 }
 .goods-info p{
 	line-height: 0.18rem;
@@ -243,18 +291,22 @@
  * 商品列表
  */
 .goods-list{
-	padding: 0 0.05rem;
+	/*padding: 0 0.05rem;*/
 	overflow: hidden;
+	padding-left: 0.1rem;
 }
 .goods-list a{
 	display: block;
 	float: left;
-	margin: 0 0.05rem 0.1rem 0.05rem;
+	/*margin: 0 0.05rem 0.1rem 0.05rem;*/
 	width: 3.05rem;
 	overflow: hidden;
+	margin-right: 0.1rem;
 }
 .goods-list .goods-img{
 	position: relative;
+	height: 3.92rem;
+	overflow: hidden;
 }
 .goods-list .dry-up:after{
 	position: absolute;
@@ -280,6 +332,9 @@
 	font-size: 0.2rem;
 	text-align: left;
 	padding: 0.15rem 0 0.15rem 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 .goods-list .new-price{
 	font-size: 0.36rem;
@@ -322,4 +377,76 @@
 .goods-list .old-price-info{
 	display: inline-block;
 	padding-right: 0.1rem;
+}
+
+/**
+ * 筛选模态框样式
+ */
+.filter-modal{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	z-index: 9999;
+	-webkit-transform: translate(100%, 0);
+	transform: translate(100%, 0);
+	-webkit-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
+	background: #fff;
+}
+.filter-modal.filter-content-show{
+	-webkit-transform: translate(0, 0);
+	transform: translate(0, 0);
+}
+.filter-modal header{
+	padding: 0.2rem;
+	overflow: hidden;
+	position: relative;
+	border-bottom: 1px solid #d6d6d6;
+	background: #fff;
+}
+.filter-modal h3{
+	font-size: 0.3rem;
+	display: inline-block;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+.filter-modal .filter-content-box{
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	padding: 0rem 0.28rem 0.28rem 0.28rem;
+	margin-top: 0.96rem;
+	overflow: hidden;
+}
+.filter-modal .filter-content{
+	padding-top: 0.28rem;
+}
+.filter-modal .filter-content h4{
+	font-size: 0.3rem;
+	text-align: left;
+	padding-bottom: 0.28rem;
+	border-bottom: 1px solid #ccc;
+}
+.filter-modal .type-group{
+	padding-top: 0.32rem;
+}
+.filter-modal .btn-checkbox{
+	float: left;
+    margin-bottom: 0.44rem;
+    margin-right: 8.5%;
+}
+.filter-modal .btn-checkbox:active{
+	background: #ddd;
+}
+.filter-modal .btn-checkbox:nth-child(3n){
+	margin-right: 0;
 }

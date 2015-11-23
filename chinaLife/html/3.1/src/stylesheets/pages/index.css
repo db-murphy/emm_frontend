@@ -1,5 +1,5 @@
 /**
- * 页面架构
+ * 页面布局
  */
 html, body{
 	height: 100%;
@@ -305,6 +305,9 @@ nav.nav-fixed.hide{
 	font-size: 0.2rem;
 	color: #fff;
 	line-height: 0.3rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 .advertisement-detail .detail-con{
 	position: relative;

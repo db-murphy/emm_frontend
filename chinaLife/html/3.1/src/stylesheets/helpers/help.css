@@ -376,6 +376,22 @@
 .opy0{
 	opacity: 0;
 }
+.opy1{
+	opacity: 1;
+}
+.ellipsis{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.blur{
+	-webkit-filter: blur(5px);
+	    -ms-filter: blur(5px);
+	        filter: blur(5px);
+}
+.zindex-none{
+	z-index: -1;
+}
 
 /**
  * 字体颜色
