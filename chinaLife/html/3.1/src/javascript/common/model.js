@@ -37,7 +37,7 @@ define(function (require,exports,module){
 		var body_dom = $('body');
 		var vs = body_dom.attr("data-vs");
 
-		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs){
+		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || '' == vs){
 			return;
 		}
 
