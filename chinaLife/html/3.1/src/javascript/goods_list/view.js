@@ -1,0 +1,199 @@
+/*!
+ * =================================================
+ * name: 商品页view
+ * author: cdhuangxiaolong@jd.com
+ * time: 2015/11/24
+ * description: 负责商品页数据渲染
+ * =================================================
+ */
+
+define(function (require,exports,module){
+	// 渲染优惠券状态信息
+	// ---------------------
+	function render_coupons_status(data) {
+		for(var i = 0; i < data.length; i++) {
+            var couponKey = "coupon_" + data[i].batchId;
+            var couponDiv = $('#red-coupon a[data-coupon-id="' + couponKey + '"]');
+            
+            if(couponDiv.length > 0) {
+                var takeRule = couponDiv.attr("data-takerule");
+                if(takeRule == 4) {
+                    if(data[i].createTime == data[i].now) {
+                        if(!couponDiv.hasClass("timeout")) {
+                            couponDiv.addClass("timeout");
+                            couponDiv.attr("href", "javascript:;");
+                        }
+                    }
+                } else {
+                    if(!couponDiv.hasClass("timeout")) {
+                        couponDiv.addClass("timeout");
+                        couponDiv.attr("href", "javascript:;");
+                    }
+                }
+            }
+        }
+	}
+
+	// 渲染价格信息
+	// ---------------------
+	function render_price() {
+		var jdPrice = "";
+        var oldPrice="";
+        var tempSale = "";
+
+		for(var i = 0; i < data.length; i++){
+	        jdPrice = "";
+	        oldPrice="";
+	        tempSale = "";
+
+	        if(data[i].p > 0){
+	            jdPrice = formatPrice("&yen;"+data[i].p);
+	            oldPrice = formatPrice("&yen;"+data[i].m);
+	            tempSale = accDiv(data[i].p,data[i].m) + "折";
+	            
+	        }else{
+	            jdPrice = "暂无价格";
+	        }
+	        
+	        var value = data[i].id.split('_');
+
+	        if(value.length == 1){
+	            var tempSku = value[0];
+	            var keyItem = "goodItem_" + tempSku;
+	            var keySale = "discount_" + tempSku;
+	   
+	            var jdPriceDoms = $("p[id='jd_price_" +tempSku+"']");
+	            var oldPriceDoms = $("p[id='old_price_" +tempSku+"']");
+	            var goodItem = $("a[id='"+keyItem+"']");
+	            var saleDoms = $("p[id='"+keySale+"']");   
+	            
+	            if(jdPrice == "暂无价格"){
+	                for(var index=0;index<goodItem.length;index++){
+	                    $(goodItem[index]).remove();
+	                }
+	            }else{
+	                for(var index=0;index<jdPriceDoms.length;index++){
+	                    $(jdPriceDoms[index]).html(jdPrice);
+	                    $(oldPriceDoms[index]).html(oldPrice);
+	                }
+	                if(tempSale!="" && tempSale != undefined && null != tempSale){
+                        var isShow=checkDiscount(tempSale);
+                        for(var index=0;index<saleDoms.length;index++){
+                            if(isShow){
+                                $(saleDoms[index]).html(tempSale);
+                            }else{
+                                $(saleDoms[index]).hide();
+                                if(oldPriceDoms && oldPriceDoms[index]){
+                                    $(oldPriceDoms[index]).html("&nbsp;").css("text-decoration", "none");
+                                }
+                            }
+                        }
+	                }
+	            }
+	        }
+	    }
+	}
+
+	function formatPrice(price){
+	    var arr = price.split(".");
+	    if(arr.length == 2){
+	        if(arr[1] == "00"){
+	            return arr[0];
+	        }else if(arr[1].indexOf("0") == arr[1].length-1){
+	            return price.substring(0,price.length -1);
+	        }else{
+	            return price;
+	        }
+	    }else{
+	        return price;
+	    }
+	}
+
+	//获取字符串中的数字及小数点
+	function checkDiscount(text){
+	    try{
+	        var value = text.replace(/[^0-9\.]/ig,"");
+	        if(value && value>0 && value<9.9){
+	            return true;
+	        }else{
+	            return false;
+	        }
+	    } catch (e){
+	        return true;
+	    }
+	}
+
+	function accDiv(arg1, arg2) {
+	    var discount = new Number(arg1) / new Number(arg2);
+	    var th3 = window.parseInt((discount * 1000)) % 10;
+	    if (th3 > 0) {
+	        if(discount+0.01<1) {
+	            discount += 0.01;
+	        }
+	        
+	    }
+
+	    var _discount = discount >= 1 ? 1 : (discount * 10 + "").substring(0, 3);
+	    _discount=_discount+"";
+	    var _html;
+	    if (_discount.length == 1) {
+	        _html = _discount + ".0";
+	    } else {
+	        _html = _discount + "";
+	    }
+
+	    if (arg1 == arg2) {
+	        _html = "10.0";
+	    }
+	    return _html;
+	}
+
+	// 渲染库存信息
+    // ------------------
+    function render_stock(data) {
+    	var stockFilterFlag = $(".con_btns a").eq(1).hasClass("set");
+
+    	for(var key in data) {
+            if(key && key=="stockTensionsList") {
+                if(data[key] && data[key].length > 0) {
+                    var list = data[key];
+                    for(var i=0, t=list.length; i<t; i++) {
+                        var ss = list[i];
+                        var ssNode = $('#stock_tag_'+ss);
+
+                        if(ssNode.length>0) {
+                            ssNode.show();
+                        }else{
+                            ssNode.hide();
+                        }
+                    }
+                }
+            }else if(key && key=="stockSoldOutList") {
+                if(data[key] && data[key].length > 0) {
+                    var list = data[key];
+                    for(var i=0, t=list.length; i<t; i++) {
+                        var ss = list[i];
+                        var keyItem = "goodItem_" + ss;
+                        var goodItem = $("a[id='"+keyItem+"']");
+                        if(stockFilterFlag) {
+                            for(var index=0;index<goodItem.length;index++){
+                                $(goodItem[index]).remove();
+                            }
+                        } else {
+                            var soldoutDiv = "<div class='soldout' id='soldout_tag_"+ss+"'></div>";
+                            for(var index=0;index<goodItem.length;index++){
+                                $(goodItem[index]).append(soldoutDiv);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+	module.exports = {
+		render_coupons_status: render_coupons_status,
+		render_price         : render_price,
+		render_stock         : render_stock
+	};
+});

@@ -8,15 +8,12 @@
 
 (function() {
     var gulp       = require('gulp');
-    var connect    = require('gulp-connect');
     var concat     = require('gulp-concat');
     var uglify     = require('gulp-uglify');
     var rename     = require('gulp-rename');
     var minify_css = require('gulp-minify-css');
     var transport  = require("gulp-seajs-transport");
     var imagemin   = require('gulp-imagemin');
-    var cache      = require('gulp-cache');
-    var plumber    = require('gulp-plumber');
     var pages_names;
 
     // 压缩并合并css文件
@@ -39,13 +36,33 @@
         });
     });
 
-    // 压缩js文件
+    // 压缩首页js文件
     // ==========================
-    gulp.task('min_js', function() {
-        gulp.src("./src/javascript/**/*.js")
+    gulp.task('min_index_js', function() {
+        gulp.src(["./src/javascript/index/*.js", "./src/javascript/common/*.js"], {base:"./src/javascript"})
             .pipe(transport())
+            .pipe(concat('main.js'))
             .pipe(uglify())
-            .pipe(gulp.dest("./dist/javascript"));
+            .pipe(gulp.dest("./dist/javascript/index"));
+    });
+
+    // 压缩商品页js文件
+    // ==========================
+    gulp.task('min_detail_js', function() {
+        gulp.src(["./src/javascript/goods_list/*.js", "./src/javascript/common/*.js"], {base:"./src/javascript"})
+            .pipe(transport())
+            .pipe(concat('main.js'))
+            .pipe(uglify())
+            .pipe(gulp.dest("./dist/javascript/goods_list"));
+    });
+
+    // 压缩librayjs文件
+    // ==========================
+    gulp.task('min_libray_js', function() {
+        gulp.src(["./lib/iscroll-probe.min.js", "./lib/sea.js", "./lib/zepto.min.js"])
+            .pipe(concat('libray.js'))
+            .pipe(uglify())
+            .pipe(gulp.dest("./lib"));
     });
 
     // 压缩图片文件
@@ -76,7 +93,7 @@
     // 监听js文件变化
     // ==========================
     gulp.task('watch_js', function() {
-      gulp.watch('./src/javascript/**/*.js', ['min_js']);
+      gulp.watch('./src/javascript/**/*.js', ['min_index_js', 'min_detail_js']);
     });
 
     // 监听文件变化
@@ -85,5 +102,5 @@
 
     // 默认任务
     // ==========================
-    gulp.task('default', ['min_css', 'min_js', 'image_min']);
+    gulp.task('default', ['min_css', 'min_index_js', 'min_detail_js', 'min_libray_js', 'image_min']);
 })();

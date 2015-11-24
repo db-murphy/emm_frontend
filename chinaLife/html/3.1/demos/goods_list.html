@@ -68,9 +68,9 @@
                     <!-- 内容开始 -->
                     <div class="red-mobile-content">
                         <!-- 优惠券开始 -->
-                        <section class="red-coupon">
+                        <section class="red-coupon" id="red-coupon">
                             <div class="coupon-row mb5 one-col">
-                                <a href="javascript:;" class="coupon-col">
+                                <a href="javascript:;" class="coupon-col" data-coupon-id="coupon_636455" data-takerule="4">
                                     <div class="coupon-price">
                                         <p><span class="price-type">&yen;</span>150</p>
                                         <span class="line"></span>
@@ -86,7 +86,7 @@
                                 </a>
                             </div>
                             <div class="coupon-row two-col">
-                                <a href="javascript:;" class="coupon-col timeout">
+                                <a href="javascript:;" class="coupon-col timeout" data-coupon-id="coupon_636455" data-takerule="4">
                                     <div class="coupon-price">
                                         <p><span class="price-type">&yen;</span>150</p>
                                         <span class="line"></span>
@@ -100,7 +100,7 @@
                                         <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
                                     </div>
                                 </a>
-                                <a href="javascript:;" class="coupon-col">
+                                <a href="javascript:;" class="coupon-col" data-coupon-id="coupon_636455" data-takerule="4">
                                     <div class="coupon-price">
                                         <p><span class="price-type">&yen;</span>150</p>
                                         <span class="line"></span>
@@ -255,30 +255,16 @@
         <script type="text/javascript" src="../lib/bower_components/zepto/zepto.min.js"></script>
         <script type="text/javascript" src="../lib/bower_components/seajs/dist/sea.js"></script>
         <script type="text/javascript" src="../lib/bower_components/iscroll/build/iscroll-probe.min.js"></script>
+        <script type="text/javascript" src="../dist/javascript/goods_list/main.js"></script>
         <script type="text/javascript">
         // 资源路径
         // -------------------------
         // http://static.360buyimg.com/shangou/redm/v3.1.1/dist/javascript/
-        // ../dist/javascript/
-        var source_path = 'http://192.168.191.3:7000/dist/javascript/';
+        var red_debug = true;
 
-        seajs.config({
-            // 调试模式
-            // -----------------------
-            debug: false,
-
-            // Sea.js 的基础路径
-            // -----------------------
-            base: source_path,
-
-            // 文件编码
-            // -----------------------
-            charset: 'utf-8'
-        });
-
-        // 调用main文件
+        // 调用主模块
         // -----------------------
-        seajs.use('mains/goods_list');
+        seajs.use('goods_list/main');
         </script>
     </body>
 </html>

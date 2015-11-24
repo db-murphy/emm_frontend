@@ -15,7 +15,7 @@ function priceInfo(){
                 requestStrs += "," + strs[index - 1];
                 var url = "//pm.3.cn/prices/mgets";
                 var reqString = requestStrs.substring(1,requestStrs.length - 1);
-                var arg = {'skuids' : reqString,'type':1,"origin":2};
+                var arg = {'skuids' : reqString,'type':1, "origin":2};
                 $.ajax({
                     url:'//pm.3.cn/prices/mgets?callback=callBackPriceService',
                     data : arg,
@@ -33,7 +33,7 @@ function priceInfo(){
 }
 function callBackPriceService(data){
 
-     for(var i=0;i<data.length;i++){
+    for(var i=0;i<data.length;i++){
      
         var jdPrice = "";
         var oldPrice="";
@@ -69,14 +69,6 @@ function callBackPriceService(data){
                 for(var index=0;index<goodItem.length;index++){
                     $(goodItem[index]).remove();
                 }
-//              for(var index=0;index<jdPriceDoms.length;index++){
-//                  $(jdPriceDoms[index]).html(jdPrice);
-//                  $(oldPriceDoms[index]).html("");
-//              }
-//              
-//              for(var index=0;index<saleDoms.length;index++){
-//                  $(saleDoms[index]).attr("class","");
-//              }
                 
             }else{
                 for(var index=0;index<jdPriceDoms.length;index++){
@@ -96,15 +88,13 @@ function callBackPriceService(data){
                             }
                         }
                 }else{
-//                  for(var index=0;index<saleDoms.length;index++){
-//                      $(saleDoms[index]).attr("class","");
-//                  }
+
                 }
                 //判断是否为移动专项价；
                 checkMobileOnly(tempSku);
             }
         }
-     }
+    }
 }
 //获取字符串中的数字及小数点
 function checkDiscount(text){
