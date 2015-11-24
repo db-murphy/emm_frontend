@@ -370,6 +370,28 @@ define(function (require, exports, module){
 		count_down_obj.initCurrentPage();
 	}
 
+	// 优惠券
+	// ------------------
+	function get_coupons() {
+		var url = "http://m.red.jd.com/sg4jdapp/detailCoupon.html";
+	    var popSpecVidss = $("#popSpecVidss").val();
+	    var vsValue = $("#vs").val();
+	    
+	    $.ajax({ 
+	            type : "post",
+	            url : url,
+	            data : {"popSpecVids":popSpecVidss,"vs":vsValue},
+	            dataType: "html",
+	            beforeSend: function() {              
+	            },
+	            success:function(data){
+	                 $("#couponDiv").html(data);
+	                 $("#couponDiv").attr("style","");
+	                 getCouponInfo();
+	            }
+	     });
+	}
+
 	// 对外接口
 	// ------------------
 	module.exports = {
