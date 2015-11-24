@@ -11,13 +11,15 @@ define(function (require,exports,module){
 	/**
 	 * 接口地址
 	 * ---------------------------------------
-	 * @ head_url           请求头部地址
-	 * @ footer_url         请求尾部地址
-	 * @ price_info_url     请求首页价格地址
-	 * @ stock_info_url     请求首页库存地址
-	 * @ coupons_url        请求优惠券结构地址
-	 * @ coupons_status_url 请求优惠券状态地址
-	 * @ detail_price_url   请求详情页价格地址
+	 * @ api.head_url           请求头部地址
+	 * @ api.footer_url         请求尾部地址
+	 * @ api.price_info_url     请求首页价格地址
+	 * @ api.stock_info_url     请求首页库存地址
+	 * @ api.coupons_url        请求优惠券结构地址
+	 * @ api.coupons_status_url 请求优惠券状态地址
+	 * @ api.detail_price_url   请求详情页价格地址
+	 * @ api.detail_stock_url   请求详情页库存地址
+	 * @ api.filter_comfirm_url 筛选商品地址
 	 * ---------------------------------------
 	 */
 	var api = {
@@ -35,7 +37,7 @@ define(function (require,exports,module){
 	/**
 	 * 配置参数
 	 * --------------------
-	 * @ debug 是否是测试状态
+	 * @ config.debug 是否是测试状态
 	 * --------------------
 	 */
 	var config = {
