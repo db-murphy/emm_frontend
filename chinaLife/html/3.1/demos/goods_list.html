@@ -36,7 +36,7 @@
         <link rel="stylesheet" type="text/css" href="../dist/css/common.min.css">
         <link rel="stylesheet" type="text/css" href="../dist/css/goods_list.min.css">
     </head>
-    <body data-stock-flag="" data-sort="" data-actid="" data-page="1" data-total-page="1" data-vs="" data-title="京东闪购·品牌特卖" data-link="" data-sid="" data-img-nnum="" data-preview="" data-cateidstr="" data-cateidstr-disable="" data-popspecvidss="">
+    <body data-stock-flag="" data-sort="" data-sort-flag="" data-actid="" data-page="1" data-total-page="1" data-vs="" data-title="京东闪购·品牌特卖" data-link="" data-sid="" data-img-nnum="" data-preview="" data-cateidstr="" data-cateidstr-disable="" data-popspecvidss="" data-notload-header="">
         <!-- 闪购html开始 -->
         <div class="red-mobile-page" id="red-mobile-page">
             <header id="header">
@@ -57,12 +57,9 @@
                         <p><span>筛选</span><i class="icon-filter"></i></p>
                     </a>
                 </nav>
-                <div class="goods-info clearfix">
-                    <p class="gift-info"><i class="ion-gift"></i><span>满1299元，加100元，送赠品<span></p>
-                    <p class="count-down" secondcount="340819"><i class="font-icon ion-time"></i><span>剩<em>3</em><lable>天</lable><em>13</em><lable>小时</lable><em>26</em><lable>分</lable><em>30</em><lable>秒</lable></span></p>
-                </div>
             </div>
             <!-- 隐藏状态的筛选条件结束 -->
+            <!-- 模拟滚动范围开始 -->
             <div class="scroll-view" id="scroll-view">
                 <div class="view-scroller" id="view-scroller">
                     <!-- 内容开始 -->
@@ -203,11 +200,15 @@
                     <!-- 三方尾部结束 -->
                 </div>
             </div>
+            <!-- 模拟滚动范围结束 -->
+            <!-- 回到顶部按钮开始 -->
             <div class="go-top none" id="go-top">
                 <p class="count none" id="count"><span class="now" id="now">1</span><span class="total" id="total"></span></p>
                 <div class="back" id="back"><p class="arrow-ion"><span class="font-icon ion-android-arrow-up"></span></p><p class="back-text">顶部</p></div>
             </div>
+            <!-- 回到顶部按钮结束 -->
             <div class="filter-mask none" id="filter-mask"></div>
+            <!-- 筛选模态框开始 -->
             <section class="filter-modal" id="filter-modal">
                 <header>
                     <span class="btn-3d fl">取消</span>
@@ -218,43 +219,42 @@
                     <div class="filter-content">
                         <h4>类别</h4>
                         <ul class="type-group clearfix" id="type-group">
-                            <li class="btn-checkbox all selected">全部</li>
-                            <li class="btn-checkbox">寸衫</li>
-                            <li class="btn-checkbox">鞋子</li>
-                            <li class="btn-checkbox">衣服</li>
-                            <li class="btn-checkbox">西瓜</li>
-                            <li class="btn-checkbox">番茄</li>
-                            <li class="btn-checkbox">鸡蛋</li>
-                            <li class="btn-checkbox">菜刀</li>
-                            <li class="btn-checkbox">菜鸟</li>
-                            <li class="btn-checkbox">火腿</li>
-                            <li class="btn-checkbox">炸弹</li>
-                            <li class="btn-checkbox">飞机</li>
-                            <li class="btn-checkbox">菜刀</li>
-                            <li class="btn-checkbox">菜鸟</li>
-                            <li class="btn-checkbox">火腿</li>
-                            <li class="btn-checkbox">炸弹</li>
-                            <li class="btn-checkbox">飞机</li>
-                            <li class="btn-checkbox">菜刀</li>
-                            <li class="btn-checkbox">菜鸟</li>
-                            <li class="btn-checkbox">火腿</li>
-                            <li class="btn-checkbox">炸弹</li>
-                            <li class="btn-checkbox">飞机</li>
-                            <li class="btn-checkbox">菜刀</li>
-                            <li class="btn-checkbox">菜鸟</li>
-                            <li class="btn-checkbox">火腿</li>
-                            <li class="btn-checkbox">炸弹</li>
-                            <li class="btn-checkbox">飞机</li>
+                            <li class="btn-checkbox all selected" data-type-id="cate_9757">全部</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">寸衫</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">鞋子</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">衣服</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">西瓜</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">番茄</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">鸡蛋</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜刀</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜鸟</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">火腿</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">炸弹</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">飞机</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜刀</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜鸟</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">火腿</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">炸弹</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">飞机</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜刀</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜鸟</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">火腿</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">炸弹</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">飞机</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜刀</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜鸟</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">火腿</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">炸弹</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">飞机</li>
                         </ul>
                     </div>
                 </div>
             </section>
+            <!-- 筛选模态框结束 -->
         </div>
         <!-- 闪购html结束 -->
         <!--<script type="text/javascript" src="//misc.360buyimg.com/jdf/1.0.0/unit/ja/1.0.0/ja.js"></script>-->
-        <script type="text/javascript" src="../lib/bower_components/zepto/zepto.min.js"></script>
-        <script type="text/javascript" src="../lib/bower_components/seajs/dist/sea.js"></script>
-        <script type="text/javascript" src="../lib/bower_components/iscroll/build/iscroll-probe.min.js"></script>
+        <script type="text/javascript" src="../lib/libray.js"></script>
         <script type="text/javascript" src="../dist/javascript/goods_list/main.js"></script>
         <script type="text/javascript">
         // 资源路径
@@ -266,5 +266,6 @@
         // -----------------------
         seajs.use('goods_list/main');
         </script>
+        <!-- 如有其它js文件，请插在此位置，防止阻塞页面渲染 -->
     </body>
 </html>

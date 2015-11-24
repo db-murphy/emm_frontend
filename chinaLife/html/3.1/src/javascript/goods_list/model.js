@@ -15,12 +15,15 @@ define(function (require,exports,module){
 	// ------------------
     function get_coupons_dom(callback) {
         var popSpecVidss = body_dom.attr('data-popspecvidss');
-        var vsValue = body_dom.attr('data-vs');
+        var vsValue      = body_dom.attr('data-vs');
 
         $.ajax({ 
             type : "post",
             url : variable.api.coupons_url,
-            data : {"popSpecVids":popSpecVidss, "vs":vsValue},
+            data : {
+                "popSpecVids": popSpecVidss, 
+                "vs"         : vsValue
+            },
             dataType: "html",
             beforeSend: function() {              
             },
@@ -68,7 +71,7 @@ define(function (require,exports,module){
                 url: variable.api.detail_price_url,
                 data: {
                     'skuids': skuidsv, 
-                    'type':1, 
+                    'type'  : 1, 
                     'origin': 2
                 },
                 method:'get',
@@ -92,7 +95,9 @@ define(function (require,exports,module){
             $.ajax({
                 type : "post",
                 url : variable.api.detail_stock_url,
-                data : {"skuids": skuidsv},
+                data : {
+                    "skuids": skuidsv
+                },
                 dataType: "json",
                 success:function(data) {
                     if(data) {
@@ -103,10 +108,80 @@ define(function (require,exports,module){
         }
     }
 
+    // 发送筛选请求
+    // ------------------
+    function filter_confirm(callback) {
+        var cateIdStr = getSelectedCateIdStr();
+        
+        $.ajax({
+            type : "post",
+            url : variable.api.filter_comfirm_url,
+            data : {
+                "cateIdStr" : cateIdStr,
+                "sortFlag"  : body_dom.attr('data-sort-flag'),
+                "vs"        : body_dom.attr('data-vs'),
+                "actId"     : body_dom.attr('data-actid')
+            },
+            dataType: "html",
+            success:function(data){
+                if(data) {
+                    callback && callback(data);
+                }
+            }
+        });
+    }
+
+    function getSelectedCateIdStr() {
+        var cateIdStr ="";
+        var cateIdArray = [];
+
+        $("#type-group .selected").each(function() {
+            cateIdStr += "," + $(this).attr("data-type-id");
+        });
+        if(cateIdStr == "") {
+            return cateIdStr;
+        }
+        cateIdStr = cateIdStr.substring(1, cateIdStr.length);
+        cateIdArray = cateIdStr.split(",");
+        var length = cateIdArray.length;
+        
+        var cateId = "";
+        for(var i=0; i<length; i++) {
+            cateId += "," + cateIdArray[i].split("_")[1];
+        }
+        return cateId.substring(1, cateId.length);
+    }
+
+    // 商品排序
+    // ------------------
+    function sort_goods(callback) {
+        var cateIdStr = getSelectedCateIdStr();
+
+        $.ajax({
+            type : "post",
+            url : variable.api.filter_comfirm_url,
+            data : {
+                "sortFlag"  : body_dom.attr('data-sort-flag'),
+                "stockFlag" : body_dom.attr('data-stock-flag'),
+                "vs"        : body_dom.attr('data-vs'),
+                "actId"     : body_dom.attr('data-actid'),
+                "cateIdStr" : cateIdStr
+            },
+            dataType: "html",
+            success:function(data){
+                if(data) {
+                    callback && callback(data);
+                }
+            }
+        });
+    }
+
 	module.exports = {
 		get_coupons_dom: get_coupons_dom,
         getCouponInfo  : getCouponInfo,
         get_price_info : get_price_info,
-        get_stock_info : get_stock_info
+        get_stock_info : get_stock_info,
+        filter_confirm : filter_confirm,
+        sort_goods     : sort_goods
 	};
 });

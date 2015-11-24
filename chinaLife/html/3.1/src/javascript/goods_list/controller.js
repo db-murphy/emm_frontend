@@ -18,6 +18,7 @@ define(function (require, exports, module){
 	var fix_top_hiden= $('#fix-top-hiden');
 	var filter_box   = $('#filter-box');
 	var view_scroll  = $('#view-scroller');
+	var goods_list   = $('#goods-list');
 	var goods_items  = $('#goods-list a');
 	var go_top_btn   = $('#go-top');
 	var filter_modal = $('#filter-modal');
@@ -26,6 +27,7 @@ define(function (require, exports, module){
 	var has_gods_btn = $('.has-goods-btn');
 	var price_sort   = $('.price-sort-btn');
 	var red_coupon   = $('#red-coupon');
+	var body_dom     = $('body');
 	var fisrt_item   = goods_items.eq(0);
 
 	// 模拟页面滚动效果
@@ -228,7 +230,7 @@ define(function (require, exports, module){
 			item_count_inview = Math.floor((wrapper_height + Math.abs(this.y) - first_item_top) / item_height);
 
 			if(item_count_inview >= Math.ceil(goods_items.length / 2)) {
-				console.log('到最底部了');
+				
 			}
 		});
 	}
@@ -272,10 +274,24 @@ define(function (require, exports, module){
 			var _this = $(this);
 
 			if(_this.hasClass('active')) {
+				body_dom.attr('data-stock-flag', '0');
 				has_gods_btn.removeClass('active');
 			}else{
+				body_dom.attr('data-stock-flag', '1');
 				has_gods_btn.addClass('active');
 			}
+
+			// 商品排序
+			if(variable.config.debug) {
+				return;
+			}
+			goods_model.sort_goods(function(data) {
+				goods_list.html(data);
+				get_price_info();
+				get_stock_info();
+				iscroller.scrollTo(0, 0);
+				iscroller._resize();
+			});
 		});
 
 		// 点击价格排序
@@ -296,15 +312,30 @@ define(function (require, exports, module){
 
 		    if(!_this.hasClass('sort-up') && !_this.hasClass('sort-down')) {
 		    	// 升序
+		    	body_dom.attr('data-sort-flag', '1');
 		    	price_sort.addClass('sort-down');
 		    }else if(_this.hasClass('sort-down')) {
 		    	// 降序
+		    	body_dom.attr('data-sort-flag', '2');
 		    	price_sort.removeClass('sort-down');
 		    	price_sort.addClass('sort-up');
 		    }else if(_this.hasClass('sort-up')) {
 		    	// 无序
+		    	body_dom.attr('data-sort-flag', '0');
 		    	price_sort.removeClass('sort-up');
 		    }
+
+		    // 商品排序
+		    if(variable.config.debug) {
+				return;
+			}
+			goods_model.sort_goods(function(data) {
+				goods_list.html(data);
+				get_price_info();
+				get_stock_info();
+				iscroller.scrollTo(0, 0);
+				iscroller._resize();
+			});
 		});
 	}
 
@@ -341,7 +372,17 @@ define(function (require, exports, module){
 				filter_mask.addClass('none');
 			}, 500);
 
-			filterCate();
+			// 发送筛选请求
+			if(variable.config.debug) {
+				return;
+			}
+			goods_model.filter_confirm(function(data) {
+				goods_list.html(data);
+				get_price_info();
+				get_stock_info();
+				iscroller.scrollTo(0, 0);
+				iscroller._resize();
+			});
 		});
 
 		// 多选按钮点击事件
@@ -437,57 +478,6 @@ define(function (require, exports, module){
 		goods_model.get_stock_info(function(data) {
 			goods_view.render_stock(data);
 		});
-	}
-
-	// 点击确认筛选
-	// ------------------
-	function filterCate() {
-	    $('.filter-panel').removeClass('active');
-	    $("body").removeClass("scroll-no");
-	    
-	    var cateIdStr = getSelectedCateIdStr();
-	    $("#cateIdStr").val(cateIdStr);
-	    $("#cateIdStrDisable").val(getDisableCateIdStr());
-	    
-	    $.ajax({
-	        type : "post",
-	        url : '/sg4jdapp/filter.html',
-	        data : {
-	            "cateIdStr" : cateIdStr,
-	            "sortFlag" : $("#sortFlag").val(),
-	            "vs" : $("#vs").val(),
-	            "actId" : $("#actId").val()
-	        },
-	        dataType: "html",
-	        success:function(data){
-	            $(".event_list").html(data);
-	            priceInfo();
-	            getStockInfo();
-	            panda(function(require) {
-	                switchImgN();
-	            });
-	        }
-	    });
-	}
-
-	function getSelectedCateIdStr() {
-	    var cateIdStr ="";
-	    var cateIdArray = new Array();
-	    $(".selected").each(function() {
-	        cateIdStr += "," + $(this).attr("id");
-	    });
-	    if(cateIdStr == "") {
-	        return cateIdStr;
-	    }
-	    cateIdStr = cateIdStr.substring(1,cateIdStr.length);
-	    cateIdArray = cateIdStr.split(",");
-	    var length = cateIdArray.length;
-	    
-	    var cateId = "";
-	    for(var i=0; i<length; i++) {
-	        cateId += "," + cateIdArray[i].split("_")[1];
-	    }
-	    return cateId.substring(1,cateId.length);
 	}
 
 	// 对外接口

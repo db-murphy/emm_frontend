@@ -28,7 +28,8 @@ define(function (require,exports,module){
 		coupons_url       : "//m.red.jd.com/sg4jdapp/detailCoupon.html",
 		coupons_status_url: "/sg4jdappjson/checkUserCoupon.html",
 		detail_price_url  : "//pm.3.cn/prices/mgets",
-		detail_stock_url  : "/sg4jdappjson/checkStockBySkuids.html"
+		detail_stock_url  : "/sg4jdappjson/checkStockBySkuids.html",
+		filter_comfirm_url: "/sg4jdapp/filter.html"
 	};
 
 	/**
