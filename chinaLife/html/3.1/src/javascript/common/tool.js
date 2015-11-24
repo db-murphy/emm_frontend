@@ -68,7 +68,72 @@ define(function (require, exports, module){
 	    }
 	};
 
+	function Countdown(secondCount) {
+		this.secondCount = secondCount || 0;
+	    this.day = 0;
+	    this.hour = 0;
+	    this.minute = 0;
+	    this.second = 0;
+	    
+	    this.daySecond = 60 * 60 * 24;
+	    this.hourSecond = 60 * 60;
+	    
+	    this.tick = function(step){
+	         this.secondCount += step || 0;
+	         if (this.secondCount <= 0) {
+	             this.secondCount = 0;
+	         }
+	         this.day = parseInt(this.secondCount / (this.daySecond));
+	         this.hour = parseInt((this.secondCount % (this.daySecond)) / (this.hourSecond));
+	         this.minute = parseInt((this.secondCount % (this.hourSecond)) / (60));
+	         this.second = parseInt((this.secondCount % 60) / (1));
+	    };
+	    
+	    this.initCurrentPage = function(){
+	        var countDownDoms = $("[secondcount]");
+
+	        countDownDoms.each(function (n, i) {
+	            $(i).attr("start","1");
+	            var second = $(i).attr("secondcount");
+	            second = window.parseInt(second);
+	            var CD = new Countdown(second);
+	            var spans = $(i).find("em");
+	            var lables = $(i).find("label");
+
+	            i.countDownInterval = window.setInterval(function () {
+	                CD.tick(-1);
+	                if (CD.secondCount > 0) {
+	                    if(CD.day > 0){
+	                        spans[0].innerHTML = CD.day;
+	                    }else{
+	                        $(lables[0]).remove();
+	                        $(i).addClass("waring");
+	                    }
+	                    
+	                    if(CD.hour > 0 || (CD.hour == 0 && CD.day>0)){
+	                        spans[1].innerHTML = CD.hour;
+	                    }else{
+	                        $(lables[1]).remove();
+	                    }
+	                    
+	                    if(CD.minute > 0 ||(CD.minute == 0 && CD.hour>0) || (CD.minute == 0 && CD.day>0)){
+	                        spans[2].innerHTML = CD.minute;
+	                    }else{
+	                        $(lables[2]).remove();
+	                    }
+	                    
+	                    spans[3].innerHTML = CD.second;
+
+	                } else {
+	                    $(i).html("<span>活动已结束</span>");
+	                }
+	            }, 1000);
+	        });
+	    };
+	};
+
 	module.exports = {
-		lazyload: lazyload
+		lazyload: lazyload,
+		Countdown: Countdown
 	};
 });

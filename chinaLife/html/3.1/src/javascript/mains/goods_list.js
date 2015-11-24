@@ -44,4 +44,8 @@ define(function (require, exports, module){
 	// 模态框滚动
 	// ------------------
 	controller.scroll_modal();
+
+	// 倒计时
+	// ------------------
+	controller.count_down();
 });

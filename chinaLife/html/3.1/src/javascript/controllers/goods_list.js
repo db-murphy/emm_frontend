@@ -18,6 +18,11 @@ define(function (require, exports, module){
 	var view_scroll  = $('#view-scroller');
 	var goods_items  = $('#goods-list a');
 	var go_top_btn   = $('#go-top');
+	var filter_modal = $('#filter-modal');
+	var filter_mask  = $('#filter-mask');
+	var filter_btn   = $('.filter_btn');
+	var has_gods_btn = $('.has-goods-btn');
+	var price_sort   = $('.price-sort-btn');
 	var fisrt_item   = goods_items.eq(0);
 
 	// 模拟页面滚动效果
@@ -223,12 +228,24 @@ define(function (require, exports, module){
 		var t_start = null;
 
 		// 点击筛选按钮
-		$('.filter_btn').click(function() {
-			$('#filter-modal').addClass('filter-content-show');
+		filter_btn.tap(function() {
+			if (t_start == null){
+		    	t_start = new Date().getTime();
+		    }else{
+		    	var t_end = new Date().getTime();
+			    if(t_end - t_start < 300){
+				    t_start = t_end;
+				    return;
+			    }else{
+			    	t_start = t_end;
+			    }
+		    }
+			filter_modal.addClass('filter-content-show');
+			filter_mask.removeClass('none');
 		});
 
 		// 点击显示有货
-		$('.has-goods-btn').tap(function() {
+		has_gods_btn.tap(function() {
 			if (t_start == null){
 		    	t_start = new Date().getTime();
 		    }else{
@@ -244,14 +261,14 @@ define(function (require, exports, module){
 			var _this = $(this);
 
 			if(_this.hasClass('active')) {
-				$('.has-goods-btn').removeClass('active');
+				has_gods_btn.removeClass('active');
 			}else{
-				$('.has-goods-btn').addClass('active');
+				has_gods_btn.addClass('active');
 			}
 		});
 
 		// 点击价格排序
-		$('.price-sort-btn').tap(function() {
+		price_sort.tap(function() {
 			if (t_start == null){
 		    	t_start = new Date().getTime();
 		    }else{
@@ -268,14 +285,14 @@ define(function (require, exports, module){
 
 		    if(!_this.hasClass('sort-up') && !_this.hasClass('sort-down')) {
 		    	// 升序
-		    	$('.price-sort-btn').addClass('sort-down');
+		    	price_sort.addClass('sort-down');
 		    }else if(_this.hasClass('sort-down')) {
 		    	// 降序
-		    	$('.price-sort-btn').removeClass('sort-down');
-		    	$('.price-sort-btn').addClass('sort-up');
+		    	price_sort.removeClass('sort-down');
+		    	price_sort.addClass('sort-up');
 		    }else if(_this.hasClass('sort-up')) {
 		    	// 无序
-		    	$('.price-sort-btn').removeClass('sort-up');
+		    	price_sort.removeClass('sort-up');
 		    }
 		});
 	}
@@ -293,19 +310,25 @@ define(function (require, exports, module){
 		});
 
 		// 取消筛选
-		$('#filter-modal .btn-3d.fl').click(function() {
-			$('#filter-modal').removeClass('filter-content-show');
+		$('#filter-modal .btn-3d.fl').tap(function() {
+			filter_modal.removeClass('filter-content-show');
+			setTimeout(function() {
+				filter_mask.addClass('none');
+			}, 500);
 		});
 
 		// 确认筛选
-		$('#filter-modal .btn-3d.fr').click(function() {
-			$('#filter-modal').removeClass('filter-content-show');
+		$('#filter-modal .btn-3d.fr').tap(function() {
+			filter_modal.removeClass('filter-content-show');
 
 			if(!$('#type-group li.all').hasClass('selected')) {
-				$('.filter_btn').addClass('active');
+				filter_btn.addClass('active');
 			}else{
-				$('.filter_btn').removeClass('active');
+				filter_btn.removeClass('active');
 			}
+			setTimeout(function() {
+				filter_mask.addClass('none');
+			}, 500);
 		});
 
 		// 多选按钮点击事件
@@ -339,6 +362,14 @@ define(function (require, exports, module){
 		});
 	}
 
+	// 倒计时
+	// ------------------
+	function count_down() {
+		var count_down_obj = new tool.Countdown();
+
+		count_down_obj.initCurrentPage();
+	}
+
 	// 对外接口
 	// ------------------
 	module.exports = {
@@ -350,6 +381,7 @@ define(function (require, exports, module){
 		lazy_load        : lazy_load,
 		get_more_page    : get_more_page,
 		show_filter_modal: show_filter_modal,
-		scroll_modal     : scroll_modal
+		scroll_modal     : scroll_modal,
+		count_down       : count_down
 	};
 });

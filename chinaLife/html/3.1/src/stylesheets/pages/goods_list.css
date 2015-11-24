@@ -286,6 +286,12 @@ html, body{
 	display: inline-block;
 	vertical-align: middle;
 }
+.count-down em{
+	font-weight: normal;
+}
+.count-down.waring .font-icon, .count-down.waring em{
+	color: #ffdb14;
+}
 
 /**
  * 商品列表
@@ -382,6 +388,14 @@ html, body{
 /**
  * 筛选模态框样式
  */
+.filter-mask{
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9998;
+}
 .filter-modal{
 	position: absolute;
 	left: 0;
