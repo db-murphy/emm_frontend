@@ -381,7 +381,7 @@ function priceInfo(){
         var reqString = requestStrs.substring(1,requestStrs.length);
         var arg = {'skuids' : reqString, 'type':1, "origin":2};
         $.ajax({
-            url:'http://pm.3.cn/prices/mgets?callback=callBackPriceService',
+            url:'//pm.3.cn/prices/mgets?callback=callBackPriceService',
             data : arg,
             method:'get',
             dataType:'jsonp'

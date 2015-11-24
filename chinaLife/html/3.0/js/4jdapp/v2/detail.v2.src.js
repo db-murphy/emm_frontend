@@ -13,11 +13,11 @@ function priceInfo(){
             
             if(index % 50 == 0 || index == len){
                 requestStrs += "," + strs[index - 1];
-                var url = "http://pm.3.cn/prices/mgets";
+                var url = "//pm.3.cn/prices/mgets";
                 var reqString = requestStrs.substring(1,requestStrs.length - 1);
                 var arg = {'skuids' : reqString,'type':1,"origin":2};
                 $.ajax({
-                    url:'http://pm.3.cn/prices/mgets?callback=callBackPriceService',
+                    url:'//pm.3.cn/prices/mgets?callback=callBackPriceService',
                     data : arg,
                     method:'get',
                     dataType:'jsonp'
@@ -122,7 +122,7 @@ function checkDiscount(text){
 function checkMobileOnly(sku){
     sku = "J_"+sku;
     $.ajax({
-        url:'http://p.3.cn/prices/mgets?callback=mobileOnlyCallback',
+        url:'//p.3.cn/prices/mgets?callback=mobileOnlyCallback',
         data : {
             "skuids":sku,
             "type":1
@@ -555,41 +555,43 @@ function filterCate() {
 }
 
 $(function(){
-    
     if($("#vs").val()=="jdapp") {
         $(".filter-panel").css("top", "-1px");
     }
     
     var $filter = $('.filter-panel'),$mask = $(".mask"),$itemAll =  $(".J-filter-item .item.all"),$itemSub =  $(".J-filter-item .item.sub");
     $('.J_profilter').tap(function(){
-        
-        var cateIdStr = $("#cateIdStr").val();
-        var cateIdArray = new Array();
-        cateIdArray = cateIdStr.split(",");
-        
-        var cateIdStrDisable = $("#cateIdStrDisable").val();
-        var cateIdDisableArray = new Array();
-        cateIdDisableArray = cateIdStrDisable.split(",");
-        
-        $(".J-filter-item").children("span").each(function() {
-            for(var i=0; i<cateIdArray.length; i++) {
-                if($(this).attr("id") == "cate_" + cateIdArray[i]) {
-                    $(this).addClass("selected");
+        setTimeout(function() {
+            var cateIdStr = $("#cateIdStr").val();
+            var cateIdArray = new Array();
+
+            cateIdArray = cateIdStr.split(",");
+            
+            var cateIdStrDisable = $("#cateIdStrDisable").val();
+            var cateIdDisableArray = new Array();
+            cateIdDisableArray = cateIdStrDisable.split(",");
+            
+            $(".J-filter-item").children("span").each(function() {
+                for(var i=0; i<cateIdArray.length; i++) {
+                    if($(this).attr("id") == "cate_" + cateIdArray[i]) {
+                        $(this).addClass("selected");
+                    }
                 }
-            }
-            for(var i=0; i<cateIdDisableArray.length; i++) {
-                if($(this).attr("id") == "cate_" + cateIdDisableArray[i]) {
-                    $(this).addClass("disable");
+                for(var i=0; i<cateIdDisableArray.length; i++) {
+                    if($(this).attr("id") == "cate_" + cateIdDisableArray[i]) {
+                        $(this).addClass("disable");
+                    }
                 }
-            }
-        });
+            });
+            
+            $filter.addClass('active');
+            $("body").addClass("scroll-no");
+            $("#J_conbar").hide();
+            $("#J_goodlist").hide();
+            $("footer").hide();
+            $(".new-header").hide();
+        }, 300);
         
-        $filter.addClass('active');
-        $("body").addClass("scroll-no");
-        $("#J_conbar").hide();
-        $("#J_goodlist").hide();
-        $("footer").hide();
-        $(".new-header").hide();
         return false;
     });
 
@@ -616,21 +618,28 @@ $(function(){
 
     $(".J-btn-confirm").click(function(){
         filterCate();
-        
-        if($("#cateIdStr").val() == "0") {
-            if($(".J_profilter").hasClass("J_profilter_active")) {
-                $(".J_profilter").removeClass("J_profilter_active");
+        setTimeout(function() {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+            scrollTop = 0;
+
+            $('.condition_bar').removeClass('fixed_top');
+
+            if($("#cateIdStr").val() == "0") {
+                if($(".J_profilter").hasClass("J_profilter_active")) {
+                    $(".J_profilter").removeClass("J_profilter_active");
+                }
+            } else {
+                if(!$(".J_profilter").hasClass("J_profilter_active")) {
+                    $(".J_profilter").addClass("J_profilter_active");
+                }
             }
-        } else {
-            if(!$(".J_profilter").hasClass("J_profilter_active")) {
-                $(".J_profilter").addClass("J_profilter_active");
-            }
-        }
-        
-        $("#J_conbar").show();
-        $("#J_goodlist").show();
-        $("footer").show();
-        $(".new-header").show();
+            
+            $("#J_conbar").show();
+            $("#J_goodlist").show();
+            $("footer").show();
+            $(".new-header").show();
+        }, 300);
     });
 
     $itemAll.click(function(){
