@@ -34,13 +34,28 @@
     left: 50%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     text-align: center;
+}
+.go-top .back{
+    padding-top: 0.28rem;
+}
+.go-top .ion-arrow-up{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 0.25rem;
+    height: 0.28rem;
+    background-size: 0.25rem 0.28rem;
 }
 .go-top .back .arrow-ion{
     height: 0.28rem;
 }
 .go-top .back .back-text{
     white-space: nowrap;
+    padding-top: 
 }
 .go-top .back .font-icon{
     text-align: center;

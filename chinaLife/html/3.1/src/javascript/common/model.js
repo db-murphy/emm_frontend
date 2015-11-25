@@ -21,7 +21,7 @@ define(function (require,exports,module){
 			return;
 		}
 		
-		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || '' == vs){
+		if("jdapp" == vs || "weixin" == vs){
 			var header     = $('#header');
 			var scroll_top = header.height();
 
@@ -43,7 +43,7 @@ define(function (require,exports,module){
 			return;
 		}
 
-		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || '' == vs){
+		if("jdapp" == vs || "weixin" == vs){
 			return;
 		}
 

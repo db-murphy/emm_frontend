@@ -240,6 +240,8 @@ nav.nav-fixed.hide{
 	background: rgba(0, 0, 0, 0.4);
 	width: 2.36rem;
 	padding: 0.1rem 0.1rem 0.4rem 0.1rem;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
 }
 .advertisement-detail .commercial-logo{
 	margin-bottom: 0.36rem;
@@ -274,19 +276,18 @@ nav.nav-fixed.hide{
 	font-size: 0.2rem;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
+	padding-left: 0.37rem;
+	position: relative;
 }
-.advertisement-detail .time .time-text::before{
-	content: "\f3b3";
-	padding-right: 0.07rem;
-	display: inline-block;
-    font-family: "Redicons";
-    speak: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    text-rendering: auto;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
+.advertisement-detail .ion-tick{
+	width: 0.2rem;
+	height: 0.2rem;
+	position: absolute;
+	left: 0.1rem;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	background-size: 0.19rem 0.19rem;
 }
 .advertisement-detail .price{
 	font-size: 0.22rem;
