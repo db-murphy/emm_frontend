@@ -10,7 +10,7 @@
 define(function (require,exports,module){
 	/**
 	 * 接口地址
-	 * ---------------------------------------
+	 * ----------------------------------------
 	 * @ api.head_url           请求头部地址
 	 * @ api.footer_url         请求尾部地址
 	 * @ api.price_info_url     请求首页价格地址
@@ -20,7 +20,7 @@ define(function (require,exports,module){
 	 * @ api.detail_price_url   请求详情页价格地址
 	 * @ api.detail_stock_url   请求详情页库存地址
 	 * @ api.filter_comfirm_url 筛选商品地址
-	 * ---------------------------------------
+	 * ----------------------------------------
 	 */
 	var api = {
 		head_url          : "//m.jd.com/app/header.action",
@@ -36,9 +36,9 @@ define(function (require,exports,module){
 
 	/**
 	 * 配置参数
-	 * --------------------
+	 * ---------------------------
 	 * @ config.debug 是否是测试状态
-	 * --------------------
+	 * ---------------------------
 	 */
 	var config = {
 		debug: red_debug

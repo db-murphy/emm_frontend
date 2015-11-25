@@ -9,12 +9,17 @@
 
 define(function (require,exports,module){
 	var variable = require('common/variable');
+	
+	var body_dom = $('body');
+	var vs = body_dom.attr("data-vs");
+	var not_load_heade = body_dom.attr('data-notload-header');
 
 	// 请求头部结构
 	// ---------------------------
 	function get_header_html(callback) {
-		var body_dom = $('body');
-		var vs = body_dom.attr("data-vs");
+		if(not_load_heade || not_load_heade == 1) {
+			return;
+		}
 		
 		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || '' == vs){
 			var header     = $('#header');
@@ -34,8 +39,9 @@ define(function (require,exports,module){
 	// 请求尾部结构
 	// ---------------------------
 	function get_footer_html(callback) {
-		var body_dom = $('body');
-		var vs = body_dom.attr("data-vs");
+		if(not_load_heade || not_load_heade == 1) {
+			return;
+		}
 
 		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || '' == vs){
 			return;
@@ -46,7 +52,6 @@ define(function (require,exports,module){
 
 	function get_header_footer_html(url, callback) {
 		var param = {};
-		var body_dom = $('body');
 		var vs = body_dom.attr("data-vs");
 		var sid = body_dom.attr("data-sid");
 		var title = body_dom.attr("data-title");
