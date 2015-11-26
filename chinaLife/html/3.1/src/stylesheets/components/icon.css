@@ -1,58 +1,6 @@
-@font-face { 
-	font-family: "Redicons"; 
-	src: url("../fonts/ionicons.ttf") format("truetype");
-	font-weight: normal; 
-	font-style: normal; 
-}
-.font-icon{
-	display: inline-block;
-    font-family: "Redicons";
-    speak: none;
-    font-style: normal;
-    font-variant: normal;
-    text-transform: none;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-}
-.ion-scissors:after{
-	content: '\f34b';
-}
-.ion-ios-circle-outline:after{
-	content: '\f401';
-}
-.ion-android-arrow-dropright:after{
-	content: '\f363';
-}
-.ion-time:after{
-	content: '\f3b3';
-}
 .ion-gift{
 	display: inline-block;
 	background: url(../images/icon/gift.png) no-repeat left top;
-}
-.ion-android-done:after{
-	content: '\f383';
-}
-.ion-sort{
-	display: inline-block;
-}
-.ion-sort:after, .ion-sort:before{
-	display: block;
-	line-height: 0.1rem;
-	width: 0.16rem;
-	font-size: 0.3rem;
-}
-.ion-sort:after{
-	content: '\f35f';
-}
-.ion-sort:before{
-	content: '\f365';
-}
-.ion-ios-arrow-thin-up:after{
-	content: '\f3d7';
-}
-.ion-android-arrow-up:after{
-	content: '\f366';
 }
 .icon-filter{
 	display: inline-block;
@@ -62,7 +10,45 @@
 	display: inline-block;
 	background: url(../images/icon/tick.png) no-repeat center center;
 }
+.ion-tick-black{
+	display: inline-block;
+	background: url(../images/icon/tick_black.png) no-repeat center center;
+}
 .ion-arrow-up{
 	display: inline-block;
 	background: url(../images/icon/arrow_up.png) no-repeat center center;
+}
+.ion-cut{
+	display: inline-block;
+	background: url(../images/icon/cut.png) no-repeat left top;
+}
+.ion-cut.cut-gray{
+	background: url(../images/icon/cut_gray.png) no-repeat left top;
+}
+.ion-pass{
+	display: inline-block;
+	background: url(../images/icon/pass.png) no-repeat left top;
+}
+.ion-tris{
+	position: relative;
+	display: inline-block;
+	text-align: left;
+}
+.ion-tris:before{
+	content: "\20";
+	position: absolute;
+	top: 0;
+	border-width: 0.09rem;
+	border-top-width: 0;
+	border-color: transparent transparent #ababab transparent;
+	border-style: dashed dashed solid dashed
+}
+.ion-tris:after{
+	position: absolute;
+	content: "\20";
+	bottom: 0;
+	border-width: 0.09rem;
+	border-bottom-width: 0;
+	border-color: #ababab transparent transparent transparent;
+	border-style: dashed dashed solid dashed
 }

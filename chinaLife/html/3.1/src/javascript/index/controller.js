@@ -252,8 +252,8 @@ define(function (require, exports, module){
 		if(skuidsv != "" && skuidsv != null) {
 	        var strs = skuidsv.split(",");
 	        var len  = strs.length;
-	        
 	        var requestStrs = "";
+	        
 	        for(var index = 0 ; index < len; index++) {
 	            requestStrs += "," + strs[index];
 	        }

@@ -99,14 +99,15 @@ html, body{
 .coupon-row .coupon-col.timeout .line{
 	border-right: 1px dashed #a7a7a7;
 }
-.coupon-row .coupon-price .font-icon{
+.coupon-row .coupon-price .ion-cut{
 	color: #fff;
 	font-size: 0.22rem;
 	position: absolute;
 	top: 0;
-	right: 0;
-	-webkit-transform: rotate(200deg) translateX(-60%);
-	transform: rotate(200deg) translateX(-60%);
+	right: -0.16rem;
+	width: 0.24rem;
+	height: 0.26rem;
+	background-size: 0.24rem 0.26rem;
 }
 .coupon-row .coupon-col.timeout .font-icon{
 	color: #a7a7a7;
@@ -211,22 +212,43 @@ html, body{
 	display: inline-block;
 	vertical-align: middle;
 }
+.red-operate .has-goods-btn span{
+	padding-right: 0.3rem;
+	position: relative;
+}
+.red-operate .ion-pass{
+	width: 0.2rem;
+	height: 0.16rem;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	background-size: 0.2rem 0.16rem;
+}
+.red-operate .ion-tris{
+	width: 0.16rem;
+	height: 0.2rem;
+	vertical-align: middle;
+	padding-left: 0.12rem;
+}
 .red-operate a:last-child p{
 	border-right: none;
 }
-.red-operate .font-icon{
-	vertical-align: middle;
-	color: #686868;
-	margin-left: 0.12rem;
-}
-.red-operate a.active, .red-operate a.active .font-icon{
+.red-operate a.active{
 	color: #f9384e
 }
-.red-operate a.sort-up, .red-operate a.sort-up .font-icon::before{
+.red-operate a.sort-up{
 	color: #f9384e
 }
-.red-operate a.sort-down, .red-operate a.sort-down .font-icon::after{
+.red-operate a.sort-up .ion-tris::before{
+	border-color: transparent transparent #f9384e transparent;
+}
+.red-operate a.sort-down{
 	color: #f9384e
+}
+.red-operate a.sort-down .ion-tris::after{
+	border-color: #f9384e transparent transparent transparent;
 }
 .red-operate .icon-filter{
 	width: 0.2rem;
@@ -238,6 +260,10 @@ html, body{
 .red-operate a.active .icon-filter{
 	background: url(../images/icon/filter-light.png) no-repeat left top;
 	background-size: 0.2rem 0.26rem;
+}
+.red-operate a.active .ion-pass{
+	background: url(../images/icon/pass_light.png) no-repeat left top;
+	background-size: 0.2rem 0.16rem;
 }
 
 /**
@@ -281,6 +307,8 @@ html, body{
 	font-size: 0.2rem;
 	color: #000;
 	float: right;
+	padding-left: 0.3rem;
+	position: relative;
 }
 .count-down span{
 	display: inline-block;
@@ -291,6 +319,14 @@ html, body{
 }
 .count-down.waring .font-icon, .count-down.waring em{
 	color: #ffdb14;
+}
+.count-down .ion-tick-black{
+	width: 0.2rem;
+	height: 0.2rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-size: 0.2rem 0.2rem;
 }
 
 /**
@@ -313,6 +349,24 @@ html, body{
 	position: relative;
 	height: 3.92rem;
 	overflow: hidden;
+}
+.goods-list .goods-waring{
+	width: 0.68rem;
+	height: 0.69rem;
+	background: url(../images/icon/goods_waring.png) no-repeat left top;
+	background-size: 0.68rem 0.69rem;
+	position: absolute;
+	right: 0.1rem;
+	top: 0.1rem;
+	font-size: 0.18rem;
+	color: #fff;
+	z-index: 10;
+	padding-top: 0.14rem;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+}
+.goods-list .goods-waring p{
+	text-align: center;
 }
 .goods-list .dry-up:after{
 	position: absolute;
