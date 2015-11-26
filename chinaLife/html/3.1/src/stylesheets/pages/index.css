@@ -324,22 +324,23 @@ nav.nav-fixed.hide{
 	color: #fff;
 	position: absolute;
 	left: 50%;
-	bottom: -0.15rem;
+	bottom: -0.28rem;
 	border: 1px solid #f9384e;
 	border-radius: 0.02rem;
 	padding: 0.02rem;
 	line-height: normal;
 	font-size: 0;
-	-webkit-transform: rotate(-10deg) translateX(-50%);
-	transform: rotate(-10deg) translateX(-50%);
+	-webkit-transform: rotate(-8deg) translateX(-50%);
+	transform: rotate(-8deg) translateX(-50%);
 }
 .advertisement-detail .tag span{
 	display: inline-block;
 	background: #f9384e;
-	font-size: 0.16rem;
+	font-size: 0.15rem;
 	padding: 0.02rem 0.04rem;
 	line-height: normal;
 	font-weight: lighter;
+	white-space: nowrap;
 }
 
 /**
@@ -406,7 +407,7 @@ nav.nav-fixed.hide{
 }
 .goods-rec-slider-wrap .under-carriage{
 	font-size: 0.18rem;
-	color: #c2c2c2;
+	color: #e33a3d;
 	line-height: 0.22rem;
 }
 .goods-rec-slider-wrap .price-type{
