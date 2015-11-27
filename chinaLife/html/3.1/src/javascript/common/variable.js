@@ -27,11 +27,11 @@ define(function (require,exports,module){
 		footer_url        : "//m.jd.com/app/footer.action",
 		price_info_url    : "//pm.3.cn/prices/mgets",
 		stock_info_url    : "/sg4jdappjson/checkStockBySkuids.html",
-		coupons_url       : "//m.red.jd.com/sg4jdapp/detailCoupon.html",
+		coupons_url       : "//m.red.jd.com/sg4jdapp/detailCouponNew.html",
 		coupons_status_url: "/sg4jdappjson/checkUserCoupon.html",
 		detail_price_url  : "//pm.3.cn/prices/mgets",
 		detail_stock_url  : "/sg4jdappjson/checkStockBySkuids.html",
-		filter_comfirm_url: "/sg4jdapp/filter.html"
+		filter_comfirm_url: "/sg4jdapp/filterNew.html"
 	};
 
 	/**

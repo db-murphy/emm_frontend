@@ -62,9 +62,9 @@ define(function (require,exports,module){
     // 获取价格信息
     // ------------------
     function get_price_info(callback) {
-        var goods_list = $('#goods-list');
-        var skuids = goods_list.attr('data-skuids');
-        var skuidsv = goods_list.attr('data-skuidsv');
+        var goods_list = $('#goods-list-data');
+        var skuids     = goods_list.attr('data-skuids');
+        var skuidsv    = goods_list.attr('data-skuidsv');
 
         if(skuids != "" && skuids != null) {
             $.ajax({
@@ -89,6 +89,7 @@ define(function (require,exports,module){
     // 获取库存信息
     // ------------------
     function get_stock_info(callback) {
+        var goods_list = $('#goods-list-data');
         var skuidsv = goods_list.attr('data-skuidsv');
 
         if(skuidsv != "" && skuidsv != null){

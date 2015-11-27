@@ -347,7 +347,7 @@ html, body{
 }
 .goods-list .goods-img{
 	position: relative;
-	height: 3.92rem;
+	/*height: 3.92rem;*/
 	overflow: hidden;
 }
 .goods-list .goods-waring{

@@ -313,22 +313,23 @@ define(function (require, exports, module){
 		    if(!_this.hasClass('sort-up') && !_this.hasClass('sort-down')) {
 		    	// 升序
 		    	body_dom.attr('data-sort-flag', '1');
-		    	price_sort.addClass('sort-down');
-		    }else if(_this.hasClass('sort-down')) {
-		    	// 降序
-		    	body_dom.attr('data-sort-flag', '2');
-		    	price_sort.removeClass('sort-down');
 		    	price_sort.addClass('sort-up');
 		    }else if(_this.hasClass('sort-up')) {
+		    	// 降序
+		    	body_dom.attr('data-sort-flag', '2');
+		    	price_sort.removeClass('sort-up');
+		    	price_sort.addClass('sort-down');
+		    }else if(_this.hasClass('sort-down')) {
 		    	// 无序
 		    	body_dom.attr('data-sort-flag', '0');
-		    	price_sort.removeClass('sort-up');
+		    	price_sort.removeClass('sort-down');
 		    }
 
 		    // 商品排序
 		    if(variable.config.debug) {
 				return;
 			}
+
 			goods_model.sort_goods(function(data) {
 				goods_list.html(data);
 				get_price_info();
@@ -465,6 +466,7 @@ define(function (require, exports, module){
 
 		goods_model.get_price_info(function(data) {
 			goods_view.render_price(data);
+			iscroller._resize();
 		});
 	}
 

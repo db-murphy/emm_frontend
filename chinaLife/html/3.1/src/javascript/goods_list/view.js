@@ -17,6 +17,7 @@ define(function (require,exports,module){
             
             if(couponDiv.length > 0) {
                 var takeRule = couponDiv.attr("data-takerule");
+
                 if(takeRule == 4) {
                     if(data[i].createTime == data[i].now) {
                         if(!couponDiv.hasClass("timeout")) {
@@ -36,57 +37,45 @@ define(function (require,exports,module){
 
 	// 渲染价格信息
 	// ---------------------
-	function render_price() {
-		var jdPrice = "";
-        var oldPrice="";
-        var tempSale = "";
+	function render_price(data) {
+		var jdPrice;
+        var oldPrice;
+        var tempSale;
 
 		for(var i = 0; i < data.length; i++){
-	        jdPrice = "";
-	        oldPrice="";
+	        jdPrice  = "";
+	        oldPrice = "";
 	        tempSale = "";
 
 	        if(data[i].p > 0){
-	            jdPrice = formatPrice("&yen;"+data[i].p);
+	            jdPrice  = formatPrice("&yen;"+data[i].p);
 	            oldPrice = formatPrice("&yen;"+data[i].m);
-	            tempSale = accDiv(data[i].p,data[i].m) + "折";
-	            
+	            tempSale = accDiv(data[i].p, data[i].m) + "折";
 	        }else{
 	            jdPrice = "暂无价格";
 	        }
-	        
+
 	        var value = data[i].id.split('_');
 
 	        if(value.length == 1){
-	            var tempSku = value[0];
-	            var keyItem = "goodItem_" + tempSku;
-	            var keySale = "discount_" + tempSku;
-	   
-	            var jdPriceDoms = $("p[id='jd_price_" +tempSku+"']");
-	            var oldPriceDoms = $("p[id='old_price_" +tempSku+"']");
-	            var goodItem = $("a[id='"+keyItem+"']");
-	            var saleDoms = $("p[id='"+keySale+"']");   
+	            var tempSku  = value[0];
+	            var keyItem  = "goodItem_" + tempSku;
+	            var goodItem = $("a[data-goods-id='"+keyItem+"']");
 	            
 	            if(jdPrice == "暂无价格"){
-	                for(var index=0;index<goodItem.length;index++){
-	                    $(goodItem[index]).remove();
-	                }
+	                goodItem.remove();
 	            }else{
-	                for(var index=0;index<jdPriceDoms.length;index++){
-	                    $(jdPriceDoms[index]).html(jdPrice);
-	                    $(oldPriceDoms[index]).html(oldPrice);
-	                }
-	                if(tempSale!="" && tempSale != undefined && null != tempSale){
-                        var isShow=checkDiscount(tempSale);
-                        for(var index=0;index<saleDoms.length;index++){
-                            if(isShow){
-                                $(saleDoms[index]).html(tempSale);
-                            }else{
-                                $(saleDoms[index]).hide();
-                                if(oldPriceDoms && oldPriceDoms[index]){
-                                    $(oldPriceDoms[index]).html("&nbsp;").css("text-decoration", "none");
-                                }
-                            }
+	            	$('.new-price-number', goodItem).html(jdPrice);
+	            	$('.old-price-number', goodItem).html(oldPrice);
+
+	                // 如果有折扣
+	                if(tempSale !="" && tempSale != undefined && null != tempSale){
+                        var isShow = checkDiscount(tempSale);
+
+                        if(isShow) {
+                        	$('.discount', goodItem).text(tempSale);
+                        }else{
+                        	$('.discount', goodItem).remove();
                         }
 	                }
 	            }
@@ -96,6 +85,7 @@ define(function (require,exports,module){
 
 	function formatPrice(price){
 	    var arr = price.split(".");
+
 	    if(arr.length == 2){
 	        if(arr[1] == "00"){
 	            return arr[0];
@@ -145,48 +135,62 @@ define(function (require,exports,module){
 	    if (arg1 == arg2) {
 	        _html = "10.0";
 	    }
+
 	    return _html;
 	}
 
 	// 渲染库存信息
     // ------------------
     function render_stock(data) {
-    	var stockFilterFlag = $(".con_btns a").eq(1).hasClass("set");
+    	// 是否显示有货
+    	var stockFilterFlag = $("#filter-box .has-goods-btn").hasClass("active");
 
     	for(var key in data) {
-            if(key && key=="stockTensionsList") {
+            if(key && key=="stockSoldOutList") {
+            	// 库存为0 抢光
                 if(data[key] && data[key].length > 0) {
                     var list = data[key];
-                    for(var i=0, t=list.length; i<t; i++) {
-                        var ss = list[i];
-                        var ssNode = $('#stock_tag_'+ss);
 
-                        if(ssNode.length>0) {
-                            ssNode.show();
-                        }else{
-                            ssNode.hide();
-                        }
-                    }
-                }
-            }else if(key && key=="stockSoldOutList") {
-                if(data[key] && data[key].length > 0) {
-                    var list = data[key];
-                    for(var i=0, t=list.length; i<t; i++) {
+                    for(var i = 0, t = list.length; i < t; i++) {
                         var ss = list[i];
                         var keyItem = "goodItem_" + ss;
-                        var goodItem = $("a[id='"+keyItem+"']");
+                        var goodItem = $("#goods-list a[data-goods-id='"+keyItem+"']");
+
                         if(stockFilterFlag) {
-                            for(var index=0;index<goodItem.length;index++){
-                                $(goodItem[index]).remove();
-                            }
-                        } else {
-                            var soldoutDiv = "<div class='soldout' id='soldout_tag_"+ss+"'></div>";
-                            for(var index=0;index<goodItem.length;index++){
-                                $(goodItem[index]).append(soldoutDiv);
-                            }
+                        	// 如果只显示有货列表，那么直接把没货的商品remove
+                            goodItem.remove();
+                        }else{
+                        	// 否则如果此商品没货，给它打一个已抢光标签
+                        	$('.goods-img', goodItem).addClass('dry-up');
                         }
                     }
                 }
+            }else if(key && key=="stockOnlyOne") {
+            	// 仅剩一件的商品
+                waring_stock(data, 1)
+            }else if(key && key=="stockOnlyTwo") {
+            	// 仅剩两件
+            	waring_stock(data, 2)
+            }else if(key && key=="stockOnlyThree") {
+            	// 仅剩三件
+            	waring_stock(data, 3)
+            }else{
+            	return;
+            }
+        }
+    }
+
+    function waring_stock(data, count) {
+    	if(data[key] && data[key].length > 0) {
+            var list = data[key];
+
+            for(var i = 0, t = list.length; i < t; i++) {
+                var ss = list[i];
+                var keyItem = "goodItem_" + ss;
+                var goodItem = $("#goods-list a[data-goods-id='"+keyItem+"']");
+
+                $('.goods-waring', goodItem).removeClass('none');
+                $('.waring-number', goodItem).text(count);
             }
         }
     }
