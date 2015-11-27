@@ -86,21 +86,7 @@ define(function (require, exports, module){
 		var navSwiper = new Swiper('.red-mobile-nav',{
 			slidesPerView : 'auto',
 			loop: false,
-			preventClicks : false,
-			onTap: function(swiper) {
-				var click_slider = swiper.clickedSlide;
-				var href = click_slider.getElementsByTagName('a')[0].getAttribute('_href');
-
-				this_swiper.find('.swiper-slide').removeClass('active');
-				$(click_slider).addClass('active');
-				slide_to(swiper, click_slider, this_swiper, 800);
-
-				if(href) {
-					setTimeout(function() {
-						//window.location.href = href;
-					}, 800);
-				}
-			}
+			preventClicks : false
 		});
 		var active_slider = $('.swiper-slide.active', this_swiper).get(0);
 
@@ -131,6 +117,8 @@ define(function (require, exports, module){
 		if($('.red-slider-wraper').length) {
 			var sliderSwiper = new Swiper('.red-slider-wraper',{
 	            loop: true,
+	            autoplay: 10000,
+	            autoplayDisableOnInteraction: false,
 	            pagination : '.red-slider-pagination',
 	            onImagesReady: function() {
 	            }
