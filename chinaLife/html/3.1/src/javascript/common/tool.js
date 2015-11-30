@@ -15,55 +15,67 @@ define(function (require, exports, module){
 	            anim: true
 	        };
 	        $.extend(op, opt);
-	        that.img.init(op);
+	        this.op = op;
+	        return that.img.init(op);
+	    },
+
+	    img_each: function(img_lazy) {
+	    	var _this = this;
+
+	    	img_lazy.each(function(index, node) {
+                if (!this.dataset.layzr) {
+                    return;
+                }
+
+                if (!_this.inViewport(this)) {
+                	return
+                }
+
+                _this.act(this);
+            });
 	    },
 	    
+	    act: function(_self) {
+	    	var $_self = $(_self);
+	    	var _this = this;
+
+            if ($_self.attr('loaded')) {
+                return;
+            }
+            var img = new Image(), original = _self.dataset.layzr;
+
+            img.onload = function() {
+                $_self.attr('src', original).removeAttr('data-layzr');
+                _this.op.load_sucess && _this.op.load_sucess(_self);
+            }
+            original && (img.src = original);
+            $_self.attr('loaded', true);
+	    },
+
+	    inViewport: function(el) {
+	    	var top       = this.img.scroll_view.offset().top;
+            var btm       = top + this.op.iscroller.wrapperHeight;
+            var el_bottom = $(el).offset().top;
+
+            return el_bottom >= top && el_bottom <= btm;
+	    },
+
+	    refreshImg: function() {
+	    	this.img.imgs = $('img[data-layzr]');
+	    	this.img_each(this.img.imgs);
+	    },
+
 	    img: {
+	    	imgs: $('img[data-layzr]'),
+	    	scroll_view: $('#scroll-view'),
 	        init: function(n) {
-	            var that        = this;
-	            var img_lazy    = $('img[data-layzr]');
-	            var scroll_view = $('#scroll-view');
-	            
-	            function inViewport(el) {
-	                var top       = scroll_view.offset().top;
-	                var btm       = top + n.iscroller.wrapperHeight;
-	                var el_bottom = $(el).offset().top + $(el).offset().height;
+	        	var _this = this;
 
-	                return el_bottom >= top && el_bottom <= btm;
-	            }
-
-	            n.iscroller.on('scroll', img_each);
-	            img_each();
-
-	            function img_each() {
-	            	img_lazy.each(function(index, node) {
-	                    if (!this.dataset.layzr) {
-	                        return;
-	                    }
-
-	                    if (!inViewport(this)) {
-	                    	return
-	                    }
-
-	                    act(this);
-	                });
-	            }
-	            
-	            function act(_self) {
-	            	var $_self = $(_self);
-
-	                if ($_self.attr('loaded')) {
-	                    return;
-	                }
-	                var img = new Image(), original = _self.dataset.layzr;
-
-	                img.onload = function() {
-	                    $_self.attr('src', original).removeAttr('data-layzr');
-	                    n.load_sucess && n.load_sucess(_self);
-	                }
-	                original && (img.src = original);
-	                $_self.attr('loaded', true);
-	            }
+	            n.iscroller.on('scroll', function() {
+	            	lazyload.img_each(_this.imgs);
+	            });
+	            lazyload.img_each(_this.imgs);
+	            return lazyload;
 	        }
 	    }
 	};

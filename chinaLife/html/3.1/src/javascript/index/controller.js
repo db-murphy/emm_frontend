@@ -287,14 +287,14 @@ define(function (require, exports, module){
 					var Img = new Image();
 
 					Img.onload = function() {
-						logo_img.addClass('fadeIn');
+						//logo_img.addClass('fadeIn');
 						logo_img.attr('src', logo_url);
 					}
 
 					Img.src = logo_url;
 				}
 
-				img.classList.add('fadeIn');
+				//img.classList.add('fadeIn');
 				if(item_detail.length) {
 					item_detail.removeClass('opy0');
 				}

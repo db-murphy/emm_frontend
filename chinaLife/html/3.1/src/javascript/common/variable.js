@@ -80,10 +80,21 @@ define(function (require,exports,module){
 	footer_html += '<script>function skip(){addCookie("pcm","1",3,"","jd.com");var e=document.location.href;if(0==e.indexOf("http://m.jd.com/sale/mall")){var t=e.replace("http://m.jd.com/sale/mall","http://sale.jd.com/mall");t+="#m",window.location.href=t}else if(0==e.indexOf("http://m.jd.com/sale/act")){var t=e.replace("http://m.jd.com/sale/act","http://sale.jd.com/act");t+="#m",window.location.href=t}else window.location.href="http://www.jd.com/#m"}function addCookie(e,t,a,n,o){var c=e+"="+escape(t);if(""!=a){var i=new Date;i.setTime(i.getTime()+24*a*3600*1e3),c+=";expires="+i.toGMTString()}""!=n&&(c+=";path="+n),""!=o&&(c+=";domain="+o),document.cookie=c}!function(){function e(e,t,a){var n=document.getElementsByTagName("script");for(i=0;i<n.length;i++)if(n[i].src&&-1!=n[i].src.indexOf(e))return void n[i].addEventListener("load",function(){a&&a()},!1);var o=document.createElement("script"),c={type:"text/javascript",charset:"utf-8"};t=t||{};for(var i in t)c[i]=t[i];o.src=e;for(var i in c)o.setAttribute(i,c[i]);o.addEventListener("load",function(){a&&a()},!1),document.getElementsByTagName("head")[0].appendChild(o)}e("http://st.360buyimg.com/m/js/2013/installapp.js?v=jd2015111918",{},function(){window.downcheck("#clientArea",!1)})}();</script>';
 	footer_html += '<style type="text/css">.new-footer{margin-top:10px;background-color:#f3f2f2;font-size:14px;color:#6e6e6e;text-align:center}.new-footer .new-f-login{position:relative;padding:0 12px;background-color:#a8a8a8;line-height:27px;color:#fff;text-align:left;heigth:27px}.new-footer .new-f-login .new-back-top{position:absolute;right:12px}.new-footer .new-f-login .new-bar2{margin:0 5px}.new-footer .new-f-login a{color:#fff}.new-footer .new-f-section a{margin-left:20px;color:#6e6e6e}.new-footer .new-f-section .on{color:#c30202}.new-footer .new-f-section a:first-child{margin-left:0}.new-banner-img,.new-banner-img2,.new-banner-img3,.new-download-app{width:320px;height:61px;margin:0 auto}.new-bl{padding:0 15px}.new-footer .new-f-section,.new-footer .new-f-section2{padding:10px 0}.new-footer .new-f-section2{padding-top:0;font-size:12px;color:#6e6e6e}.new-f-banner{background-color:#fff}.new-banner-img,.new-banner-img2{background:url(http://st.360buyimg.com/m/images/touch2013/banner_footer.gif?v=jd2015111918) #fff}.new-banner-img2{background:url(http://st.360buyimg.com/m/images/touch2013/banner_footer.gif?v=jd2015111918)}.new-banner-img3{background:url(http://st.360buyimg.com/m/images/touch2013/banner_footer.gif?v=jd2015111918) no-repeat #fff}.new-download-app{display:block;border-bottom:1px solid #dad4cf;border-top:1px solid #fcfaf9;background-color:#fff;font-size:.875em;line-height:44px;text-align:center}</style>';
 
+	var goods_lists = '<a href="javascript:;">' +
+	                        '<div class="goods-img">' +
+	                            '<div class="goods-waring"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>' +
+	                            '<img src="../dist/images/goods_list_default.jpg" class="animated" data-layzr="../dist/images/goods5.jpg" alt="商品图片">' +
+	                        '</div>' +
+	                        '<p class="goods-name">纯棉印花袖口里寸方领长袖寸衫</p>' +
+	                        '<p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>'
+	                        '<p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>'
+	                    '</a>';
+
 	module.exports = {
 		api: api,
 		config: config,
 		header_html: header_html,
-		footer_html: footer_html
+		footer_html: footer_html,
+		goods_lists: goods_lists
 	};
 });

@@ -59,8 +59,9 @@
     // 压缩librayjs文件
     // ==========================
     gulp.task('min_libray_js', function() {
-        gulp.src(["./lib/iscroll-probe.min.js", "./lib/sea.js", "./lib/zepto.min.js"])
+        gulp.src(["./lib/iscroll-probe.js", "./lib/sea.js", "./lib/zepto.min.js"])
             .pipe(concat('libray.js'))
+            .pipe(uglify())
             .pipe(gulp.dest("./lib"));
     });
 

@@ -29,6 +29,7 @@ define(function (require, exports, module){
 	var red_coupon   = $('#red-coupon');
 	var body_dom     = $('body');
 	var fisrt_item   = goods_items.eq(0);
+	var lazy;
 
 	// 模拟页面滚动效果
 	// ------------------
@@ -200,13 +201,23 @@ define(function (require, exports, module){
 		});
 	}
 
+	// 刷新商品列表
+	// ------------------
+	function refresh_list() {
+		var total_text = $('#total');
+
+		goods_items = $('#goods-list a');
+		fisrt_item  = goods_items.eq(0);
+		total_text.text(goods_items.length);
+	}
+
 	// 懒加载
 	// ------------------
 	function lazy_load() {
-		tool.lazyload.init({
+		lazy = tool.lazyload.init({
 			iscroller: iscroller,
 			load_sucess: function(img) {
-				img.classList.add('fadeIn');
+				//img.classList.add('fadeIn');
 			}
 		});
 	}
@@ -283,13 +294,34 @@ define(function (require, exports, module){
 
 			// 商品排序
 			if(variable.config.debug) {
+				var new_lists = '';
+
+				for(var i = 0; i < 30; i++) {
+					new_lists += variable.goods_lists;
+				}
+
+				// 回到顶部
+				iscroller.scrollTo(0, 0);
+				go_top_btn.addClass('none');
+				fix_top_hiden.addClass('fix-top-hiden');
+
+				goods_list.html(new_lists);
+				lazy.refreshImg();
+				refresh_list();
 				return;
 			}
+
 			goods_model.sort_goods(function(data) {
+				// 回到顶部
+				iscroller.scrollTo(0, 0);
+				go_top_btn.addClass('none');
+				fix_top_hiden.addClass('fix-top-hiden');
+
 				goods_list.html(data);
+				lazy.refreshImg();
+				refresh_list();
 				get_price_info();
 				get_stock_info();
-				iscroller.scrollTo(0, 0);
 				iscroller._resize();
 			});
 		});
@@ -327,14 +359,34 @@ define(function (require, exports, module){
 
 		    // 商品排序
 		    if(variable.config.debug) {
+		    	var new_lists = '';
+
+				for(var i = 0; i < 30; i++) {
+					new_lists += variable.goods_lists;
+				}
+
+				// 回到顶部
+				iscroller.scrollTo(0, 0);
+				go_top_btn.addClass('none');
+				fix_top_hiden.addClass('fix-top-hiden');
+
+				goods_list.html(new_lists);
+				lazy.refreshImg();
+				refresh_list();
 				return;
 			}
 
 			goods_model.sort_goods(function(data) {
+				// 回到顶部
+				iscroller.scrollTo(0, 0);
+				go_top_btn.addClass('none');
+				fix_top_hiden.addClass('fix-top-hiden');
+
 				goods_list.html(data);
+				lazy.refreshImg();
+				refresh_list();
 				get_price_info();
 				get_stock_info();
-				iscroller.scrollTo(0, 0);
 				iscroller._resize();
 			});
 		});

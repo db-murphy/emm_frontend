@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html data-design-width="640" data-design-font="100">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="闪购">
+        <meta name="aplus-terminal" content="1">
+        <meta name="aplus-touch" content="1">
+        <meta name="format-detection" content="telephone=no, address=no">
+        <title>商品列表页</title>
+        <script type="text/javascript">
+        (function() {
+            var html_dom = document.getElementsByTagName('html')[0];
+            var design_width = parseInt(html_dom.dataset.designWidth, 10);
+            var design_font = parseInt(html_dom.dataset.designFont, 10);
+
+            resizeRoot();
+            
+            window.onresize = function() {
+                resizeRoot();
+            }
+
+            function resizeRoot() {
+                var client_width = document.documentElement.clientWidth;
+                var fs =client_width/design_width*design_font;
+
+                html_dom.style.fontSize = fs+"px";
+            }
+        })();
+        </script>
+        <link rel="stylesheet" type="text/css" href="../dist/css/common.min.css">
+        <link rel="stylesheet" type="text/css" href="../dist/css/goods_list.min.css">
+    </head>
+    <body data-stock-flag="" data-sort="" data-sort-flag="" data-actid="" data-page="1" data-total-page="1" data-vs="" data-title="京东闪购·品牌特卖" data-link="" data-sid="" data-img-nnum="" data-preview="" data-cateidstr="" data-cateidstr-disable="" data-popspecvidss="" data-notload-header="">
+        <!-- 闪购html开始 -->
+        <div class="red-mobile-page" id="red-mobile-page">
+            <header id="header">
+                <!-- 三方导航开始 -->
+                <div class="jd-nav" id="jd-nav"></div>
+                <!-- 三方导航结束 -->
+            </header>
+            <!-- 隐藏状态的筛选条件开始 -->
+            <div class="fix-top fix-top-hiden" id="fix-top-hiden">
+                <nav class="red-operate">
+                    <a href="javascript:;" class="has-goods-btn">
+                        <p><span>显示有货<i class="ion-pass"></i></span></p>
+                    </a>
+                    <a href="javascript:;" class="price-sort-btn">
+                        <p><span>价格</span><i class="ion-tris"></i></p>
+                    </a>
+                    <a href="javascript:;" class="filter_btn">
+                        <p><span>筛选</span><i class="icon-filter"></i></p>
+                    </a>
+                </nav>
+            </div>
+            <!-- 隐藏状态的筛选条件结束 -->
+            <!-- 模拟滚动范围开始 -->
+            <div class="scroll-view" id="scroll-view">
+                <div class="view-scroller" id="view-scroller">
+                    <!-- 内容开始 -->
+                    <div class="red-mobile-content">
+                        <!-- 优惠券开始 -->
+                        <section class="red-coupon" id="red-coupon">
+                            <div class="coupon-row mb5 one-col">
+                                <a href="javascript:;" class="coupon-col" data-coupon-id="coupon_636455" data-takerule="4">
+                                    <div class="coupon-price">
+                                        <p><span class="price-type">&yen;</span>150</p>
+                                        <span class="line"></span>
+                                        <i class="ion-cut"></i>
+                                    </div>
+                                    <div class="coupon-info">
+                                        <div class="info-text">
+                                            <p>优惠券</p>
+                                            <p>满799元使用</p>
+                                        </div>
+                                        <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="coupon-row two-col">
+                                <a href="javascript:;" class="coupon-col timeout" data-coupon-id="coupon_636455" data-takerule="4">
+                                    <div class="coupon-price">
+                                        <p><span class="price-type">&yen;</span>150</p>
+                                        <span class="line"></span>
+                                        <i class="ion-cut cut-gray"></i>
+                                    </div>
+                                    <div class="coupon-info">
+                                        <div class="info-text">
+                                            <p>优惠券</p>
+                                            <p>满799元使用</p>
+                                        </div>
+                                        <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
+                                    </div>
+                                </a>
+                                <a href="javascript:;" class="coupon-col" data-coupon-id="coupon_636455" data-takerule="4">
+                                    <div class="coupon-price">
+                                        <p><span class="price-type">&yen;</span>150</p>
+                                        <span class="line"></span>
+                                        <i class="ion-cut"></i>
+                                    </div>
+                                    <div class="coupon-info">
+                                        <div class="info-text">
+                                            <p>优惠券</p>
+                                            <p>满799元使用</p>
+                                        </div>
+                                        <span class="btn btn-default btn-icon-right">立即领取<i class="ion-arrow-outline"></i></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </section>
+                        <!-- 优惠券结束 -->
+                        <!-- 筛选条件开始 -->
+                        <div id="filter-box">
+                            <nav class="red-operate">
+                                <a href="javascript:;" class="has-goods-btn">
+                                    <p><span>显示有货<i class="ion-pass"></i></span></p>
+                                </a>
+                                <a href="javascript:;" class="price-sort-btn">
+                                    <p><span>价格</span><i class="ion-tris"></i></p>
+                                </a>
+                                <a href="javascript:;" class="filter_btn">
+                                    <p><span>筛选</span><i class="icon-filter"></i></p>
+                                </a>
+                            </nav>
+                            <div class="goods-info clearfix">
+                                <p class="gift-info"><i class="ion-gift"></i><span>满1299元，加100元，送赠品<span></p>
+                                <p class="count-down" secondcount="340819"><i class="ion-tick-black"></i><span>剩<em>00</em><lable>天</lable><em>00</em><lable>小时</lable><em>00</em><lable>分</lable><em>00</em><lable>秒</lable></span></p>
+                            </div>
+                        </div>
+                        <!-- 筛选条件结束 -->
+                        <!-- 商品列表开始 -->
+                        <section class="goods-list" id="goods-list">
+                            <div id="goods-list-data" data-skuids="" data-skuidsv="">
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                                <a href="javascript:;">
+                                    <div class="goods-img animated" data-layzr="../dist/images/goods4.jpg">
+                                        <div class="goods-waring none"><p>仅&nbsp;剩</p><p class="waring-number">3</p></div>
+                                    </div>
+                                    <p class="goods-name">纯棉印花袖口里寸方领长袖寸衫寸</p>
+                                    <p class="new-price"><span class="price-type">&yen;</span><span class="new-price-number">1856</span><span class="discount">2.3折</span></p>
+                                    <p class="old-price"><span class="old-price-info">吊牌价</span>&yen;&nbsp;9540</p>
+                                </a>
+                            </div>
+                        </section>
+                        <!-- 商品列表结束 -->
+                    </div>
+                    <!-- 内容结束 -->
+                    <!-- 三方尾部开始 -->
+                    <div class="jd-footer" id="jd-footer"></div>
+                    <!-- 三方尾部结束 -->
+                </div>
+            </div>
+            <!-- 模拟滚动范围结束 -->
+            <!-- 回到顶部按钮开始 -->
+            <div class="go-top none" id="go-top">
+                <p class="count none" id="count"><span class="now" id="now">1</span><span class="total" id="total"></span></p>
+                <div class="back" id="back"><i class="ion-arrow-up"></i><p class="back-text">顶部</p></div>
+            </div>
+            <!-- 回到顶部按钮结束 -->
+            <div class="filter-mask none" id="filter-mask"></div>
+            <!-- 筛选模态框开始 -->
+            <section class="filter-modal" id="filter-modal">
+                <header>
+                    <span class="btn-3d fl">取消</span>
+                    <h3>筛选</h3>
+                    <span class="btn-3d fr">确定</span>
+                </header>
+                <div class="filter-content-box" id="filter-content-box">
+                    <div class="filter-content">
+                        <h4>类别</h4>
+                        <ul class="type-group clearfix" id="type-group">
+                            <li class="btn-checkbox all selected" data-type-id="cate_9757">全部</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">寸衫</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">鞋子</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">衣服</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">西瓜</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">番茄</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">鸡蛋</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜刀</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜鸟</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">火腿</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">炸弹</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">飞机</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜刀</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜鸟</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">火腿</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">炸弹</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">飞机</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜刀</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜鸟</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">火腿</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">炸弹</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">飞机</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜刀</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">菜鸟</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">火腿</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">炸弹</li>
+                            <li class="btn-checkbox" data-type-id="cate_9757">飞机</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- 筛选模态框结束 -->
+        </div>
+        <!-- 闪购html结束 -->
+        <!--<script type="text/javascript" src="//misc.360buyimg.com/jdf/1.0.0/unit/ja/1.0.0/ja.js"></script>-->
+        <script type="text/javascript" src="../lib/libray.js"></script>
+        <script type="text/javascript" src="../dist/javascript/goods_list/main.js"></script>
+        <script type="text/javascript">
+        // 资源路径
+        // -------------------------
+        // http://static.360buyimg.com/shangou/redm/v3.1.1/dist/javascript/
+        var red_debug = true;
+
+        // 调用主模块
+        // -----------------------
+        seajs.use('goods_list/main');
+        </script>
+        <!-- 如有其它js文件，请插在此位置，防止阻塞页面渲染 -->
+    </body>
+</html>

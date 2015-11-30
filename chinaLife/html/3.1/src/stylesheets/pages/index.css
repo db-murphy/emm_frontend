@@ -232,8 +232,8 @@ nav.nav-fixed.hide{
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
-	-webkit-transition: opacity 1s linear;
-	transition: opacity 1s linear;
+	/*-webkit-transition: opacity 1s linear;
+	transition: opacity 1s linear;*/
 }
 
 .advertisement-detail{
