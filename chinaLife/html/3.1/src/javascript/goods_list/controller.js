@@ -430,10 +430,17 @@ define(function (require, exports, module){
 				return;
 			}
 			goods_model.filter_confirm(function(data) {
+				// 回到顶部
+				iscroller.scrollTo(0, 0);
+				go_top_btn.addClass('none');
+				fix_top_hiden.addClass('fix-top-hiden');
+
 				goods_list.html(data);
+				lazy.refreshImg();
+				refresh_list();
+				console.log(data);
 				get_price_info();
 				get_stock_info();
-				iscroller.scrollTo(0, 0);
 				iscroller._resize();
 			});
 		});
@@ -518,6 +525,8 @@ define(function (require, exports, module){
 
 		goods_model.get_price_info(function(data) {
 			goods_view.render_price(data);
+			lazy.refreshImg();
+			refresh_list();
 			iscroller._resize();
 		});
 	}
@@ -531,6 +540,7 @@ define(function (require, exports, module){
 
 		goods_model.get_stock_info(function(data) {
 			goods_view.render_stock(data);
+			iscroller._resize();
 		});
 	}
 
