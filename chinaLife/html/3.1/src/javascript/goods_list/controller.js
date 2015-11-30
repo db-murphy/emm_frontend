@@ -88,7 +88,13 @@ define(function (require, exports, module){
 
 		iscroller.on('scroll', function() {
 			if(this.y + filter_y <= 0) {
-				fix_top_hiden.removeClass('fix-top-hiden');
+				if(this.directionY > 0) {
+					// 上滑
+					fix_top_hiden.addClass('fix-top-hiden');
+				}else{
+					// 下滑
+					fix_top_hiden.removeClass('fix-top-hiden');
+				}
 			}else{
 				fix_top_hiden.addClass('fix-top-hiden');
 			}
@@ -157,7 +163,7 @@ define(function (require, exports, module){
 				item_count_inview = goods_items.length;
 			}
 
-			if(item_count_inview >= 2) {
+			if(item_count_inview >= 6) {
 				if(item_count_inview * 2 > goods_items.length) {
 					count_now.text(goods_items.length);
 				}else{
@@ -182,7 +188,7 @@ define(function (require, exports, module){
 				item_count_inview = goods_items.length;
 			}
 
-			if(item_count_inview >= 2) {
+			if(item_count_inview >= 6) {
 				go_top_btn.removeClass('none');
 			}else{
 				go_top_btn.addClass('none');
@@ -438,7 +444,6 @@ define(function (require, exports, module){
 				goods_list.html(data);
 				lazy.refreshImg();
 				refresh_list();
-				console.log(data);
 				get_price_info();
 				get_stock_info();
 				iscroller._resize();

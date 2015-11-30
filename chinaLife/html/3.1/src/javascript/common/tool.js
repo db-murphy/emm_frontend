@@ -112,35 +112,44 @@ define(function (require, exports, module){
 	            var spans = $(i).find("em");
 	            var lables = $(i).find("label");
 
+	            tick_run(CD, lables, spans, i);
+	            
 	            i.countDownInterval = window.setInterval(function () {
-	                CD.tick(-1);
-	                if (CD.secondCount > 0) {
-	                    if(CD.day > 0){
-	                        spans[0].innerHTML = CD.day;
-	                    }else{
-	                        $(lables[0]).remove();
-	                        $(i).addClass("waring");
-	                    }
-	                    
-	                    if(CD.hour > 0 || (CD.hour == 0 && CD.day>0)){
-	                        spans[1].innerHTML = CD.hour;
-	                    }else{
-	                        $(lables[1]).remove();
-	                    }
-	                    
-	                    if(CD.minute > 0 ||(CD.minute == 0 && CD.hour>0) || (CD.minute == 0 && CD.day>0)){
-	                        spans[2].innerHTML = CD.minute;
-	                    }else{
-	                        $(lables[2]).remove();
-	                    }
-	                    
-	                    spans[3].innerHTML = CD.second;
-
-	                } else {
-	                    $(i).html("<span>活动已结束</span>");
-	                }
+	                tick_run(CD, lables, spans, i);
 	            }, 1000);
 	        });
+
+			function tick_run(CD, lables, spans, i) {
+				CD.tick(-1);
+                if (CD.secondCount > 0) {
+                    if(CD.day > 0){
+                        spans[0].innerHTML = CD.day;
+                    }else{
+                        $(lables[0]).remove();
+                        $(spans[0]).remove();
+                        $(i).addClass("waring");
+                    }
+                    
+                    if(CD.hour > 0 || (CD.hour == 0 && CD.day>0)){
+                        spans[1].innerHTML = CD.hour;
+                    }else{
+                        $(lables[1]).remove();
+                        $(spans[1]).remove();
+                    }
+                    
+                    if(CD.minute > 0 ||(CD.minute == 0 && CD.hour>0) || (CD.minute == 0 && CD.day>0)){
+                        spans[2].innerHTML = CD.minute;
+                    }else{
+                        $(lables[2]).remove();
+                        $(spans[2]).remove();
+                    }
+                    
+                    spans[3].innerHTML = CD.second;
+
+                } else {
+                    $(i).html("<span>活动已结束</span>");
+                }
+			}
 	    };
 	};
 

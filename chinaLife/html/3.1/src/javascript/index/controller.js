@@ -31,6 +31,23 @@ define(function (require, exports, module){
 	var fisrt_item   = items.eq(0);
 	var view_scroll  = $('#view-scroller');
 	var iscroller    = null;
+	var sec_adver    = $('.red-advertisements');
+
+	// 页面布局调整
+	// ------------------
+	function page_view_update() {
+		var prev_sec = 0;
+		var _sec_adver = sec_adver;
+
+		while(_sec_adver.prev('section').length) {
+			prev_sec++;
+			_sec_adver = _sec_adver.prev('section');
+		}
+
+		if(prev_sec == 1) {
+			sec_adver.prev('section').removeClass('pb20').addClass('pb5');
+		}
+	}
 
 	// 模拟页面滚动效果
 	// ------------------
@@ -114,15 +131,21 @@ define(function (require, exports, module){
 	// 首页轮播效果
 	// ------------------
 	function create_top_slider() {
-		if($('.red-slider-wraper').length) {
-			var sliderSwiper = new Swiper('.red-slider-wraper',{
+		var slider_config = {};
+
+		if($('.red-slider-wraper li').length > 1) {
+			slider_config = {
 	            loop: true,
-	            autoplay: 10000,
+	            autoplay: 5000,
 	            autoplayDisableOnInteraction: false,
 	            pagination : '.red-slider-pagination',
 	            onImagesReady: function() {
 	            }
-	        });
+	        };
+		}
+
+		if($('.red-slider-wraper').length) {
+			var sliderSwiper = new Swiper('.red-slider-wraper', slider_config);
 		}
 	}
 
@@ -168,7 +191,9 @@ define(function (require, exports, module){
 		// 回到顶部
 		go_top_btn.tap(function() {
 			iscroller.scrollTo(0, 0);
-			go_top_btn.addClass('none');
+			setTimeout(function() {
+				go_top_btn.addClass('none');
+			}, 400);
 		});
 
 		// 滚动之前(手指已经与屏幕接触)
@@ -188,7 +213,7 @@ define(function (require, exports, module){
 				item_count_inview = items.length;
 			}
 
-			if(item_count_inview >= 1) {
+			if(item_count_inview >= 8) {
 				count_now.text(item_count_inview);
 				go_top_btn.removeClass('none');
 			}else{
@@ -209,7 +234,7 @@ define(function (require, exports, module){
 				item_count_inview = items.length;
 			}
 
-			if(item_count_inview >= 1) {
+			if(item_count_inview >= 8) {
 				go_top_btn.removeClass('none');
 			}else{
 				go_top_btn.addClass('none');
@@ -318,6 +343,7 @@ define(function (require, exports, module){
 		create_top_slider  : create_top_slider,
 		create_goods_slider: create_goods_slider,
 		create_scroll      : create_scroll,
-		lazy_load          : lazy_load
+		lazy_load          : lazy_load,
+		page_view_update   : page_view_update
 	};
 });

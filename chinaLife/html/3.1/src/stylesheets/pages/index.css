@@ -19,7 +19,7 @@ html, body{
 	top: 0;
 	bottom: 0;
 	right: 0;
-	background: #313131;
+	background: #fff;
 	top: 0;
 	overflow: hidden;
 }
@@ -361,6 +361,9 @@ nav.nav-fixed.hide{
 }
 .goods-rec-slider-wrap a:hover{
 	text-decoration: none;
+}
+.goods-rec-slider-wrap .goods-img{
+	padding: 0 0.05rem;
 }
 .goods-rec-slider-wrap img{
 	display: block;
