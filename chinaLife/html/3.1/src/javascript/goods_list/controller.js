@@ -63,6 +63,7 @@ define(function (require, exports, module){
 			common_model.get_header_html(function(data) {
 				common_view.render_header(data);
 				iscroller._resize();
+				pos_filter();
 				$('#btnJdkey').click(pos_filter);
 			});
 		}

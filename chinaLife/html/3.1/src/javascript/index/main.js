@@ -53,4 +53,8 @@ define(function (require, exports, module){
 	// 图片懒加载
 	// ------------------
 	controller.lazy_load();
+
+	// 重写所有a连接跳转行为
+	// ------------------
+	controller.rebuild_a_jump();
 });

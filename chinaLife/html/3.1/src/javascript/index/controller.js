@@ -32,6 +32,8 @@ define(function (require, exports, module){
 	var view_scroll  = $('#view-scroller');
 	var iscroller    = null;
 	var sec_adver    = $('.red-advertisements');
+	var reload       = true;
+	var lazy;
 
 	// 页面布局调整
 	// ------------------
@@ -192,8 +194,9 @@ define(function (require, exports, module){
 		go_top_btn.tap(function() {
 			iscroller.scrollTo(0, 0);
 			setTimeout(function() {
+				alert('test');
 				go_top_btn.addClass('none');
-			}, 400);
+			}, 500);
 		});
 
 		// 滚动之前(手指已经与屏幕接触)
@@ -298,7 +301,7 @@ define(function (require, exports, module){
 	// 懒加载
 	// ------------------
 	function lazy_load() {
-		tool.lazyload.init({
+		lazy = tool.lazyload.init({
 			iscroller: iscroller,
 			load_sucess: function(img) {
 				var item        = $(img).closest('.red-advertisements-item');
@@ -331,6 +334,42 @@ define(function (require, exports, module){
 		});
 	}
 
+	// 重写所有a连接跳转行为
+	// ------------------
+	function rebuild_a_jump() {
+		var rebuilda = $('a[_href]');
+
+		window.onbeforeunload = function(ev) {
+            if(reload) {
+                console.log('刷新');
+                sessionStorage.removeItem('index_y');
+                // 如果是刷新页面，则清楚记录的偏移值
+            }else{
+                console.log('跳转');
+                reload = true;
+                // 则记录偏移值
+            }
+        };
+
+
+		$.each(rebuilda, function(i, value) {
+			if($(value).attr('_href') == '') {
+				return;
+			}
+
+			$(value).click(function() {
+				reload = false;
+				window.sessionStorage.setItem('index_y', iscroller.y);
+				window.location.href = $(this).attr('_href');
+			});
+		});
+
+		if(sessionStorage.getItem('index_y')) {
+			iscroller.scrollTo(0, parseInt(sessionStorage.getItem('index_y'), 10));
+			lazy.refreshImg();
+		}
+	}
+
 	// 对外接口
 	// ------------------
 	module.exports = {
@@ -344,6 +383,7 @@ define(function (require, exports, module){
 		create_goods_slider: create_goods_slider,
 		create_scroll      : create_scroll,
 		lazy_load          : lazy_load,
-		page_view_update   : page_view_update
+		page_view_update   : page_view_update,
+		rebuild_a_jump     : rebuild_a_jump
 	};
 });
