@@ -351,7 +351,6 @@ define(function (require, exports, module){
             }
         };
 
-
 		$.each(rebuilda, function(i, value) {
 			if($(value).attr('_href') == '') {
 				return;
