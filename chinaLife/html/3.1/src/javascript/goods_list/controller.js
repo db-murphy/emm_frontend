@@ -143,7 +143,9 @@ define(function (require, exports, module){
 		// 回到顶部
 		go_top_btn.tap(function() {
 			iscroller.scrollTo(0, 0);
-			go_top_btn.addClass('none');
+			setTimeout(function() {
+				go_top_btn.addClass('none');
+			}, 500);
 			fix_top_hiden.addClass('fix-top-hiden');
 		});
 

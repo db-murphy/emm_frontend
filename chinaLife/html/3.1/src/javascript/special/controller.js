@@ -10,8 +10,6 @@
 define(function (require, exports, module){
 	// 模块依赖
 	// ------------------
-	var model        = require('index/model');
-	var view         = require('index/view');
 	var tool         = require('common/tool');
 	var common_model = require('common/model');
 	var common_view  = require('common/view');
@@ -27,29 +25,12 @@ define(function (require, exports, module){
 	 * --------------------------
 	 */
 	var go_top_btn   = $('#go-top');
-	var items        = $('.red-advertisements-item');
+	var items        = $('.in-no-time a');
 	var fisrt_item   = items.eq(0);
 	var view_scroll  = $('#view-scroller');
 	var iscroller    = null;
-	var sec_adver    = $('.red-advertisements');
 	var reload       = true;
 	var lazy;
-
-	// 页面布局调整
-	// ------------------
-	function page_view_update() {
-		var prev_sec = 0;
-		var _sec_adver = sec_adver;
-
-		while(_sec_adver.prev('section').length) {
-			prev_sec++;
-			_sec_adver = _sec_adver.prev('section');
-		}
-
-		if(prev_sec == 1) {
-			sec_adver.prev('section').removeClass('pb20').addClass('pb5');
-		}
-	}
 
 	// 模拟页面滚动效果
 	// ------------------
@@ -130,42 +111,6 @@ define(function (require, exports, module){
 		swiper.setWrapperTranslate(translate_to);
 	}
 
-	// 首页轮播效果
-	// ------------------
-	function create_top_slider() {
-		var slider_config = {};
-
-		if($('.red-slider-wraper li').length > 1) {
-			slider_config = {
-	            loop: true,
-	            autoplay: 5000,
-	            autoplayDisableOnInteraction: false,
-	            pagination : '.red-slider-pagination',
-	            onImagesReady: function() {
-	            }
-	        };
-		}
-
-		if($('.red-slider-wraper').length) {
-			var sliderSwiper = new Swiper('.red-slider-wraper', slider_config);
-		}
-	}
-
-	// 好货推荐slider
-	// ------------------
-	function create_goods_slider() {
-		if($('.goods-rec-slider-wrap').length) {
-			var goods_slider = Swiper('.goods-rec-slider-wrap',{
-	            loop: false,
-	            slidesPerView : 3,
-	            slidesPerGroup : 3,
-	            pagination : '.goods-pagination',
-	            onImagesReady: function() {
-	            }
-	        });
-		}
-	}
-
 	// 回到顶部按钮
 	// ------------------
 	function back_to_top() {
@@ -211,12 +156,16 @@ define(function (require, exports, module){
 		iscroller.on('scroll', function() {
 			item_count_inview = Math.floor((wrapper_height + Math.abs(this.y) - first_item_top) / item_height);
 
-			if(item_count_inview > items.length) {
+			if(item_count_inview > Math.ceil(items.length / 2)) {
 				item_count_inview = items.length;
 			}
 
-			if(item_count_inview >= 8) {
-				count_now.text(item_count_inview);
+			if(item_count_inview >= 6) {
+				if(item_count_inview * 2 > items.length) {
+					count_now.text(items.length);
+				}else{
+					count_now.text(item_count_inview * 2);
+				}
 				go_top_btn.removeClass('none');
 			}else{
 				go_top_btn.addClass('none');
@@ -232,11 +181,11 @@ define(function (require, exports, module){
 		iscroller.on('scrollEnd', function() {
 			item_count_inview = Math.floor((wrapper_height + Math.abs(this.y) - first_item_top) / item_height);
 
-			if(item_count_inview > items.length) {
+			if(item_count_inview > Math.ceil(items.length / 2)) {
 				item_count_inview = items.length;
 			}
 
-			if(item_count_inview >= 8) {
+			if(item_count_inview >= 6) {
 				go_top_btn.removeClass('none');
 			}else{
 				go_top_btn.addClass('none');
@@ -255,58 +204,14 @@ define(function (require, exports, module){
 		});
 	}
 
-	// 获取价格信息
-	// ------------------
-	function get_price_info() {
-		if(variable.config.debug) {
-			return;
-		}
-		var goods_rec_wrapper = $('#goods-rec-wrapper');
-		var skuidsv = goods_rec_wrapper.attr('data-skus');
-
-		if(skuidsv != "" && skuidsv != null) {
-	        var strs = skuidsv.split(",");
-	        var len  = strs.length;
-	        var requestStrs = "";
-	        
-	        for(var index = 0 ; index < len; index++) {
-	            requestStrs += "," + strs[index];
-	        }
-	        var reqString = requestStrs.substring(1,requestStrs.length);
-	        var arg = {'skuids' : reqString, 'type':1, "origin":2};
-
-	        model.get_price_data(arg, function(data) {
-	        	view.render_price(data);
-	        });
-	    }
-	}
-
-	// 获取库存信息
-	// ------------------
-	function get_stock_info() {
-		if(variable.config.debug) {
-			return;
-		}
-		var goods_rec_wrapper = $('#goods-rec-wrapper');
-		var skuidsv = goods_rec_wrapper.attr('data-skus');
-
-		if(skuidsv != "" && skuidsv != null){
-			model.get_stock_data({"skuids": skuidsv}, function(data) {
-				view.render_stock(data);
-			});
-	   }
-	}
-
 	// 懒加载
 	// ------------------
 	function lazy_load() {
 		lazy = tool.lazyload.init({
 			iscroller: iscroller,
 			load_sucess: function(img) {
-				var item        = $(img).closest('.red-advertisements-item');
-				var item_detail = item.find('.advertisement-detail');
-				var attention   = item.find('.attention-msg');
-				var logo_img    = item.find('.commercial-logo img');
+				var item        = $(img).closest('a');
+				var logo_img    = item.find('.goods-logo img');
 				var logo_url    = logo_img.attr('data-logo-layzr');
 
 				// 加载logo图片
@@ -314,20 +219,10 @@ define(function (require, exports, module){
 					var Img = new Image();
 
 					Img.onload = function() {
-						//logo_img.addClass('fadeIn');
 						logo_img.attr('src', logo_url);
 					}
 
 					Img.src = logo_url;
-				}
-
-				//img.classList.add('fadeIn');
-				if(item_detail.length) {
-					item_detail.removeClass('opy0');
-				}
-				
-				if(attention.length) {
-					attention.removeClass('opy0');
 				}
 			}
 		});
@@ -346,7 +241,7 @@ define(function (require, exports, module){
 		};
 
 		// 只是滚动区域区域
-		var rebuilda = $('#scroll-view a[href]');
+		var rebuilda = $('.in-no-time a[href]');
 
 		window.onbeforeunload = function(ev) {
             if(reload) {
@@ -378,13 +273,8 @@ define(function (require, exports, module){
 		create_footer      : create_footer,
 		create_tab         : create_tab,
 		back_to_top        : back_to_top,
-		get_price_info     : get_price_info,
-		get_stock_info     : get_stock_info,
-		create_top_slider  : create_top_slider,
-		create_goods_slider: create_goods_slider,
 		create_scroll      : create_scroll,
 		lazy_load          : lazy_load,
-		page_view_update   : page_view_update,
 		rebuild_a_jump     : rebuild_a_jump
 	};
 });

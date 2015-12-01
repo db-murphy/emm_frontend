@@ -46,6 +46,16 @@
             .pipe(gulp.dest("./dist/javascript/index"));
     });
 
+    // 压缩即将特卖js文件
+    // ==========================
+    gulp.task('min_special_js', function() {
+        gulp.src(["./src/javascript/special/*.js", "./src/javascript/common/*.js"], {base:"./src/javascript"})
+            .pipe(transport())
+            .pipe(concat('main.js'))
+            .pipe(uglify())
+            .pipe(gulp.dest("./dist/javascript/special"));
+    });
+
     // 压缩商品页js文件
     // ==========================
     gulp.task('min_detail_js', function() {
@@ -93,7 +103,7 @@
     // 监听js文件变化
     // ==========================
     gulp.task('watch_js', function() {
-      gulp.watch('./src/javascript/**/*.js', ['min_index_js', 'min_detail_js']);
+      gulp.watch('./src/javascript/**/*.js', ['min_index_js', 'min_detail_js', 'min_special_js']);
     });
 
     // 监听文件变化
@@ -102,5 +112,5 @@
 
     // 默认任务
     // ==========================
-    gulp.task('default', ['min_css', 'min_index_js', 'min_detail_js', 'min_libray_js', 'image_min']);
+    gulp.task('default', ['min_css', 'min_index_js', 'min_detail_js', 'min_special_js', 'min_libray_js', 'image_min']);
 })();

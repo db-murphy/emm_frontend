@@ -57,7 +57,8 @@ define(function (require, exports, module){
             var btm       = top + this.op.iscroller.wrapperHeight;
             var el_bottom = $(el).offset().top;
 
-            return el_bottom >= top && el_bottom <= btm;
+            //return el_bottom >= top && el_bottom <= btm;
+            return el_bottom <= btm;
 	    },
 
 	    refreshImg: function() {
