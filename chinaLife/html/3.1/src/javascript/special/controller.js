@@ -37,6 +37,7 @@ define(function (require, exports, module){
 	function create_scroll() {
 		iscroller = new IScroll('.scroll-view', {
 			click: true,
+			mouseWheel: true,
 			probeType: 3
 		});
 
@@ -49,6 +50,10 @@ define(function (require, exports, module){
 		$(window).bind('orientationchange', function() {
 			iscroller._resize();
 		});
+	}
+
+	function loadJdHeadAndFooter() {
+		tool.loadJdHeadAndFooter(iscroller);
 	}
 	
 	// 创建头部
@@ -240,6 +245,10 @@ define(function (require, exports, module){
 			lazy.refreshImg();
 		};
 
+		$('#red-nav a').click(function() {
+			sessionStorage.removeItem('index_y');
+		});
+
 		// 只是滚动区域区域
 		var rebuilda = $('.in-no-time a[href]');
 
@@ -275,6 +284,7 @@ define(function (require, exports, module){
 		back_to_top        : back_to_top,
 		create_scroll      : create_scroll,
 		lazy_load          : lazy_load,
-		rebuild_a_jump     : rebuild_a_jump
+		rebuild_a_jump     : rebuild_a_jump,
+		loadJdHeadAndFooter: loadJdHeadAndFooter
 	};
 });

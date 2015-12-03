@@ -56,6 +56,7 @@ define(function (require, exports, module){
 	function create_scroll() {
 		iscroller = new IScroll('.scroll-view', {
 			click: true,
+			mouseWheel: true,
 			probeType: 3
 		});
 
@@ -83,6 +84,10 @@ define(function (require, exports, module){
 			});
 		}
 	};
+
+	function loadJdHeadAndFooter() {
+		tool.loadJdHeadAndFooter(iscroller);
+	}
 
 	// 创建尾部
 	// ------------------
@@ -336,6 +341,9 @@ define(function (require, exports, module){
 	// 重写所有a连接跳转行为
 	// ------------------
 	function rebuild_a_jump() {
+		/*var body_dom = $('body');
+		var vs       = body_dom.attr("data-vs");*/
+
 		if(!window.sessionStorage) {
 			return;
 		}
@@ -344,6 +352,10 @@ define(function (require, exports, module){
 			iscroller.scrollTo(0, parseInt(sessionStorage.getItem('index_y'), 10));
 			lazy.refreshImg();
 		};
+
+		$('#red-nav a').click(function() {
+			sessionStorage.removeItem('index_y');
+		});
 
 		// 只是滚动区域区域
 		var rebuilda = $('#scroll-view a[href]');
@@ -385,6 +397,7 @@ define(function (require, exports, module){
 		create_scroll      : create_scroll,
 		lazy_load          : lazy_load,
 		page_view_update   : page_view_update,
-		rebuild_a_jump     : rebuild_a_jump
+		rebuild_a_jump     : rebuild_a_jump,
+		loadJdHeadAndFooter: loadJdHeadAndFooter
 	};
 });

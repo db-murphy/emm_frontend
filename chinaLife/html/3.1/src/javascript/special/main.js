@@ -9,18 +9,22 @@
 
 define(function (require, exports, module){
 	var controller = require('special/controller');
-	
+
 	// 模拟页面滚动效果
 	// ------------------
 	controller.create_scroll();
 
+	// 创建公共头尾
+	// ------------------
+	controller.loadJdHeadAndFooter();
+
 	// 创建头部
 	// ------------------
-	controller.create_header();
+	//controller.create_header();
 
 	// 创建尾部
 	// ------------------
-	controller.create_footer();
+	//controller.create_footer();
 
 	// 构造顶部滑动tab
 	// ------------------

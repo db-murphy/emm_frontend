@@ -14,13 +14,17 @@ define(function (require, exports, module){
 	// ------------------
 	controller.create_scroll();
 
+	// 创建公共头尾
+	// ------------------
+	controller.loadJdHeadAndFooter();
+
 	// 创建头部
 	// ------------------
-	controller.create_header();
+	//controller.create_header();
 
 	// 创建尾部
 	// ------------------
-	controller.create_footer();
+	//controller.create_footer();
 
 	// 筛选栏吸顶效果
 	controller.filter_fix();

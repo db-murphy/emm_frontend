@@ -36,13 +36,18 @@
         <link rel="stylesheet" type="text/css" href="../dist/css/common.min.css">
         <link rel="stylesheet" type="text/css" href="../dist/css/index.min.css">
         <link rel="stylesheet" type="text/css" href="../lib/swiper.min.css">
+        <link rel="stylesheet" type="text/css" href="http://st.360buyimg.com/common/commonH_B/css/header.css">
+        <script type="text/javascript" src="../img_error.js"></script>
     </head>
     <body data-sid="" data-vs="" data-total-page="1" data-page="1" data-total-page="1" data-title="京东闪购·品牌特卖" data-link="" data-lazy-load="off" data-pic-qua="35" data-notload-header="">
         <!-- 闪购html开始 -->
         <div class="red-mobile-page">
             <header id="header">
                 <!-- 三方导航开始 -->
-                <div class="jd-nav" id="jd-nav"></div>
+                <div class="jd-nav" id="jd-nav">
+                    <div id="jd-tip"></div>
+                    <div id="jd-header"></div>
+                </div>
                 <!-- 三方导航结束 -->
                 <!-- 导航开始 -->
                 <nav class="red-mobile-nav swiper-container" id="red-nav">
@@ -69,7 +74,7 @@
                             <div class="red-slider-wraper swiper-container">
                                 <ul class="swiper-wrapper">
                                     <li class="swiper-slide">
-                                        <a href="javascript:;"><img src="../dist/images/slider1.jpg"></a>
+                                        <a href="javascript:;"><img src="../dist/images/slider5.jpg" onerror="this.src=error_img_url()"></a>
                                     </li>
                                     <li class="swiper-slide">
                                         <a href="javascript:;"><img src="../dist/images/slider2.jpg"></a>
@@ -90,7 +95,7 @@
                                     <li class="swiper-slide" data-goods-id="">
                                         <a href="javascript:;">
                                             <div class="goods-img dry-up">
-                                                <img src="../dist/images/goods.jpg">
+                                                <img src="../dist/images/goods444.jpg" onerror="this.src=goods_error_img_index()">
                                             </div>
                                             <p class="goods-name">女神范羽绒服</p>
                                             <div class="goods-price">
@@ -182,9 +187,9 @@
                             <h2 class="red-advertisements-title pb10">每天十点&nbsp;&bull;&nbsp;新特卖</h2>
                             <!-- 我是活动开始 -->
                             <a href="javascript:;" class="red-advertisements-item">
-                                <img src="../dist/images/default.jpg" class="animated" data-layzr="../dist/images/advertisement2.jpg" alt="广告图片">
+                                <img src="../dist/images/default.jpg" class="animated" data-layzr="../dist/images/advertisement22.jpg" data-error="adver" alt="广告图片">
                                 <div class="advertisement-detail opy0">
-                                    <h3 class="commercial-logo"><img src="../dist/images/logo_default.png" data-logo-layzr="../dist/images/moco2.png" class="animated" alt="moco"></h3>
+                                    <h3 class="commercial-logo"><img src="../dist/images/logo_default.png" data-logo-layzr="../dist/images/moco23.png" data-error="adver-logo" class="animated" alt="moco"></h3>
                                     <div class="detail-con">
                                         <div class="time"><p class="line"></p><p class="time-text"><i class="ion-tick"></i>剩15小时</p><p class="line"></p></div>
                                         <p class="price"><span>3.5</span>折起</p>
@@ -294,6 +299,9 @@
         <script type="text/javascript" src="../lib/libray.js"></script>
         <script type="text/javascript" src="../lib/swiper.min.js"></script>
         <script type="text/javascript" src="../dist/javascript/index/main.js"></script>
+        <script src="http://st.360buyimg.com/common/commonH_B/js/m_common_header_bottom2.1.js" type="text/javascript"></script>
+        <script src="http://st.360buyimg.com/common/commonH_B/js/m_common2.1.js" type="text/javascript"></script>
+        <script src="http://st.360buyimg.com/m/js/2014/module/plugIn/downloadAppPlugIn_imk2.js" type="text/javascript"></script>
         <script type="text/javascript">
         // 资源路径
         // -------------------------

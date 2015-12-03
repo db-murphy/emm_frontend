@@ -37,6 +37,7 @@ define(function (require, exports, module){
 		iscroller = new IScroll('#scroll-view', {
 			click: true,
 			probeType: 3,
+			mouseWheel: true,
 			tap: true
 		});
 
@@ -49,33 +50,6 @@ define(function (require, exports, module){
 		$(window).bind('orientationchange', function() {
 			iscroller._resize();
 		});
-	}
-
-	// 创建头部
-	// ------------------
-	function create_header() {
-		if(variable.config.debug) {
-			common_view.render_header(variable.header_html);
-			iscroller._resize();
-			pos_filter();
-			$('#btnJdkey').click(pos_filter);
-		}else{
-			common_model.get_header_html(function(data) {
-				common_view.render_header(data);
-				iscroller._resize();
-				pos_filter();
-				$('#btnJdkey').click(pos_filter);
-			});
-		}
-	};
-
-	// 定位隐藏筛选条纵坐标
-	// ------------------
-	function pos_filter() {
-		var jd_nav = $('#jd-nav');
-		var jd_nav_height = jd_nav.height();
-
-		fix_top_hiden.css('top', jd_nav_height + 'px');
 	}
 
 	// 筛选栏吸顶效果
@@ -101,20 +75,6 @@ define(function (require, exports, module){
 			}
 		});
 	}
-
-	// 创建尾部
-	// ------------------
-	function create_footer() {
-		if(variable.config.debug) {
-			common_view.render_footer(variable.footer_html);
-			iscroller._resize();
-		}else{
-			common_model.get_footer_html(function(data) {
-				common_view.render_footer(data);
-				iscroller._resize();
-			});
-		}
-	};
 
 	// 回到顶部按钮
 	// ------------------
@@ -552,12 +512,25 @@ define(function (require, exports, module){
 		});
 	}
 
+	// 创建公共头尾
+	// ------------------
+	function loadJdHeadAndFooter() {
+		tool.loadJdHeadAndFooter(iscroller, pos_filter);
+	}
+
+	// 定位隐藏筛选条纵坐标
+	// ------------------
+	function pos_filter() {
+		var jd_nav = $('#jd-nav');
+		var jd_nav_height = jd_nav.height();
+
+		fix_top_hiden.css('top', jd_nav_height + 'px');
+	}
+
 	// 对外接口
 	// ------------------
 	module.exports = {
 		create_scroll     : create_scroll,
-		create_header     : create_header,
-		create_footer     : create_footer,
 		filter_fix        : filter_fix,
 		back_to_top       : back_to_top,
 		lazy_load         : lazy_load,
@@ -567,6 +540,7 @@ define(function (require, exports, module){
 		count_down        : count_down,
 		get_coupons       : get_coupons,
 		get_price_info    : get_price_info,
-		get_stock_info    : get_stock_info
+		get_stock_info    : get_stock_info,
+		loadJdHeadAndFooter: loadJdHeadAndFooter
 	};
 });

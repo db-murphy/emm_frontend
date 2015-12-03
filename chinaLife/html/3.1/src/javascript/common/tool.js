@@ -48,6 +48,23 @@ define(function (require, exports, module){
                 $_self.attr('src', original).removeAttr('data-layzr');
                 _this.op.load_sucess && _this.op.load_sucess(_self);
             }
+            img.onerror = function() {
+            	var error_type = _self.dataset.error;
+
+            	switch(error_type) {
+            		case 'adver':
+            			$_self.attr('src', adver_error_img_url());
+            			break;
+
+            		case 'adver-logo':
+            			$_self.attr('src', ader_logo_error_img());
+            			break;
+            	}	
+
+            	_this.op.load_sucess && _this.op.load_sucess(_self);
+            	//$_self.attr('src', _self.dataset.layzr);
+            }
+
             original && (img.src = original);
             $_self.attr('loaded', true);
 	    },
@@ -154,8 +171,102 @@ define(function (require, exports, module){
 	    };
 	};
 
+	function loadJdHeadAndFooter(iscroller, pos_filter){
+		var body_dom     = $('body');
+		var vs           = body_dom.attr("data-vs");
+		var header       = $('#header');
+		var tip          = $('#jd-tip');
+		var jd_header    = $('#jd-header');
+		var header_ready = false;
+		var scroll_top;
+		var timer;
+		
+		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || typeof MCommonHeaderBottom == 'undefined'){
+			scroll_top = header.height();
+			$('#scroll-view').css('top', scroll_top + 'px');
+			iscroller._resize();
+			pos_filter && pos_filter();
+			return;
+		}
+
+	    var mchb      = new MCommonHeaderBottom();
+	    var sid       = body_dom.attr("data-sid");
+	    var showTitle = body_dom.attr("data-title");
+
+	    /*公共头部*/
+	    var headerArg = {
+	    	hrederId : 'jd-header', 
+	    	title:showTitle, 
+	    	sid : sid, 
+	    	isShowShortCut : false, 
+	    	selectedShortCut : '4',
+	    	call: function() {
+	    		//refresh_header_height(iscroller);
+	    	}
+	    }
+
+	    mchb.header(headerArg);
+
+	    /*app下载*/
+	    var tipArg = {tipId : 'jd-tip', sid : sid, isfloat: false, isAlwayShow : true,
+	        onClickTrynow: function(){
+
+	        },
+	        onClickTipX: function(){
+	        	
+	        },
+	        call: function() {
+	        	//refresh_header_height(iscroller);
+	        },
+	        downloadAppPlugIn:{sourceType:'Sale',sourceValue:'sale-act', downAppURl  : 'http://h5.m.jd.com/active/download/download.html?channel=jd-mxz2'}
+	    };
+
+	    mchb.jdTip(tipArg);
+	    timer = setInterval(function() {
+	    	refresh_header_height(iscroller);
+	    }, 100)
+
+	    /**公共尾部**/
+	    var footerPlatforms3 = mchb.platformEnum('http://www.jd.com/#m',sid).enum3;//标准版 触屏版 电脑版 客户端 4个    
+	    var bottomArg = {bottomId : 'jd-footer', sid : sid, pin : "" ,footerPlatforms : footerPlatforms3, call: function() {
+
+	    }};
+	    mchb.bottom(bottomArg);
+
+	    function refresh_header_height(iscroller) {
+	    	if(header_ready) {
+	    		clearInterval(timer);
+	    		timer = null;
+	    	}
+
+			if(tip.children().length && jd_header.children().length && !header_ready) {
+				scroll_top = header.height();
+				$('#scroll-view').css('top', scroll_top + 'px');
+				iscroller._resize();
+				pos_filter && pos_filter();
+
+				$('#jd-nav div[report-eventid="MDownLoadFloat_Close"]').click(function() {
+					scroll_top = header.height();
+					$('#scroll-view').css('top', scroll_top + 'px');
+					iscroller._resize();
+					pos_filter && pos_filter();
+				});
+
+				$('#jd-nav div[report-eventid="MCommonHead_NavigateButton"]').click(function() {
+					scroll_top = header.height();
+					$('#scroll-view').css('top', scroll_top + 'px');
+					iscroller._resize();
+					pos_filter && pos_filter();
+				});
+
+				header_ready = true;
+			}
+		}
+	}
+
 	module.exports = {
 		lazyload: lazyload,
-		Countdown: Countdown
+		Countdown: Countdown,
+		loadJdHeadAndFooter: loadJdHeadAndFooter
 	};
 });
