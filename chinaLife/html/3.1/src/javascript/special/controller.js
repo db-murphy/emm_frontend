@@ -52,37 +52,11 @@ define(function (require, exports, module){
 		});
 	}
 
+	// 创建公共头尾
+	// ------------------
 	function loadJdHeadAndFooter() {
 		tool.loadJdHeadAndFooter(iscroller);
 	}
-
-	// 创建头部
-	// ------------------
-	function create_header() {
-		if(variable.config.debug) {
-			common_view.render_header(variable.header_html);
-			iscroller._resize();
-		}else{
-			common_model.get_header_html(function(data) {
-				common_view.render_header(data);
-				iscroller._resize();
-			});
-		}
-	};
-
-	// 创建尾部
-	// ------------------
-	function create_footer() {
-		if(variable.config.debug) {
-			common_view.render_footer(variable.footer_html);
-			iscroller._resize();
-		}else{
-			common_model.get_footer_html(function(data) {
-				common_view.render_footer(data);
-				iscroller._resize();
-			});
-		}
-	};
 
 	// 构造顶部滑动tab
 	// ------------------
@@ -277,8 +251,6 @@ define(function (require, exports, module){
 	// 对外接口
 	// ------------------
 	module.exports = {
-		create_header      : create_header,
-		create_footer      : create_footer,
 		create_tab         : create_tab,
 		back_to_top        : back_to_top,
 		create_scroll      : create_scroll,
