@@ -55,7 +55,7 @@ define(function (require, exports, module){
 	function loadJdHeadAndFooter() {
 		tool.loadJdHeadAndFooter(iscroller);
 	}
-	
+
 	// 创建头部
 	// ------------------
 	function create_header() {
@@ -270,7 +270,6 @@ define(function (require, exports, module){
 			$(value).click(function() {
 				reload = false;
 				window.sessionStorage.setItem('index_y', iscroller.y);
-				//window.location.href = $(this).attr('_href');
 			});
 		});
 	}

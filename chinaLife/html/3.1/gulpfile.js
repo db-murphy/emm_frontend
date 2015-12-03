@@ -75,6 +75,17 @@
             .pipe(gulp.dest("./lib"));
     });
 
+    // 压缩辅助js
+    // ==========================
+    gulp.task('min_assist', function() {
+        gulp.src(["./assist.js"])
+            .pipe(uglify())
+            .pipe(rename(function (path) {
+                path.basename += ".min";
+            }))
+            .pipe(gulp.dest("./dist/javascript/"));
+    });
+
     // 压缩图片文件
     // ==========================
     gulp.task('image_min', function() {
@@ -106,11 +117,17 @@
       gulp.watch('./src/javascript/**/*.js', ['min_index_js', 'min_detail_js', 'min_special_js']);
     });
 
+    // 监听辅助js
+    // ==========================
+    gulp.task('watch_assist', function() {
+      gulp.watch('./assist.js', ['min_assist']);
+    });
+
     // 监听文件变化
     // ==========================
-    gulp.task('watch', ['default', 'watch_css', 'watch_js', 'watch_images']);
+    gulp.task('watch', ['default', 'watch_css', 'watch_js', 'watch_images', 'watch_assist']);
 
     // 默认任务
     // ==========================
-    gulp.task('default', ['min_css', 'min_index_js', 'min_detail_js', 'min_special_js', 'min_libray_js', 'image_min']);
+    gulp.task('default', ['min_css', 'min_index_js', 'min_detail_js', 'min_special_js', 'min_libray_js', 'min_assist', 'image_min']);
 })();

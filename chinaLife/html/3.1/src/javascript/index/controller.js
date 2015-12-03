@@ -70,38 +70,12 @@ define(function (require, exports, module){
 			iscroller._resize();
 		});
 	}
-	
-	// 创建头部
-	// ------------------
-	function create_header() {
-		if(variable.config.debug) {
-			common_view.render_header(variable.header_html);
-			iscroller._resize();
-		}else{
-			common_model.get_header_html(function(data) {
-				common_view.render_header(data);
-				iscroller._resize();
-			});
-		}
-	};
 
+	// 创建公共头尾
+	// ------------------
 	function loadJdHeadAndFooter() {
 		tool.loadJdHeadAndFooter(iscroller);
 	}
-
-	// 创建尾部
-	// ------------------
-	function create_footer() {
-		if(variable.config.debug) {
-			common_view.render_footer(variable.footer_html);
-			iscroller._resize();
-		}else{
-			common_model.get_footer_html(function(data) {
-				common_view.render_footer(data);
-				iscroller._resize();
-			});
-		}
-	};
 
 	// 构造顶部滑动tab
 	// ------------------
@@ -273,7 +247,7 @@ define(function (require, exports, module){
 	        var strs = skuidsv.split(",");
 	        var len  = strs.length;
 	        var requestStrs = "";
-	        
+
 	        for(var index = 0 ; index < len; index++) {
 	            requestStrs += "," + strs[index];
 	        }
@@ -330,7 +304,7 @@ define(function (require, exports, module){
 				if(item_detail.length) {
 					item_detail.removeClass('opy0');
 				}
-				
+
 				if(attention.length) {
 					attention.removeClass('opy0');
 				}
@@ -378,7 +352,6 @@ define(function (require, exports, module){
 			$(value).click(function() {
 				reload = false;
 				window.sessionStorage.setItem('index_y', iscroller.y);
-				//window.location.href = $(this).attr('_href');
 			});
 		});
 	}
@@ -386,8 +359,6 @@ define(function (require, exports, module){
 	// 对外接口
 	// ------------------
 	module.exports = {
-		create_header      : create_header,
-		create_footer      : create_footer,
 		create_tab         : create_tab,
 		back_to_top        : back_to_top,
 		get_price_info     : get_price_info,

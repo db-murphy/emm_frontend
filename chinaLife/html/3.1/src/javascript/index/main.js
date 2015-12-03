@@ -13,7 +13,7 @@ define(function (require, exports, module){
 	// 页面布局调整
 	// ------------------
 	controller.page_view_update();
-	
+
 	// 模拟页面滚动效果
 	// ------------------
 	controller.create_scroll();
@@ -21,14 +21,6 @@ define(function (require, exports, module){
 	// 创建公共头尾
 	// ------------------
 	controller.loadJdHeadAndFooter();
-
-	// 创建头部
-	// ------------------
-	//controller.create_header();
-
-	// 创建尾部
-	// ------------------
-	//controller.create_footer();
 
 	// 获取价格信息
 	// ------------------

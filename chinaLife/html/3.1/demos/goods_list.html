@@ -13,31 +13,12 @@
         <meta name="aplus-touch" content="1">
         <meta name="format-detection" content="telephone=no, address=no">
         <title>商品列表页</title>
-        <script type="text/javascript">
-        (function() {
-            var html_dom = document.getElementsByTagName('html')[0];
-            var design_width = parseInt(html_dom.dataset.designWidth, 10);
-            var design_font = parseInt(html_dom.dataset.designFont, 10);
-
-            resizeRoot();
-            
-            window.onresize = function() {
-                resizeRoot();
-            }
-
-            function resizeRoot() {
-                var client_width = document.documentElement.clientWidth;
-                var fs =client_width/design_width*design_font;
-
-                html_dom.style.fontSize = fs+"px";
-            }
-        })();
-        </script>
         <link rel="stylesheet" type="text/css" href="../dist/css/common.min.css">
         <link rel="stylesheet" type="text/css" href="../dist/css/goods_list.min.css">
         <link rel="stylesheet" type="text/css" href="http://st.360buyimg.com/common/commonH_B/css/header.css">
+        <script type="text/javascript" src="../dist/javascript/assist.min.js"></script>
     </head>
-    <body data-stock-flag="" data-sort="" data-sort-flag="" data-actid="" data-page="1" data-total-page="1" data-vs="" data-title="京东闪购·品牌特卖" data-link="" data-sid="" data-img-nnum="" data-preview="" data-cateidstr="" data-cateidstr-disable="" data-popspecvidss="" data-notload-header="">
+    <body data-stock-flag="" data-sort="" data-sort-flag="" data-actid="" data-page="1" data-total-page="1" data-vs="jdapp" data-title="京东闪购·品牌特卖" data-link="" data-sid="" data-img-nnum="" data-preview="" data-cateidstr="" data-cateidstr-disable="" data-popspecvidss="" data-notload-header="">
         <!-- 闪购html开始 -->
         <div class="red-mobile-page" id="red-mobile-page">
             <header id="header">

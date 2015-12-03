@@ -18,14 +18,6 @@ define(function (require, exports, module){
 	// ------------------
 	controller.loadJdHeadAndFooter();
 
-	// 创建头部
-	// ------------------
-	//controller.create_header();
-
-	// 创建尾部
-	// ------------------
-	//controller.create_footer();
-
 	// 筛选栏吸顶效果
 	controller.filter_fix();
 

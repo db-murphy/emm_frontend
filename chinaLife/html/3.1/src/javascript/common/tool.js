@@ -8,6 +8,8 @@
  */
 
 define(function (require, exports, module){
+	// 懒加载
+	// =================
 	var lazyload = {
 	    init: function(opt) {
 	        var that = this;
@@ -34,7 +36,7 @@ define(function (require, exports, module){
                 _this.act(this);
             });
 	    },
-	    
+
 	    act: function(_self) {
 	    	var $_self = $(_self);
 	    	var _this = this;
@@ -53,16 +55,15 @@ define(function (require, exports, module){
 
             	switch(error_type) {
             		case 'adver':
-            			$_self.attr('src', adver_error_img_url());
+            			$_self.attr('src', assist.error_img_url.adver_index());
             			break;
 
             		case 'adver-logo':
-            			$_self.attr('src', ader_logo_error_img());
+            			$_self.attr('src', assist.error_img_url.ader_logo_index()());
             			break;
-            	}	
+            	}
 
             	_this.op.load_sucess && _this.op.load_sucess(_self);
-            	//$_self.attr('src', _self.dataset.layzr);
             }
 
             original && (img.src = original);
@@ -98,16 +99,18 @@ define(function (require, exports, module){
 	    }
 	};
 
+	// 倒计时
+	// =================
 	function Countdown(secondCount) {
 		this.secondCount = secondCount || 0;
 	    this.day = 0;
 	    this.hour = 0;
 	    this.minute = 0;
 	    this.second = 0;
-	    
+
 	    this.daySecond = 60 * 60 * 24;
 	    this.hourSecond = 60 * 60;
-	    
+
 	    this.tick = function(step){
 	         this.secondCount += step || 0;
 	         if (this.secondCount <= 0) {
@@ -118,7 +121,7 @@ define(function (require, exports, module){
 	         this.minute = parseInt((this.secondCount % (this.hourSecond)) / (60));
 	         this.second = parseInt((this.secondCount % 60) / (1));
 	    };
-	    
+
 	    this.initCurrentPage = function(){
 	        var countDownDoms = $("[secondcount]");
 
@@ -131,7 +134,7 @@ define(function (require, exports, module){
 	            var lables = $(i).find("label");
 
 	            tick_run(CD, lables, spans, i);
-	            
+
 	            i.countDownInterval = window.setInterval(function () {
 	                tick_run(CD, lables, spans, i);
 	            }, 1000);
@@ -147,21 +150,21 @@ define(function (require, exports, module){
                         $(spans[0]).remove();
                         $(i).addClass("waring");
                     }
-                    
+
                     if(CD.hour > 0 || (CD.hour == 0 && CD.day>0)){
                         spans[1].innerHTML = CD.hour;
                     }else{
                         $(lables[1]).remove();
                         $(spans[1]).remove();
                     }
-                    
+
                     if(CD.minute > 0 ||(CD.minute == 0 && CD.hour>0) || (CD.minute == 0 && CD.day>0)){
                         spans[2].innerHTML = CD.minute;
                     }else{
                         $(lables[2]).remove();
                         $(spans[2]).remove();
                     }
-                    
+
                     spans[3].innerHTML = CD.second;
 
                 } else {
@@ -171,6 +174,8 @@ define(function (require, exports, module){
 	    };
 	};
 
+	// 加载头尾
+	// =================
 	function loadJdHeadAndFooter(iscroller, pos_filter){
 		var body_dom     = $('body');
 		var vs           = body_dom.attr("data-vs");
@@ -178,14 +183,12 @@ define(function (require, exports, module){
 		var tip          = $('#jd-tip');
 		var jd_header    = $('#jd-header');
 		var header_ready = false;
+		var header_cunt  = 0;
 		var scroll_top;
 		var timer;
-		
+
 		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || typeof MCommonHeaderBottom == 'undefined'){
-			scroll_top = header.height();
-			$('#scroll-view').css('top', scroll_top + 'px');
-			iscroller._resize();
-			pos_filter && pos_filter();
+			refresh_header_height();
 			return;
 		}
 
@@ -195,78 +198,80 @@ define(function (require, exports, module){
 
 	    /*公共头部*/
 	    var headerArg = {
-	    	hrederId : 'jd-header', 
-	    	title:showTitle, 
-	    	sid : sid, 
-	    	isShowShortCut : false, 
+	    	hrederId : 'jd-header',
+	    	title:showTitle,
+	    	sid : sid,
+	    	isShowShortCut : false,
 	    	selectedShortCut : '4',
 	    	call: function() {
-	    		//refresh_header_height(iscroller);
+				header_cunt++;
+				refresh_header_height();
+				if(header_cunt == 2) {
+					header_addevent();
+				}
 	    	}
 	    }
 
 	    mchb.header(headerArg);
 
 	    /*app下载*/
-	    var tipArg = {tipId : 'jd-tip', sid : sid, isfloat: false, isAlwayShow : true,
+	    var tipArg = {
+			tipId : 'jd-tip',
+			sid : sid,
+			isfloat: false,
+			isAlwayShow : true,
 	        onClickTrynow: function(){
 
 	        },
 	        onClickTipX: function(){
-	        	
+
 	        },
 	        call: function() {
-	        	//refresh_header_height(iscroller);
+				header_cunt++;
+				refresh_header_height();
+
+				if(header_cunt == 2) {
+					header_addevent();
+				}
 	        },
-	        downloadAppPlugIn:{sourceType:'Sale',sourceValue:'sale-act', downAppURl  : 'http://h5.m.jd.com/active/download/download.html?channel=jd-mxz2'}
+	        downloadAppPlugIn:{
+				sourceType:'Sale',
+				sourceValue:'sale-act',
+				downAppURl  : 'http://h5.m.jd.com/active/download/download.html?channel=jd-mxz2'
+			}
 	    };
 
 	    mchb.jdTip(tipArg);
-	    timer = setInterval(function() {
-	    	refresh_header_height(iscroller);
-	    }, 100)
 
 	    /**公共尾部**/
-	    var footerPlatforms3 = mchb.platformEnum('http://www.jd.com/#m',sid).enum3;//标准版 触屏版 电脑版 客户端 4个    
-	    var bottomArg = {bottomId : 'jd-footer', sid : sid, pin : "" ,footerPlatforms : footerPlatforms3, call: function() {
+	    var footerPlatforms3 = mchb.platformEnum('http://www.jd.com/#m',sid).enum3;//标准版 触屏版 电脑版 客户端 4个
+	    var bottomArg = {
+			bottomId : 'jd-footer',
+			sid : sid,
+			pin : "" ,
+			footerPlatforms : footerPlatforms3,
+			call: function() {
 
-	    }};
+	    	}
+		};
 	    mchb.bottom(bottomArg);
 
-	    function refresh_header_height(iscroller) {
-	    	if(header_ready) {
-	    		clearInterval(timer);
-	    		timer = null;
-	    	}
+	    function refresh_header_height() {
+			scroll_top = header.height();
+			$('#scroll-view').css('top', scroll_top + 'px');
+			iscroller._resize();
+			pos_filter && pos_filter();
+		}
 
-			if(tip.children().length && jd_header.children().length && !header_ready) {
-				scroll_top = header.height();
-				$('#scroll-view').css('top', scroll_top + 'px');
-				iscroller._resize();
-				pos_filter && pos_filter();
-
-				$('#jd-nav div[report-eventid="MDownLoadFloat_Close"]').click(function() {
-					scroll_top = header.height();
-					$('#scroll-view').css('top', scroll_top + 'px');
-					iscroller._resize();
-					pos_filter && pos_filter();
-				});
-
-				$('#jd-nav div[report-eventid="MCommonHead_NavigateButton"]').click(function() {
-					scroll_top = header.height();
-					$('#scroll-view').css('top', scroll_top + 'px');
-					iscroller._resize();
-					pos_filter && pos_filter();
-				});
-
-				header_ready = true;
-			}
+		function header_addevent() {
+			$('#jd-nav div[report-eventid="MDownLoadFloat_Close"]').click(refresh_header_height);
+			$('#jd-nav div[report-eventid="MCommonHead_NavigateButton"]').click(refresh_header_height);
 		}
 	}
 
 	module.exports = {
-		lazyload: lazyload,
-		Countdown: Countdown,
+		lazyload           : lazyload,
+		Countdown          : Countdown,
 		loadJdHeadAndFooter: loadJdHeadAndFooter
 	};
 });

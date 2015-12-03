@@ -18,14 +18,6 @@ define(function (require, exports, module){
 	// ------------------
 	controller.loadJdHeadAndFooter();
 
-	// 创建头部
-	// ------------------
-	//controller.create_header();
-
-	// 创建尾部
-	// ------------------
-	//controller.create_footer();
-
 	// 构造顶部滑动tab
 	// ------------------
 	controller.create_tab();
