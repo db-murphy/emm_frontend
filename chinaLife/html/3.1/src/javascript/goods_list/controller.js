@@ -7,8 +7,6 @@
  */
 
 define(function (require, exports, module){
-	var common_model = require('common/model');
-	var common_view  = require('common/view');
 	var variable     = require('common/variable');
 	var tool         = require('common/tool');
 	var goods_model  = require('goods_list/model');
@@ -57,19 +55,20 @@ define(function (require, exports, module){
 	function filter_fix() {
 		var filter_y;
 
+		// 滚动开始
 		iscroller.on('beforeScrollStart', function() {
 			filter_y = filter_box.offset().top - view_scroll.offset().top;
 		});
 
+		// 滚动中
 		iscroller.on('scroll', function() {
+			fix_top_hiden.addClass('fix-top-hiden');
+		});
+
+		// 滚动停止时
+		iscroller.on('scrollEnd', function() {
 			if(this.y + filter_y <= 0) {
-				if(this.directionY > 0) {
-					// 上滑
-					fix_top_hiden.addClass('fix-top-hiden');
-				}else{
-					// 下滑
-					fix_top_hiden.removeClass('fix-top-hiden');
-				}
+				fix_top_hiden.removeClass('fix-top-hiden');
 			}else{
 				fix_top_hiden.addClass('fix-top-hiden');
 			}
@@ -195,6 +194,7 @@ define(function (require, exports, module){
 	// ------------------
 	function get_more_page() {
 		var item_count_inview, wrapper_height, item_height, first_item_top, scroll_view_top;
+		var get_more_loading = false;
 
 		// 滚动之前(手指已经与屏幕接触)
 		iscroller.on('beforeScrollStart', function() {
@@ -210,7 +210,31 @@ define(function (require, exports, module){
 			item_count_inview = Math.floor((wrapper_height + Math.abs(this.y) - first_item_top) / item_height);
 
 			if(item_count_inview >= Math.ceil(goods_items.length / 2)) {
-				
+				if(get_more_loading) {
+					return;
+				}
+				get_more_loading = true;
+
+				if(variable.config.debug) {
+					var new_lists = '';
+
+					new_lists = goods_list.html() + goods_list.html();
+					goods_list.html(new_lists);
+					lazy.refreshImg();
+					refresh_list();
+					iscroller._resize();
+					get_more_loading = false;
+					return;
+				}
+				goods_model.get_more(function(data) {
+					goods_list.append(data);
+					lazy.refreshImg();
+					refresh_list();
+					get_price_info();
+					get_stock_info();
+					iscroller._resize();
+					get_more_loading = false;
+				});
 			}
 		});
 	}
@@ -277,6 +301,7 @@ define(function (require, exports, module){
 				goods_list.html(new_lists);
 				lazy.refreshImg();
 				refresh_list();
+				iscroller._resize();
 				return;
 			}
 

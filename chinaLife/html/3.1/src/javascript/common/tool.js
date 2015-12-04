@@ -57,10 +57,6 @@ define(function (require, exports, module){
             		case 'adver':
             			$_self.attr('src', assist.error_img_url.adver_index());
             			break;
-
-            		case 'adver-logo':
-            			$_self.attr('src', assist.error_img_url.ader_logo_index()());
-            			break;
             	}
 
             	_this.op.load_sucess && _this.op.load_sucess(_self);

@@ -271,7 +271,7 @@ html, body{
  */
 .goods-info{
 	padding: 0.15rem 0.12rem;
-	margin-bottom: 0.2rem;
+	margin-bottom: 0.1rem;
 	background: #fff;
 }
 .goods-info p{
@@ -284,7 +284,7 @@ html, body{
 	width: 0.24rem;
 	height: 0.24rem;
 	background-size: 0.24rem 0.24rem;
-	position: absolute; 
+	position: absolute;
 	left: 0;
 	top: 50%;
 	margin-top: -0.12rem;
