@@ -146,7 +146,7 @@ define(function (require,exports,module){
     	var stockFilterFlag = $("#filter-box .has-goods-btn").hasClass("active");
 
     	for(var key in data) {
-            if(key && key=="stockSoldOutList") {
+            if(key=="stockSoldOutList") {
             	// 库存为0 抢光
                 if(data[key] && data[key].length > 0) {
                     var list = data[key];
@@ -165,26 +165,26 @@ define(function (require,exports,module){
                         }
                     }
                 }
-            }else if(key && key=="stockOnlyOne") {
+            }else if(key=="stockOnlyOne") {
             	// 仅剩一件的商品
-                waring_stock(data, 1)
-            }else if(key && key=="stockOnlyTwo") {
+                waring_stock(data[key], 1)
+            }else if(key=="stockOnlyTwo") {
             	// 仅剩两件
-            	waring_stock(data, 2)
-            }else if(key && key=="stockOnlyThree") {
+            	waring_stock(data[key], 2)
+            }else if(key=="stockOnlyThree") {
             	// 仅剩三件
-            	waring_stock(data, 3)
-            }else{
-            	return;
+            	waring_stock(data[key], 3)
             }
         }
     }
 
     function waring_stock(data, count) {
-    	if(data[key] && data[key].length > 0) {
-            var list = data[key];
+
+    	if(data && data.length > 0) {
+            var list = data;
 
             for(var i = 0, t = list.length; i < t; i++) {
+
                 var ss = list[i];
                 var keyItem = "goodItem_" + ss;
                 var goodItem = $("#goods-list a[data-goods-id='"+keyItem+"']");

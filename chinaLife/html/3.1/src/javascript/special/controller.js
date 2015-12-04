@@ -11,9 +11,6 @@ define(function (require, exports, module){
 	// 模块依赖
 	// ------------------
 	var tool         = require('common/tool');
-	var common_model = require('common/model');
-	var common_view  = require('common/view');
-	var variable     = require('common/variable');
 
 	/**
 	 * --------------------------
@@ -69,7 +66,7 @@ define(function (require, exports, module){
 		});
 		var active_slider = $('.swiper-slide.active', this_swiper).get(0);
 
-		slide_to(navSwiper, active_slider, this_swiper, 0);
+		slide_to(navSwiper, active_slider, this_swiper, 600);
 	};
 
 	// swiper slideTo

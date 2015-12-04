@@ -13,8 +13,6 @@ define(function (require, exports, module){
 	var model        = require('index/model');
 	var view         = require('index/view');
 	var tool         = require('common/tool');
-	var common_model = require('common/model');
-	var common_view  = require('common/view');
 	var variable     = require('common/variable');
 
 	/**
@@ -88,7 +86,7 @@ define(function (require, exports, module){
 		});
 		var active_slider = $('.swiper-slide.active', this_swiper).get(0);
 
-		slide_to(navSwiper, active_slider, this_swiper, 0);
+		slide_to(navSwiper, active_slider, this_swiper, 600);
 	};
 
 	// swiper slideTo
@@ -293,20 +291,14 @@ define(function (require, exports, module){
 					var Img = new Image();
 
 					Img.onload = function() {
-						//logo_img.addClass('fadeIn');
 						logo_img.attr('src', logo_url);
 					}
 
+					Img.onerror = function() {
+						logo_img.attr('src', assist.error_img_url.ader_logo_index());
+					}
+
 					Img.src = logo_url;
-				}
-
-				//img.classList.add('fadeIn');
-				if(item_detail.length) {
-					item_detail.removeClass('opy0');
-				}
-
-				if(attention.length) {
-					attention.removeClass('opy0');
 				}
 			}
 		});
