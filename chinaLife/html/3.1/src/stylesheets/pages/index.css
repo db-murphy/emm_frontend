@@ -126,19 +126,21 @@ nav.nav-fixed.hide{
 .red-slider-wraper.swiper-container-horizontal .red-slider-pagination .swiper-pagination-bullet{
 	width: 0.12rem;
 	height: 0.12rem;
-	border: 1px solid #fff;
-	background: none;
 	opacity: 1;
-	-webkit-box-sizing:border-box;
-	box-sizing:border-box;
 	margin-right: 0.12rem;
 	margin-left: 0;
+	-webkit-box-sizing:border-box;
+    box-sizing:border-box;
+	border-radius: 50%;
+	border: 1px solid #fff;
+	background-clip: padding-box;
+	background-color: transparent;
 }
 .red-slider-wraper .red-slider-pagination .swiper-pagination-bullet:last-child{
 	margin-right: 0.34rem;
 }
 .red-slider-wraper.swiper-container-horizontal .red-slider-pagination .swiper-pagination-bullet-active{
-	background: #fa5164;
+	background-color: #fa5164;
 }
 
 .red-recommend-content{
