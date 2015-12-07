@@ -34,6 +34,43 @@ html, body{
 /**
  * 导航部分
  */
+.red-nav-box{
+	padding-left: 1.6rem;
+	background: #161616;
+	position: relative;
+}
+.red-nav-box .nav-fix-item{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 0.7rem;
+    width: 1.6rem;
+}
+.red-nav-box .nav-fix-item a{
+	color: #fff;
+    font-size: .3rem;
+    font-weight: 700;
+    display: block;
+    height: .7rem;
+    line-height: .7rem;
+    text-align: center;
+}
+.red-nav-box .new::after{
+	content: 'NEW';
+	font-family: 'Arial';
+	font-size: 0.1rem; /**10px**/
+	display: inline-block;
+	width: 0.34rem; /**34px**/
+	height: 0.16rem; /**16px**/
+	line-height: 0.16rem;
+	background: #f9384e;
+	text-align: center;
+	position: absolute;
+	margin-left: -0.34rem;
+	margin-top: 0.03rem;
+	border-radius: 0.02em;
+	color: #fff;
+}
 nav.red-mobile-nav{
 	/*position: fixed;*/
 	height: 0.7rem; /**70px**/
@@ -82,22 +119,6 @@ nav.nav-fixed.hide{
 	font-size: 0.3rem; /**30px**/
 	position: relative;
 	font-weight: bold;
-}
-.red-mobile-nav ul .new::after{
-	content: 'NEW';
-	font-family: 'Arial';
-	font-size: 0.1rem; /**10px**/
-	display: inline-block;
-	width: 0.34rem; /**34px**/
-	height: 0.16rem; /**16px**/
-	line-height: 0.16rem;
-	background: #f9384e;
-	text-align: center;
-	position: absolute;
-	margin-left: -0.34rem;
-	margin-top: 0.03rem;
-	border-radius: 0.02em;
-	color: #fff;
 }
 
 /**

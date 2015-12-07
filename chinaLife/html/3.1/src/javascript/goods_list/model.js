@@ -187,12 +187,7 @@ define(function (require,exports,module){
 	function get_more(callback) {
         var body_dom   = $('body');
 		var page_now   = parseInt(body_dom.attr('data-page'), 10) + 1;
-		var page_total = parseInt(body_dom.attr('data-total-page'), 10);
 		var cateIdStr  = getSelectedCateIdStr();
-
-		if(page_now > page_total){
-            return;
-        }
 
 		$.ajax({
             type : "post",

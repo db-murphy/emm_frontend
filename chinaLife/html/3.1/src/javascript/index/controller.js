@@ -92,8 +92,9 @@ define(function (require, exports, module){
 	// swiper slideTo
 	// ------------------
 	function slide_to(swiper, active_slider, swiper_box, time) {
+		var li_fix            = $('#red-nav .nav-fix-item');
 		var swiper_width_half = parseInt(swiper_box.width() / 2, 10);
-		var offset_left       = active_slider.offsetLeft;
+		var offset_left       = active_slider.offsetLeft + li_fix.width();
 		var max_translate     = swiper.maxTranslate();
 		var min_translate     = swiper.minTranslate();
 		var translate_to      = swiper_width_half - offset_left - active_slider.offsetWidth / 2;

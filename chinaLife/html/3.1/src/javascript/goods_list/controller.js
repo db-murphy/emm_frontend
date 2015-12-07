@@ -218,8 +218,16 @@ define(function (require, exports, module){
 				if(variable.config.debug) {
 					var new_lists = '';
 
-					new_lists = goods_list.html() + goods_list.html();
-					goods_list.html(new_lists);
+					new_lists = goods_list.html();
+					var last_dom = $('.goods-list-data').last();
+
+					goods_list.append(new_lists);
+					var last_dom_new = $('.goods-list-data').last();
+
+					if($('a', last_dom).length % 2 != 0) {
+						last_dom.append(last_dom_new.find('a:first-child'));
+					}
+
 					lazy.refreshImg();
 					refresh_list();
 					iscroller._resize();
@@ -230,12 +238,21 @@ define(function (require, exports, module){
 				var page_now   = parseInt(body_dom.attr('data-page'), 10) + 1;
 				var page_total = parseInt(body_dom.attr('data-total-page'), 10);
 
+				// 判断是不是已经到了最后一页
 				if(page_now > page_total){
 		            get_more_loading = false;
+		            return;
 		        }
 
 				goods_model.get_more(function(data) {
+					var last_dom = $('.goods-list-data').last();
 					goods_list.append(data);
+					var last_dom_new = $('.goods-list-data').last();
+
+					if($('a', last_dom).length % 2 != 0) {
+						last_dom.append(last_dom_new.find('a:first-child'));
+					}
+					
 					lazy.refreshImg();
 					refresh_list();
 					get_price_info();
