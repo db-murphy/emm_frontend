@@ -35,7 +35,7 @@ define(function (require, exports, module){
 		iscroller = new IScroll('#scroll-view', {
 			click: true,
 			probeType: 3,
-			mouseWheel: true,
+			//mouseWheel: true,
 			tap: true
 		});
 
@@ -226,6 +226,14 @@ define(function (require, exports, module){
 					get_more_loading = false;
 					return;
 				}
+
+				var page_now   = parseInt(body_dom.attr('data-page'), 10) + 1;
+				var page_total = parseInt(body_dom.attr('data-total-page'), 10);
+
+				if(page_now > page_total){
+		            get_more_loading = false;
+		        }
+
 				goods_model.get_more(function(data) {
 					goods_list.append(data);
 					lazy.refreshImg();
@@ -312,6 +320,7 @@ define(function (require, exports, module){
 				fix_top_hiden.addClass('fix-top-hiden');
 
 				goods_list.html(data);
+				body_dom.attr('data-page', '1');
 				lazy.refreshImg();
 				refresh_list();
 				get_price_info();
@@ -377,6 +386,7 @@ define(function (require, exports, module){
 				fix_top_hiden.addClass('fix-top-hiden');
 
 				goods_list.html(data);
+				body_dom.attr('data-page', '1');
 				lazy.refreshImg();
 				refresh_list();
 				get_price_info();
@@ -430,6 +440,7 @@ define(function (require, exports, module){
 				fix_top_hiden.addClass('fix-top-hiden');
 
 				goods_list.html(data);
+				body_dom.attr('data-page', '1');
 				lazy.refreshImg();
 				refresh_list();
 				get_price_info();

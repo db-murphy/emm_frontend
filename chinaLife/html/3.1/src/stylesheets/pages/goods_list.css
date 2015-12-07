@@ -512,9 +512,9 @@ html, body{
     margin-bottom: 0.44rem;
     margin-right: 8.5%;
 }
-.filter-modal .btn-checkbox:active{
+/*.filter-modal .btn-checkbox:active{
 	background: #ddd;
-}
+}*/
 .filter-modal .btn-checkbox:nth-child(3n){
 	margin-right: 0;
 }

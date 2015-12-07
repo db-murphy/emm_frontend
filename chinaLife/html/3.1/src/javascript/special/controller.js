@@ -34,7 +34,7 @@ define(function (require, exports, module){
 	function create_scroll() {
 		iscroller = new IScroll('.scroll-view', {
 			click: true,
-			mouseWheel: true,
+			//mouseWheel: true,
 			probeType: 3
 		});
 

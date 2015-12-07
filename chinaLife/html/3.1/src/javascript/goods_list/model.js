@@ -9,11 +9,11 @@
 
 define(function (require,exports,module){
 	var variable = require('common/variable');
-    var body_dom = $('body');
 
 	// 获取优惠券结构
 	// ------------------
     function get_coupons_dom(callback) {
+        var body_dom     = $('body');
         var popSpecVidss = body_dom.attr('data-popspecvidss');
         var vsValue      = body_dom.attr('data-vs');
 
@@ -38,7 +38,8 @@ define(function (require,exports,module){
     // 获取优惠券状态
     // ------------------
 	function getCouponInfo(callback) {
-        var sid = body_dom.attr('data-sid');
+        var body_dom = $('body');
+        var sid      = body_dom.attr('data-sid');
 
         if($("#red-coupon").length > 0) {
             if(sid != null && sid !="") {
@@ -112,6 +113,7 @@ define(function (require,exports,module){
     // 发送筛选请求
     // ------------------
     function filter_confirm(callback) {
+        var body_dom  = $('body');
         var cateIdStr = getSelectedCateIdStr();
 
         $.ajax({
@@ -126,6 +128,7 @@ define(function (require,exports,module){
             dataType: "html",
             success:function(data){
                 if(data) {
+					body_dom.attr('data-total-page', $(data).attr('data-total-page'));
                     callback && callback(data);
                 }
             }
@@ -156,6 +159,7 @@ define(function (require,exports,module){
     // 商品排序
     // ------------------
     function sort_goods(callback) {
+        var body_dom  = $('body');
         var cateIdStr = getSelectedCateIdStr();
 
         $.ajax({
@@ -171,6 +175,7 @@ define(function (require,exports,module){
             dataType: "html",
             success:function(data){
                 if(data) {
+					body_dom.attr('data-total-page', $(data).attr('data-total-page'));
                     callback && callback(data);
                 }
             }
@@ -180,8 +185,10 @@ define(function (require,exports,module){
 	// 翻页查询
     // ------------------
 	function get_more(callback) {
+        var body_dom   = $('body');
 		var page_now   = parseInt(body_dom.attr('data-page'), 10) + 1;
 		var page_total = parseInt(body_dom.attr('data-total-page'), 10);
+		var cateIdStr  = getSelectedCateIdStr();
 
 		if(page_now > page_total){
             return;
@@ -196,12 +203,14 @@ define(function (require,exports,module){
                 "actId" : body_dom.attr('data-actid'),
                 "page" : page_now,
                 "vs" : body_dom.attr('data-vs'),
-                "preview" : body_dom.attr('data-preview')
+                "preview" : body_dom.attr('data-preview'),
+				"cateIdStr" : cateIdStr
             },
             dataType: "html",
             success:function(data){
 				if(data) {
 					body_dom.attr('data-page', page_now);
+					body_dom.attr('data-total-page', $(data).attr('data-total-page'));
 					callback && callback(data);
 				}
             }
