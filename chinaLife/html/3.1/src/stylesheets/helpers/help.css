@@ -1,4 +1,30 @@
 /**
+ * ios下body样式
+ */
+.body_overflow{
+	height: 100%;
+	overflow: hidden;
+	position: relative;
+}
+.red-ios-page{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+}
+.ios-scroll-view{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background: #fff;
+	top: 0;
+	overflow: hidden;
+}
+
+/**
  * 工具类样式
  * -------------------------------------------------
  */

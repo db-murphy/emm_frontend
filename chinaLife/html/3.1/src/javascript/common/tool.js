@@ -8,6 +8,8 @@
  */
 
 define(function (require, exports, module){
+	var variable = require('common/variable');
+
 	// 懒加载
 	// =================
 	var lazyload = {
@@ -200,6 +202,9 @@ define(function (require, exports, module){
 	    	isShowShortCut : false,
 	    	selectedShortCut : '4',
 	    	call: function() {
+	    		if(!variable.config.is_ios) {
+		    		return;
+		    	}
 				header_cunt++;
 				refresh_header_height();
 				if(header_cunt == 2) {
@@ -223,6 +228,9 @@ define(function (require, exports, module){
 
 	        },
 	        call: function() {
+	        	if(!variable.config.is_ios) {
+		    		return;
+		    	}
 				header_cunt++;
 				refresh_header_height();
 
@@ -253,6 +261,10 @@ define(function (require, exports, module){
 	    mchb.bottom(bottomArg);
 
 	    function refresh_header_height() {
+	    	if(!variable.config.is_ios) {
+	    		return;
+	    	}
+
 			scroll_top = header.height();
 			$('#scroll-view').css('top', scroll_top + 'px');
 			iscroller._resize();
@@ -265,9 +277,61 @@ define(function (require, exports, module){
 		}
 	}
 
+	// 基于系统自带滚动懒加载
+	// ===================
+	var lazyload_scroll = {
+	    init: function(opt) {
+	        var that = this;
+	        var op = {
+	            anim: true
+	        };
+	        $.extend(op, opt);
+	        that.img.init(op);
+	    },
+	    
+	    img: {
+	        init: function(n) {
+	            var that = this;
+	            
+	            function inViewport(el) {
+	                var top = window.pageYOffset
+	                var btm = window.pageYOffset + window.innerHeight
+	                var elTop = $(el).offset().top;
+	                return elTop >= top && elTop - 400 <= btm
+	            }
+	            
+	            $(window).bind('scroll', function() {
+	                $('img[data-layzr]').each(function(index, node) {
+	                    var $this = $(this)
+	                    if (!$this.attr('data-layzr')) {
+	                        return
+	                    }
+	                    if (!inViewport(this))
+	                        return
+	                    act($this)
+	                
+	                })
+	            }).trigger('scroll');
+	            
+	            function act(_self) {
+	                if (_self.attr('loaded'))
+	                    return;
+	                var img = new Image(), original = _self.attr('data-layzr')
+	                img.onload = function() {
+	                    _self.attr('src', original);
+	                    n.load_sucess && n.load_sucess(_self);
+	                }
+	                original && (img.src = original);
+	                _self.attr('loaded', true);
+	            }
+	        }
+	    }
+	};
+
 	module.exports = {
 		lazyload           : lazyload,
 		Countdown          : Countdown,
-		loadJdHeadAndFooter: loadJdHeadAndFooter
+		loadJdHeadAndFooter: loadJdHeadAndFooter,
+		lazyload_scroll    : lazyload_scroll
 	};
 });

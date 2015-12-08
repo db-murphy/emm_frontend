@@ -1,27 +1,27 @@
 /**
  * 页面布局
  */
-html, body{
+/*html, body{
 	height: 100%;
 	overflow: hidden;
 	position: relative;
-}
+}*/
 .red-mobile-page{
-	position: absolute;
+	/*position: absolute;
 	left: 0;
 	top: 0;
 	bottom: 0;
-	right: 0;
+	right: 0;*/
 }
 .scroll-view{
-	position: absolute;
+	/*position: absolute;
 	left: 0;
 	top: 0;
 	bottom: 0;
 	right: 0;
 	background: #fff;
 	top: 0;
-	overflow: hidden;
+	overflow: hidden;*/
 }
 .view-scroller{
 	background: #fff;
@@ -38,6 +38,7 @@ html, body{
 	/* padding-left: 1.6rem; */
 	background: #161616;
 	position: relative;
+	height: 0.7rem;
 	padding-left: 1.6rem;
 }
 /* .red-nav-box.fix-item-active{
