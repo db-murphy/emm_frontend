@@ -97,7 +97,7 @@ define(function (require, exports, module){
 		var item_count_inview, wrapper_height, item_height, first_item_top, scroll_view_top;
 
 		// 商品总数
-		total_text.text(goods_items.length);
+		total_text.text(body_dom.attr('data-total-records'));
 
 		// 回到顶部
 		go_top_btn.tap(function() {
@@ -122,7 +122,7 @@ define(function (require, exports, module){
 			item_count_inview = Math.floor((wrapper_height + Math.abs(this.y) - first_item_top) / item_height);
 
 			if(item_count_inview > Math.ceil(goods_items.length / 2)) {
-				item_count_inview = goods_items.length;
+				item_count_inview = Math.ceil(goods_items.length / 2);
 			}
 
 			if(item_count_inview >= 6) {
@@ -176,7 +176,7 @@ define(function (require, exports, module){
 
 		goods_items = $('#goods-list a');
 		fisrt_item  = goods_items.eq(0);
-		total_text.text(goods_items.length);
+		//total_text.text(goods_items.length);
 	}
 
 	// 懒加载
@@ -209,13 +209,14 @@ define(function (require, exports, module){
 		iscroller.on('scroll', function() {
 			item_count_inview = Math.floor((wrapper_height + Math.abs(this.y) - first_item_top) / item_height);
 
-			if(item_count_inview >= Math.ceil(goods_items.length / 2)) {
+			if(item_count_inview >= Math.ceil(goods_items.length / 2) - 1) {
 				if(get_more_loading) {
 					return;
 				}
 				get_more_loading = true;
 
 				if(variable.config.debug) {
+					return;
 					var new_lists = '';
 
 					new_lists = goods_list.html();
@@ -338,6 +339,16 @@ define(function (require, exports, module){
 
 				goods_list.html(data);
 				body_dom.attr('data-page', '1');
+
+				// 商品总数
+				var total_text = $('#total');
+
+				if($('.goods-list-data').eq(0).attr('data-total-records') < 1) {
+					total_text.text(1);
+				}else{
+					total_text.text($('.goods-list-data').eq(0).attr('data-total-records'));
+				}
+
 				lazy.refreshImg();
 				refresh_list();
 				get_price_info();
@@ -404,6 +415,16 @@ define(function (require, exports, module){
 
 				goods_list.html(data);
 				body_dom.attr('data-page', '1');
+
+				// 商品总数
+				var total_text = $('#total');
+
+				if($('.goods-list-data').eq(0).attr('data-total-records') < 1) {
+					total_text.text(1);
+				}else{
+					total_text.text($('.goods-list-data').eq(0).attr('data-total-records'));
+				}
+
 				lazy.refreshImg();
 				refresh_list();
 				get_price_info();
@@ -458,6 +479,16 @@ define(function (require, exports, module){
 
 				goods_list.html(data);
 				body_dom.attr('data-page', '1');
+
+				// 商品总数
+				var total_text = $('#total');
+
+				if($('.goods-list-data').eq(0).attr('data-total-records') < 1) {
+					total_text.text(1);
+				}else{
+					total_text.text($('.goods-list-data').eq(0).attr('data-total-records'));
+				}
+
 				lazy.refreshImg();
 				refresh_list();
 				get_price_info();
@@ -466,8 +497,21 @@ define(function (require, exports, module){
 			});
 		});
 
+		var t_start = null;
 		// 多选按钮点击事件
-		$('#type-group').click(function(ev) {
+		$('#type-group').tap(function(ev) {
+			if (t_start == null){
+		    	t_start = new Date().getTime();
+		    }else{
+		    	var t_end = new Date().getTime();
+			    if(t_end - t_start < 300){
+				    t_start = t_end;
+				    return;
+			    }else{
+			    	t_start = t_end;
+			    }
+		    }
+
 			var target = $(ev.target);
 			var li = target.closest('li');
 
@@ -561,6 +605,7 @@ define(function (require, exports, module){
 
 		goods_model.get_stock_info(function(data) {
 			goods_view.render_stock(data);
+			refresh_list();
 			iscroller._resize();
 		});
 	}

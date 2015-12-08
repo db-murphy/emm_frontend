@@ -86,7 +86,9 @@ define(function (require, exports, module){
 		});
 		var active_slider = $('.swiper-slide.active', this_swiper).get(0);
 
-		slide_to(navSwiper, active_slider, this_swiper, 600);
+		if(active_slider) {
+			slide_to(navSwiper, active_slider, this_swiper, 600);
+		}
 	};
 
 	// swiper slideTo

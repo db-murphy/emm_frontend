@@ -338,7 +338,6 @@ html, body{
 	padding-left: 0.1rem;
 }
 .goods-list a{
-	display: block;
 	float: left;
 	/*margin: 0 0.05rem 0.1rem 0.05rem;*/
 	width: 3.05rem;
@@ -395,6 +394,8 @@ html, body{
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	height: 0.22rem;
+	line-height: 0.22rem;
 }
 .goods-list .new-price{
 	font-size: 0.36rem;
