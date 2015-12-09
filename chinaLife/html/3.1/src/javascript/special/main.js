@@ -10,6 +10,10 @@
 define(function (require, exports, module){
 	var controller = require('special/controller');
 
+	// 页面布局调整
+	// ------------------
+	controller.page_view_update();
+
 	// 模拟页面滚动效果
 	// ------------------
 	controller.create_scroll();

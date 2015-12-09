@@ -11,6 +11,7 @@ define(function (require, exports, module){
 	// 模块依赖
 	// ------------------
 	var tool         = require('common/tool');
+	var variable     = require('common/variable');
 
 	/**
 	 * --------------------------
@@ -29,9 +30,28 @@ define(function (require, exports, module){
 	var reload       = true;
 	var lazy;
 
+	// 页面布局调整
+	// ------------------
+	function page_view_update() {
+		// 根据判断设备类型对页面做相应布局
+		// ============================
+		if(variable.config.is_ios) {
+			$('html').addClass('body_overflow');
+			$('body').addClass('body_overflow');
+
+			$('.red-mobile-page').addClass('red-ios-page');
+			$('#scroll-view').addClass('ios-scroll-view');
+		}
+
+	}
+
 	// 模拟页面滚动效果
 	// ------------------
 	function create_scroll() {
+		if(!variable.config.is_ios) {
+			return;
+		}
+
 		iscroller = new IScroll('.scroll-view', {
 			click: true,
 			//mouseWheel: true,
@@ -66,14 +86,38 @@ define(function (require, exports, module){
 		});
 		var active_slider = $('.swiper-slide.active', this_swiper).get(0);
 
-		slide_to(navSwiper, active_slider, this_swiper, 600);
+		if(active_slider) {
+			slide_to(navSwiper, active_slider, this_swiper, 600);
+		}
+
+		// 如果不是ios，则需要是用系统滚动来悬浮tab
+		if(!variable.config.is_ios) {
+			$(window).scroll(function(){
+				var top = $("body").scrollTop();
+				var header_height = $('#header').height();
+
+				if(top >= header_height) {
+					$("#red-nav").css({
+						"position": "fixed",
+						"top": "0px",
+						"left": "0px",
+						"z-index": "100"
+					});
+				} else if(top < header_height) {
+					$("#red-nav").css({
+						"position": "relative"
+					});
+				}
+			});
+		}
 	};
 
 	// swiper slideTo
 	// ------------------
 	function slide_to(swiper, active_slider, swiper_box, time) {
+		var li_fix            = $('#red-nav .nav-fix-item');
 		var swiper_width_half = parseInt(swiper_box.width() / 2, 10);
-		var offset_left       = active_slider.offsetLeft;
+		var offset_left       = active_slider.offsetLeft + li_fix.width();
 		var max_translate     = swiper.maxTranslate();
 		var min_translate     = swiper.minTranslate();
 		var translate_to      = swiper_width_half - offset_left - active_slider.offsetWidth / 2;
@@ -90,6 +134,27 @@ define(function (require, exports, module){
 	// 回到顶部按钮
 	// ------------------
 	function back_to_top() {
+		// 基于系统自带滚动
+		if(!variable.config.is_ios) {
+			var scrollTop, wHeight;
+
+			$('#go-top').click(function() {
+				$(window).scrollTop(0);
+			});
+
+			$(window).bind('scroll', function() {
+				scrollTop = $(window).scrollTop();
+				wHeight = $(window).height();
+
+				if(scrollTop >= wHeight){
+					go_top_btn.removeClass('none');
+				}else{
+					go_top_btn.addClass('none');
+				}
+			});
+			return;
+		}
+
 		/**
 		 * ---------------------------------------
 		 * @ item_height       单个活动区域高度
@@ -183,6 +248,35 @@ define(function (require, exports, module){
 	// 懒加载
 	// ------------------
 	function lazy_load() {
+		// 如果不是ios，就是用系统滚动懒加载
+		if(!variable.config.is_ios) {
+			tool.lazyload_scroll.init({
+				load_sucess: function(img) {
+					var item        = img.closest('.red-advertisements-item');
+					var item_detail = item.find('.advertisement-detail');
+					var attention   = item.find('.attention-msg');
+					var logo_img    = item.find('.commercial-logo img');
+					var logo_url    = logo_img.attr('data-logo-layzr');
+
+					// 加载logo图片
+					if(logo_url) {
+						var Img = new Image();
+
+						Img.onload = function() {
+							logo_img.attr('src', logo_url);
+						}
+
+						Img.onerror = function() {
+							logo_img.attr('src', assist.error_img_url.ader_logo_index());
+						}
+
+						Img.src = logo_url;
+					}
+				}
+			});
+			return;
+		};
+
 		lazy = tool.lazyload.init({
 			iscroller: iscroller,
 			load_sucess: function(img) {
@@ -212,8 +306,12 @@ define(function (require, exports, module){
 		}
 
 		if(sessionStorage.getItem('index_y')) {
-			iscroller.scrollTo(0, parseInt(sessionStorage.getItem('index_y'), 10));
-			lazy.refreshImg();
+			if(variable.config.is_ios) {
+				iscroller.scrollTo(0, parseInt(sessionStorage.getItem('index_y'), 10));
+				lazy.refreshImg();
+			}else{
+				$(window).scrollTop(parseInt(sessionStorage.getItem('index_y'), 10));
+			}
 		};
 
 		$('#red-nav a').click(function() {
@@ -240,7 +338,11 @@ define(function (require, exports, module){
 
 			$(value).click(function() {
 				reload = false;
-				window.sessionStorage.setItem('index_y', iscroller.y);
+				if(variable.config.is_ios) {
+					window.sessionStorage.setItem('index_y', iscroller.y);
+				}else{
+					window.sessionStorage.setItem('index_y', $(window).scrollTop());
+				}
 			});
 		});
 	}
@@ -253,6 +355,7 @@ define(function (require, exports, module){
 		create_scroll      : create_scroll,
 		lazy_load          : lazy_load,
 		rebuild_a_jump     : rebuild_a_jump,
-		loadJdHeadAndFooter: loadJdHeadAndFooter
+		loadJdHeadAndFooter: loadJdHeadAndFooter,
+		page_view_update   : page_view_update
 	};
 });
