@@ -3,15 +3,15 @@
  * -------------------------------------------------
  */
 .go-top{
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 0.7rem;
+    height: 0.7rem;
     -webkit-box-sizing:border-box;
     box-sizing:border-box;
-    border: 1px solid #7f7f7f;
+    border: 1px solid #a7a6a6;
     position: fixed;
     bottom: 0.16rem;
     right: 0.18rem;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgb(255, 255, 255);
     border-radius: 50%;
     background-clip: padding-box;
 }
@@ -19,7 +19,7 @@
     display: block;
     text-align: center;
     line-height: 0.19rem;
-    width: 0.66rem;
+    width: 0.56rem;
 }
 .go-top p.count span:first-child{
     border-bottom: 1px solid #000;
@@ -30,7 +30,7 @@
 }
 .go-top p.count, .go-top .back{
     color: #000;
-    font-size: 0.24rem;
+    font-size: 0.18rem;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -39,17 +39,19 @@
     text-align: center;
 }
 .go-top .back{
-    padding-top: 0.28rem;
+    /*padding-top: 0.28rem;*/
+    width: 100%;
+    height: 100%;
 }
 .go-top .ion-arrow-up{
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    width: 0.25rem;
-    height: 0.28rem;
-    background-size: 0.25rem 0.28rem;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 0.33rem;
+    height: 0.48rem;
+    background-size: 0.33rem 0.48rem;
 }
 .go-top .back .arrow-ion{
     height: 0.28rem;

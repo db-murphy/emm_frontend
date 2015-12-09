@@ -40,7 +40,7 @@
 	top: 0;
 	border-width: 0.09rem;
 	border-top-width: 0;
-	border-color: transparent transparent #ababab transparent;
+	border-color: transparent transparent #666666 transparent;
 	border-style: dashed dashed solid dashed
 }
 .ion-tris:after{
@@ -49,6 +49,6 @@
 	bottom: 0;
 	border-width: 0.09rem;
 	border-bottom-width: 0;
-	border-color: #ababab transparent transparent transparent;
+	border-color: #666666 transparent transparent transparent;
 	border-style: solid dashed dashed dashed
 }
