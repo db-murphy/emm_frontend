@@ -53,13 +53,13 @@ define(function (require, exports, module){
                 _this.op.load_sucess && _this.op.load_sucess(_self);
             }
             img.onerror = function() {
-            	var error_type = _self.dataset.error;
+            	/*var error_type = _self.dataset.error;
 
             	switch(error_type) {
             		case 'adver':
             			$_self.attr('src', assist.error_img_url.adver_index());
             			break;
-            	}
+            	}*/
 
             	_this.op.load_sucess && _this.op.load_sucess(_self);
             }
@@ -182,12 +182,19 @@ define(function (require, exports, module){
 		var jd_header    = $('#jd-header');
 		var header_ready = false;
 		var header_cunt  = 0;
+		var header_request;
 		var scroll_top;
 		var timer;
 
 		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || typeof MCommonHeaderBottom == 'undefined'){
 			refresh_header_height();
 			return;
+		}
+
+		if(variable.config.is_uc) {
+			header_request = 1;
+		}else{
+			header_request = 2;
 		}
 
 	    var mchb      = new MCommonHeaderBottom();
@@ -207,7 +214,7 @@ define(function (require, exports, module){
 		    	}
 				header_cunt++;
 				refresh_header_height();
-				if(header_cunt == 2) {
+				if(header_cunt == header_request) {
 					header_addevent();
 				}
 	    	}
@@ -234,7 +241,7 @@ define(function (require, exports, module){
 				header_cunt++;
 				refresh_header_height();
 
-				if(header_cunt == 2) {
+				if(header_cunt == header_request) {
 					header_addevent();
 				}
 	        },
@@ -245,7 +252,12 @@ define(function (require, exports, module){
 			}
 	    };
 
-	    mchb.jdTip(tipArg);
+	    // 如果是UC
+	    if(!(variable.config.is_uc)) {
+			mchb.jdTip(tipArg);
+		}
+
+	    //mchb.jdTip(tipArg);
 
 	    /**公共尾部**/
 	    var footerPlatforms3 = mchb.platformEnum('http://www.jd.com/#m',sid).enum3;//标准版 触屏版 电脑版 客户端 4个

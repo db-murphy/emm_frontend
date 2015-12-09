@@ -252,10 +252,8 @@ define(function (require, exports, module){
 		if(!variable.config.is_ios) {
 			tool.lazyload_scroll.init({
 				load_sucess: function(img) {
-					var item        = img.closest('.red-advertisements-item');
-					var item_detail = item.find('.advertisement-detail');
-					var attention   = item.find('.attention-msg');
-					var logo_img    = item.find('.commercial-logo img');
+					var item        = $(img).closest('a');
+					var logo_img    = item.find('.goods-logo img');
 					var logo_url    = logo_img.attr('data-logo-layzr');
 
 					// 加载logo图片
@@ -264,10 +262,6 @@ define(function (require, exports, module){
 
 						Img.onload = function() {
 							logo_img.attr('src', logo_url);
-						}
-
-						Img.onerror = function() {
-							logo_img.attr('src', assist.error_img_url.ader_logo_index());
 						}
 
 						Img.src = logo_url;

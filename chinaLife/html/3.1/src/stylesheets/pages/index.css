@@ -136,9 +136,9 @@ nav.nav-fixed.hide{
 }
 .red-mobile-nav ul li.active a{
 	color: #fff;
-	font-size: 0.3rem; /**30px**/
+	/* font-size: 0.3rem;  *//**30px**/
 	position: relative;
-	font-weight: bold;
+	/* font-weight: bold; */
 }
 
 /**
@@ -379,10 +379,10 @@ nav.nav-fixed.hide{
 .advertisement-detail .tag span{
 	display: inline-block;
 	background: #f9384e;
-	font-size: 0.12rem;
 	padding: 0.02rem 0.04rem;
 	line-height: normal;
 	font-weight: lighter;
+	font-size: 0.12rem;
 	white-space: nowrap;
 }
 
@@ -519,22 +519,24 @@ nav.nav-fixed.hide{
 }
 .start_time{
 	width: 2.9rem;
-    height: 0.6rem;
-    line-height: 0.6rem;
-    margin-left: .2rem;
-    margin-top: .2rem;
-    text-align: center;
-    background-color: rgba(34,34,34,.7);
-    color: #fff;
-    position: relative;
-    font-size: .24rem;
+	margin-top: .2rem;
+	text-align: center;
+	line-height: normal;
+	padding: 0.15rem 0 0.15rem 0;
+	margin-left: .2rem;
+	background-color: rgba(34,34,34,.7);
+	color: #fff;
+	position: relative;
+	font-size: .24rem;
 }
 .start_time::before{
 	content: "\20";
-    display: block;
-    width: .2rem;
-    height: .6rem;
-    border-right: 1px solid #fff;
-    background-color: #222;
-    float: left;
+	display: block;
+	width: .2rem;
+	height: 100%;
+	border-right: 1px solid #fff;
+	background-color: #222;
+	position: absolute;
+	left: 0;
+	top: 0;
 }

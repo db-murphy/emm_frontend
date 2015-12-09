@@ -425,3 +425,10 @@
 .font-pink{
 	color: #f76275;
 }
+
+.default_style_rectangle{
+	height: 3.92rem;
+}
+.default_style_square{
+	height: 3.05rem;
+}

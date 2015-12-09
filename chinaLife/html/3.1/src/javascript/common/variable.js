@@ -36,6 +36,7 @@ define(function (require,exports,module){
 
 	var userAgent = navigator.userAgent;
 	var is_ios = !!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+	var is_uc = userAgent.indexOf('UCBrowser') != -1;
 
 	/**
 	 * 配置参数
@@ -45,7 +46,8 @@ define(function (require,exports,module){
 	 */
 	var config = {
 		debug: red_debug,
-		is_ios: is_ios
+		is_ios: is_ios,
+		is_uc: is_uc
 	};
 
 	var header_html = '<script>function _toggleJdKey(){if(document.getElementById("jdkey").style.display=="none"){document.getElementById("jdkey").style.display="";}else{document.getElementById("jdkey").style.display="none";}}function _pageBack(){var currentLocation = window.location.href;if(/#top/.test(currentLocation)){window.history.go(-2);window.location.load(window.location.href);}else{window.history.back();window.location.load(window.location.href);}}</script>';
