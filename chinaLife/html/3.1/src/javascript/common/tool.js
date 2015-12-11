@@ -340,10 +340,117 @@ define(function (require, exports, module){
 	    }
 	};
 
+	function loadJdHeadAndFooterGoodsList(iscroller, pos_filter){
+		var body_dom     = $('body');
+		var vs           = body_dom.attr("data-vs");
+		var header       = $('#header');
+		var tip          = $('#jd-tip');
+		var jd_header    = $('#jd-header');
+		var header_ready = false;
+		var header_cunt  = 0;
+		var header_request;
+		var scroll_top;
+		var timer;
+
+		if(null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || typeof MCommonHeaderBottom == 'undefined'){
+			refresh_header_height();
+			return;
+		}
+
+		if(variable.config.is_uc) {
+			header_request = 1;
+		}else{
+			header_request = 2;
+		}
+
+	    var mchb      = new MCommonHeaderBottom();
+	    var sid       = body_dom.attr("data-sid");
+	    var showTitle = body_dom.attr("data-title");
+
+	    /*公共头部*/
+	    var headerArg = {
+	    	hrederId : 'jd-header',
+	    	title:showTitle,
+	    	sid : sid,
+	    	isShowShortCut : false,
+	    	selectedShortCut : '4',
+	    	call: function() {
+				header_cunt++;
+				refresh_header_height();
+				if(header_cunt == header_request) {
+					header_addevent();
+				}
+	    	}
+	    }
+
+	    mchb.header(headerArg);
+
+	    /*app下载*/
+	    var tipArg = {
+			tipId : 'jd-tip',
+			sid : sid,
+			isfloat: false,
+			isAlwayShow : true,
+	        onClickTrynow: function(){
+
+	        },
+	        onClickTipX: function(){
+
+	        },
+	        call: function() {
+				header_cunt++;
+				refresh_header_height();
+
+				if(header_cunt == header_request) {
+					header_addevent();
+				}
+	        },
+	        downloadAppPlugIn:{
+				sourceType:'Sale',
+				sourceValue:'sale-act',
+				downAppURl  : 'http://h5.m.jd.com/active/download/download.html?channel=jd-mxz2'
+			}
+	    };
+
+	    // 如果是UC
+	    if(!(variable.config.is_uc)) {
+			mchb.jdTip(tipArg);
+		}
+
+	    //mchb.jdTip(tipArg);
+
+	    /**公共尾部**/
+	    var footerPlatforms3 = mchb.platformEnum('http://www.jd.com/#m',sid).enum3;//标准版 触屏版 电脑版 客户端 4个
+	    var bottomArg = {
+			bottomId : 'jd-footer',
+			sid : sid,
+			pin : "" ,
+			footerPlatforms : footerPlatforms3,
+			call: function() {
+
+	    	}
+		};
+	    mchb.bottom(bottomArg);
+
+	    function refresh_header_height() {
+
+			scroll_top = header.height();
+			$('#scroll-view').css('top', scroll_top + 'px');
+			iscroller._resize();
+			pos_filter && pos_filter();
+		}
+
+		function header_addevent() {
+			$('#jd-nav div[report-eventid="MDownLoadFloat_Close"]').click(refresh_header_height);
+			$('#jd-nav div[report-eventid="MCommonHead_NavigateButton"]').click(refresh_header_height);
+		}
+	}
+
 	module.exports = {
 		lazyload           : lazyload,
 		Countdown          : Countdown,
 		loadJdHeadAndFooter: loadJdHeadAndFooter,
-		lazyload_scroll    : lazyload_scroll
+		lazyload_scroll    : lazyload_scroll,
+		loadJdHeadAndFooterGoodsList: loadJdHeadAndFooterGoodsList
 	};
 });

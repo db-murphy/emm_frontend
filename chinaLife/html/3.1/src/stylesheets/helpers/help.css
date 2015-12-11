@@ -24,6 +24,13 @@
 	overflow: hidden;
 }
 
+.fix-top{
+	position: fixed !important;
+	top: 0;
+	left: 0;
+	z-index: 100;
+}
+
 /**
  * 工具类样式
  * -------------------------------------------------

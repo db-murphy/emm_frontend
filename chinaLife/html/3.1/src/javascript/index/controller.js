@@ -28,6 +28,7 @@ define(function (require, exports, module){
 	var items        = $('.red-advertisements-item');
 	var fisrt_item   = items.eq(0);
 	var view_scroll  = $('#view-scroller');
+	var body_dom     = $('body');
 	var iscroller    = null;
 	var sec_adver    = $('.red-advertisements');
 	var reload       = true;
@@ -38,6 +39,7 @@ define(function (require, exports, module){
 	function page_view_update() {
 		var prev_sec = 0;
 		var _sec_adver = sec_adver;
+		var vs = body_dom.attr("data-vs");
 
 		while(_sec_adver.prev('section').length) {
 			prev_sec++;
@@ -49,7 +51,6 @@ define(function (require, exports, module){
 		}
 
 		// 根据判断设备类型对页面做相应布局
-		// ============================
 		if(variable.config.is_ios) {
 			$('html').addClass('body_overflow');
 			$('body').addClass('body_overflow');
@@ -58,6 +59,10 @@ define(function (require, exports, module){
 			$('#scroll-view').addClass('ios-scroll-view');
 		}
 
+		// 如果是安卓下的京东app
+		if((null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || typeof MCommonHeaderBottom == 'undefined') && !variable.config.is_ios){
+			$('#scroll-view').addClass('pt70');
+		}
 	}
 
 	// 模拟页面滚动效果
@@ -92,44 +97,47 @@ define(function (require, exports, module){
 	// 构造顶部滑动tab
 	// ------------------
 	function create_tab() {
-		var this_swiper  = $('#red-nav');
-		var navSwiper = new Swiper('.red-mobile-nav',{
-			slidesPerView : 'auto',
-			loop: false,
-			preventClicks : false
-		});
-		var active_slider = $('.swiper-slide.active', this_swiper).get(0);
-
-		if(active_slider) {
-			slide_to(navSwiper, active_slider, this_swiper, 600);
-		}
-
 		// 如果不是ios，则需要是用系统滚动来悬浮tab
 		if(!variable.config.is_ios) {
+			var red_nav = $('.red-nav-box');
+			var scroller_view = $('#scroll-view');
+			var jd_nav = $('#jd-nav');
+			var top, header_height;
+
 			$(window).scroll(function(){
-				var top = $("body").scrollTop();
-				var header_height = $('#header').height();
+				top = body_dom.scrollTop();
+				header_height = jd_nav.height();
 
 				if(top >= header_height) {
-					$("#red-nav").css({
-						"position": "fixed",
-						"top": "0px",
-						"left": "0px",
-						"z-index": "100"
-					});
+					red_nav.addClass('fix-top');
+					scroller_view.addClass('pt70');
 				} else if(top < header_height) {
-					$("#red-nav").css({
-						"position": "relative"
-					});
+					red_nav.removeClass('fix-top');
+					scroller_view.removeClass('pt70');
 				}
 			});
 		}
+
+		var this_swiper  = $('.red-nav-box');
+
+		var navSwiper = new Swiper('.red-mobile-nav',{
+			slidesPerView : 'auto',
+			loop: false,
+			preventClicks : false,
+			onInit: function(swiper) {
+				var active_slider = $('.swiper-slide.active', this_swiper).get(0);
+
+				if(active_slider) {
+					slide_to(swiper, active_slider, this_swiper, 600);
+				}
+			}
+		});
 	};
 
 	// swiper slideTo
 	// ------------------
 	function slide_to(swiper, active_slider, swiper_box, time) {
-		var li_fix            = $('#red-nav .nav-fix-item');
+		var li_fix            = $('.nav-fix-item');
 		var swiper_width_half = parseInt(swiper_box.width() / 2, 10);
 		var offset_left       = active_slider.offsetLeft + li_fix.width();
 		var max_translate     = swiper.maxTranslate();
@@ -162,7 +170,7 @@ define(function (require, exports, module){
 		}
 
 		if($('.red-slider-wraper').length) {
-			var sliderSwiper = new Swiper('.red-slider-wraper', slider_config);
+			//var sliderSwiper = new Swiper('.red-slider-wraper', slider_config);
 		}
 	}
 

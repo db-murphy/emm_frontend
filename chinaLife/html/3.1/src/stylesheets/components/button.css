@@ -130,15 +130,20 @@ a.btn.disabled,{
  * 3d按钮
  */
 .btn-3d{
-    display: block;
     padding: 0;
     height: 0.56rem;
     width: 1rem;
-    text-align: center;
-    line-height: 0.56rem;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
     font-size: 0.3rem;
     background: url(../images/btn.png) no-repeat center center;
-    background-size: 100% 100%; 
+    background-size: 100% 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
 }
 
 /**

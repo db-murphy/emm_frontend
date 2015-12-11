@@ -287,7 +287,7 @@ nav.nav-fixed.hide{
 	box-sizing:border-box;
 }
 .advertisement-detail .commercial-logo{
-	margin-bottom: 0.36rem;
+	margin-bottom: 0.26rem;
 }
 .advertisement-detail .commercial-logo img{
 	display: block;
@@ -369,7 +369,7 @@ nav.nav-fixed.hide{
 	left: 50%;
 	bottom: -0.28rem;
 	border: 1px solid #f9384e;
-	border-radius: 0.02rem;
+	border-radius: 0.04rem;
 	padding: 0.02rem;
 	line-height: normal;
 	font-size: 0;
@@ -379,12 +379,29 @@ nav.nav-fixed.hide{
 .advertisement-detail .tag span{
 	display: inline-block;
 	background: #f9384e;
-	padding: 0.02rem 0.04rem;
-	line-height: normal;
+	padding: 0 0.06rem;
 	font-weight: lighter;
-	font-size: 0.12rem;
+	font-size: 0.17rem;
 	white-space: nowrap;
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	-webkit-box-pack: center;
+	-moz-box-pack: center;
+	-webkit-box-align: center;
+	-moz-box-align: center;
+    border-radius: 0.04rem;
+    position: relative;
 }
+/* .advertisement-detail .tag span i{
+	font-style: normal;
+	position: absolute;
+	line-height: normal;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+} */
 
 /**
  * 好货推荐样式

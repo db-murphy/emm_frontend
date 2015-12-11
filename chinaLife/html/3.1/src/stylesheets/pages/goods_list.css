@@ -390,11 +390,12 @@ html, body{
 	color: #000;
 	font-size: 0.2rem;
 	text-align: left;
-	padding: 0.15rem 0 0.15rem 0;
+	margin: 0.15rem 0 0.15rem 0;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	height: 0.22rem;
+	width: 100%;
 	line-height: 0.22rem;
 }
 .goods-list .new-price{

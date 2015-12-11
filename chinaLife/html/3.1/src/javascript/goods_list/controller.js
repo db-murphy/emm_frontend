@@ -613,7 +613,8 @@ define(function (require, exports, module){
 	// 创建公共头尾
 	// ------------------
 	function loadJdHeadAndFooter() {
-		tool.loadJdHeadAndFooter(iscroller, pos_filter);
+		//tool.loadJdHeadAndFooter(iscroller, pos_filter);
+		tool.loadJdHeadAndFooterGoodsList(iscroller, pos_filter);
 	}
 
 	// 定位隐藏筛选条纵坐标

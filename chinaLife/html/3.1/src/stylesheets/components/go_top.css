@@ -11,7 +11,7 @@
     position: fixed;
     bottom: 0.16rem;
     right: 0.18rem;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, .9);
     border-radius: 50%;
     background-clip: padding-box;
 }
@@ -47,10 +47,9 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
     width: 0.33rem;
     height: 0.48rem;
+    margin: -0.24rem 0 0 -0.15rem;
     background-size: 0.33rem 0.48rem;
 }
 .go-top .back .arrow-ion{
