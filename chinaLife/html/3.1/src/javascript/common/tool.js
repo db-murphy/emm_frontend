@@ -298,44 +298,72 @@ define(function (require, exports, module){
 	            anim: true
 	        };
 	        $.extend(op, opt);
-	        that.img.init(op);
+	        this.op = op;
+	        return that.img.init(op);
+	    },
+
+	    img_each: function(img_lazy) {
+	    	var _this = this;
+
+	    	img_lazy.each(function(index, node) {
+                if (!this.dataset.layzr) {
+                    return;
+                }
+
+                if (!_this.inViewport(this)) {
+                	return
+                }
+
+                _this.act(this);
+            });
+	    },
+
+	    act: function(_self) {
+	    	var $_self = $(_self);
+	    	var _this = this;
+
+            if ($_self.attr('loaded')) {
+                return;
+            }
+            var img = new Image(), original = _self.dataset.layzr;
+
+            img.onload = function() {
+                $_self.attr('src', original).removeAttr('data-layzr');
+                _this.op.load_sucess && _this.op.load_sucess(_self);
+            }
+            img.onerror = function() {
+            	_this.op.load_sucess && _this.op.load_sucess(_self);
+            }
+
+            original && (img.src = original);
+            $_self.attr('loaded', true);
+	    },
+
+	    inViewport: function(el) {
+	    	var top = window.pageYOffset
+            var btm = window.pageYOffset + window.innerHeight
+            var elTop = $(el).offset().top;
+
+            return elTop >= top && elTop - 400 <= btm;
+	    },
+
+	    refreshImg: function() {
+	    	this.img.imgs = $('img[data-layzr]');
+	    	this.img_each(this.img.imgs);
 	    },
 	    
 	    img: {
+	    	imgs: $('img[data-layzr]'),
 	        init: function(n) {
-	            var that = this;
-	            
-	            function inViewport(el) {
-	                var top = window.pageYOffset
-	                var btm = window.pageYOffset + window.innerHeight
-	                var elTop = $(el).offset().top;
-	                return elTop >= top && elTop - 400 <= btm
-	            }
+	            var _this = this;
 	            
 	            $(window).bind('scroll', function() {
-	                $('img[data-layzr]').each(function(index, node) {
-	                    var $this = $(this)
-	                    if (!$this.attr('data-layzr')) {
-	                        return
-	                    }
-	                    if (!inViewport(this))
-	                        return
-	                    act($this)
-	                
-	                })
-	            }).trigger('scroll');
-	            
-	            function act(_self) {
-	                if (_self.attr('loaded'))
-	                    return;
-	                var img = new Image(), original = _self.attr('data-layzr')
-	                img.onload = function() {
-	                    _self.attr('src', original);
-	                    n.load_sucess && n.load_sucess(_self);
-	                }
-	                original && (img.src = original);
-	                _self.attr('loaded', true);
-	            }
+	                lazyload_scroll.img_each(_this.imgs);
+	            });
+
+	            lazyload_scroll.img_each(_this.imgs);
+
+	            return lazyload_scroll;
 	        }
 	    }
 	};
@@ -375,6 +403,9 @@ define(function (require, exports, module){
 	    	isShowShortCut : false,
 	    	selectedShortCut : '4',
 	    	call: function() {
+	    		if(!variable.config.is_ios) {
+		    		return;
+		    	}
 				header_cunt++;
 				refresh_header_height();
 				if(header_cunt == header_request) {
@@ -398,6 +429,9 @@ define(function (require, exports, module){
 
 	        },
 	        call: function() {
+	        	if(!variable.config.is_ios) {
+		    		return;
+		    	}
 				header_cunt++;
 				refresh_header_height();
 
@@ -433,7 +467,9 @@ define(function (require, exports, module){
 	    mchb.bottom(bottomArg);
 
 	    function refresh_header_height() {
-
+	    	if(!variable.config.is_ios) {
+	    		return;
+	    	}
 			scroll_top = header.height();
 			$('#scroll-view').css('top', scroll_top + 'px');
 			iscroller._resize();

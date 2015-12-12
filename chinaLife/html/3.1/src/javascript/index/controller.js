@@ -39,7 +39,6 @@ define(function (require, exports, module){
 	function page_view_update() {
 		var prev_sec = 0;
 		var _sec_adver = sec_adver;
-		var vs = body_dom.attr("data-vs");
 
 		while(_sec_adver.prev('section').length) {
 			prev_sec++;
@@ -57,11 +56,6 @@ define(function (require, exports, module){
 
 			$('.red-mobile-page').addClass('red-ios-page');
 			$('#scroll-view').addClass('ios-scroll-view');
-		}
-
-		// 如果是安卓下的京东app
-		if((null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || typeof MCommonHeaderBottom == 'undefined') && !variable.config.is_ios){
-			$('#scroll-view').addClass('pt70');
 		}
 	}
 
@@ -119,7 +113,6 @@ define(function (require, exports, module){
 		}
 
 		var this_swiper  = $('.red-nav-box');
-
 		var navSwiper = new Swiper('.red-mobile-nav',{
 			slidesPerView : 'auto',
 			loop: false,
@@ -170,7 +163,7 @@ define(function (require, exports, module){
 		}
 
 		if($('.red-slider-wraper').length) {
-			//var sliderSwiper = new Swiper('.red-slider-wraper', slider_config);
+			var sliderSwiper = new Swiper('.red-slider-wraper', slider_config);
 		}
 	}
 
@@ -349,7 +342,7 @@ define(function (require, exports, module){
 		if(!variable.config.is_ios) {
 			tool.lazyload_scroll.init({
 				load_sucess: function(img) {
-					var item        = img.closest('.red-advertisements-item');
+					var item        = $(img).closest('.red-advertisements-item');
 					var item_detail = item.find('.advertisement-detail');
 					var attention   = item.find('.attention-msg');
 					var logo_img    = item.find('.commercial-logo img');

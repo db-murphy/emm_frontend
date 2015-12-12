@@ -34,8 +34,6 @@ define(function (require, exports, module){
 	// 页面布局调整
 	// ------------------
 	function page_view_update() {
-		var vs = body_dom.attr("data-vs");
-
 		// 根据判断设备类型对页面做相应布局
 		if(variable.config.is_ios) {
 			$('html').addClass('body_overflow');
@@ -43,11 +41,6 @@ define(function (require, exports, module){
 
 			$('.red-mobile-page').addClass('red-ios-page');
 			$('#scroll-view').addClass('ios-scroll-view');
-		}
-
-		// 如果是安卓下的京东app
-		if((null == vs || undefined == vs || "jdapp" == vs || "weixin" == vs || typeof MCommonHeaderBottom == 'undefined') && !variable.config.is_ios){
-			$('#scroll-view').addClass('pt70');
 		}
 	}
 
@@ -84,21 +77,9 @@ define(function (require, exports, module){
 	// 构造顶部滑动tab
 	// ------------------
 	function create_tab() {
-		var this_swiper  = $('#red-nav');
-		var navSwiper = new Swiper('.red-mobile-nav',{
-			slidesPerView : 'auto',
-			loop: false,
-			preventClicks : false
-		});
-		var active_slider = $('.swiper-slide.active', this_swiper).get(0);
-
-		if(active_slider) {
-			slide_to(navSwiper, active_slider, this_swiper, 600);
-		}
-
 		// 如果不是ios，则需要是用系统滚动来悬浮tab
 		if(!variable.config.is_ios) {
-			var red_nav = $('#red-nav');
+			var red_nav = $('.red-nav-box');
 			var scroller_view = $('#scroll-view');
 			var jd_nav = $('#jd-nav');
 			var top, header_height;
@@ -115,6 +96,18 @@ define(function (require, exports, module){
 					scroller_view.removeClass('pt70');
 				}
 			});
+		}
+		
+		var this_swiper  = $('.red-nav-box');
+		var navSwiper = new Swiper('.red-mobile-nav',{
+			slidesPerView : 'auto',
+			loop: false,
+			preventClicks : false
+		});
+		var active_slider = $('.swiper-slide.active', this_swiper).get(0);
+
+		if(active_slider) {
+			slide_to(navSwiper, active_slider, this_swiper, 600);
 		}
 	};
 

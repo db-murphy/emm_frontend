@@ -29,9 +29,31 @@ define(function (require, exports, module){
 	var fisrt_item   = goods_items.eq(0);
 	var lazy;
 
+	// 页面布局调整
+	// ------------------
+	function page_view_update() {
+		// 根据判断设备类型对页面做相应布局
+		if(variable.config.is_ios) {
+			$('html').addClass('body_overflow');
+			$('body').addClass('body_overflow');
+
+			$('.red-mobile-page').addClass('red-ios-page');
+			$('#scroll-view').addClass('ios-scroll-view');
+		}else{
+			$('#filter-modal').css('position', 'fixed');
+			$('#filter-modal').bind('touchmove', function(ev) {
+				ev.preventDefault();
+			});
+		}
+	}
+
 	// 模拟页面滚动效果
 	// ------------------
 	function create_scroll() {
+		if(!variable.config.is_ios) {
+			return;
+		}
+
 		iscroller = new IScroll('#scroll-view', {
 			click: true,
 			probeType: 3,
@@ -55,6 +77,31 @@ define(function (require, exports, module){
 	function filter_fix() {
 		var filter_y;
 
+		if(!variable.config.is_ios) {
+			var scroller_view = $('#scroll-view');
+			var jd_nav = $('#jd-nav');
+			var top, header_height;
+
+			$(window).scroll(function(){
+				top = body_dom.scrollTop();
+				filter_y = filter_box.offset().top;
+
+				if(top >= filter_y) {
+					// 显示
+					fix_top_hiden.removeClass('fix-top-hiden');
+					//scroller_view.addClass('pt70');
+				} else if(top < filter_y) {
+					// 隐藏
+					fix_top_hiden.addClass('fix-top-hiden');
+					//scroller_view.removeClass('pt70');
+				}
+			});
+			return;
+		}
+
+		if(!iscroller) {
+			return;
+		}
 		// 滚动开始
 		iscroller.on('beforeScrollStart', function() {
 			filter_y = filter_box.offset().top - view_scroll.offset().top;
@@ -78,6 +125,27 @@ define(function (require, exports, module){
 	// 回到顶部按钮
 	// ------------------
 	function back_to_top() {
+		// 基于系统自带滚动
+		if(!variable.config.is_ios) {
+			var scrollTop, wHeight;
+
+			$('#go-top').click(function() {
+				$(window).scrollTop(0);
+			});
+
+			$(window).bind('scroll', function() {
+				scrollTop = $(window).scrollTop();
+				wHeight = $(window).height();
+
+				if(scrollTop >= wHeight){
+					go_top_btn.removeClass('none');
+				}else{
+					go_top_btn.addClass('none');
+				}
+			});
+			return;
+		}
+
 		/**
 		 * ---------------------------------------
 		 * @ item_height       单个活动区域高度
@@ -182,10 +250,20 @@ define(function (require, exports, module){
 	// 懒加载
 	// ------------------
 	function lazy_load() {
+		// 如果不是ios，就是用系统滚动懒加载
+		if(!variable.config.is_ios) {
+			lazy = tool.lazyload_scroll.init({
+				load_sucess: function(img) {
+					$(img).addClass('fadeIn');
+				}
+			});
+			return;
+		};
+
 		lazy = tool.lazyload.init({
 			iscroller: iscroller,
 			load_sucess: function(img) {
-				//img.classList.add('fadeIn');
+
 			}
 		});
 	}
@@ -195,6 +273,67 @@ define(function (require, exports, module){
 	function get_more_page() {
 		var item_count_inview, wrapper_height, item_height, first_item_top, scroll_view_top;
 		var get_more_loading = false;
+
+		if(!variable.config.is_ios) {
+			$(window).bind('scroll', function() {
+				var scrollTop = $(window).scrollTop();
+			    var dHeight = $(document).height();
+			    var wHeight = $(window).height();
+
+			    if(scrollTop >= dHeight-wHeight-500){
+			    	if(get_more_loading) {
+						return;
+					}
+					get_more_loading = true;
+
+					if(variable.config.debug) {
+						var new_lists = '';
+
+						new_lists = goods_list.html();
+						var last_dom = $('.goods-list-data').last();
+
+						goods_list.append(new_lists);
+						var last_dom_new = $('.goods-list-data').last();
+
+						if($('a', last_dom).length % 2 != 0) {
+							last_dom.append(last_dom_new.find('a:first-child'));
+						}
+
+						lazy.refreshImg();
+						get_more_loading = false;
+						return;
+					}
+
+					var page_now   = parseInt(body_dom.attr('data-page'), 10) + 1;
+					var page_total = parseInt(body_dom.attr('data-total-page'), 10);
+
+					// 判断是不是已经到了最后一页
+					if(page_now > page_total){
+			            get_more_loading = false;
+			            return;
+			        }
+
+			        goods_model.get_more(function(data) {
+						var last_dom = $('.goods-list-data').last();
+						goods_list.append(data);
+						var last_dom_new = $('.goods-list-data').last();
+
+						if($('a', last_dom).length % 2 != 0) {
+							last_dom.append(last_dom_new.find('a:first-child'));
+						}
+						
+						lazy.refreshImg();
+						get_price_info();
+						get_stock_info();
+						get_more_loading = false;
+					});
+			    }
+			});
+		}
+
+		if(!iscroller) {
+			return;
+		}
 
 		// 滚动之前(手指已经与屏幕接触)
 		iscroller.on('beforeScrollStart', function() {
@@ -216,7 +355,6 @@ define(function (require, exports, module){
 				get_more_loading = true;
 
 				if(variable.config.debug) {
-					return;
 					var new_lists = '';
 
 					new_lists = goods_list.html();
@@ -272,7 +410,7 @@ define(function (require, exports, module){
 
 		// 点击筛选按钮
 		filter_btn.tap(function() {
-			if (t_start == null){
+			/*if (t_start == null){
 		    	t_start = new Date().getTime();
 		    }else{
 		    	var t_end = new Date().getTime();
@@ -282,14 +420,14 @@ define(function (require, exports, module){
 			    }else{
 			    	t_start = t_end;
 			    }
-		    }
+		    }*/
 			filter_modal.addClass('filter-content-show');
 			filter_mask.removeClass('none');
 		});
 
 		// 点击显示有货
-		has_gods_btn.tap(function() {
-			if (t_start == null){
+		has_gods_btn.click(function() {
+			/*if (t_start == null){
 		    	t_start = new Date().getTime();
 		    }else{
 		    	var t_end = new Date().getTime();
@@ -299,7 +437,7 @@ define(function (require, exports, module){
 			    }else{
 			    	t_start = t_end;
 			    }
-		    }
+		    }*/
 
 			var _this = $(this);
 
@@ -311,7 +449,6 @@ define(function (require, exports, module){
 				has_gods_btn.addClass('active');
 			}
 
-			// 商品排序
 			if(variable.config.debug) {
 				var new_lists = '';
 
@@ -319,25 +456,31 @@ define(function (require, exports, module){
 					new_lists += variable.goods_lists;
 				}
 
-				// 回到顶部
-				iscroller.scrollTo(0, 0);
 				go_top_btn.addClass('none');
 				fix_top_hiden.addClass('fix-top-hiden');
-
-				goods_list.html(new_lists);
-				lazy.refreshImg();
-				refresh_list();
-				iscroller._resize();
+				
+				// 回到顶部
+				if(iscroller) {
+					iscroller.scrollTo(0, 0);
+					goods_list.html(new_lists);
+					lazy.refreshImg();
+					refresh_list();
+					iscroller._resize();
+				}else{
+					$(window).scrollTop(0);
+					goods_list.html(new_lists);
+					lazy.refreshImg();
+				}
+				
 				return;
 			}
 
+			// 发送请求
 			goods_model.sort_goods(function(data) {
 				// 回到顶部
-				iscroller.scrollTo(0, 0);
 				go_top_btn.addClass('none');
 				fix_top_hiden.addClass('fix-top-hiden');
 
-				goods_list.html(data);
 				body_dom.attr('data-page', '1');
 
 				// 商品总数
@@ -349,17 +492,26 @@ define(function (require, exports, module){
 					total_text.text($('.goods-list-data').eq(0).attr('data-total-records'));
 				}
 
-				lazy.refreshImg();
-				refresh_list();
+				if(iscroller) {
+					iscroller.scrollTo(0, 0);
+					goods_list.html(data);
+					lazy.refreshImg();
+					refresh_list();
+					iscroller._resize();
+				}else{
+					$(window).scrollTop(0);
+					goods_list.html(data);
+					lazy.refreshImg();
+				}
+				
 				get_price_info();
 				get_stock_info();
-				iscroller._resize();
 			});
 		});
 
 		// 点击价格排序
-		price_sort.tap(function() {
-			if (t_start == null){
+		price_sort.click(function() {
+			/*if (t_start == null){
 		    	t_start = new Date().getTime();
 		    }else{
 		    	var t_end = new Date().getTime();
@@ -369,7 +521,7 @@ define(function (require, exports, module){
 			    }else{
 			    	t_start = t_end;
 			    }
-		    }
+		    }*/
 
 		    var _this = $(this);
 
@@ -396,20 +548,25 @@ define(function (require, exports, module){
 					new_lists += variable.goods_lists;
 				}
 
-				// 回到顶部
-				iscroller.scrollTo(0, 0);
 				go_top_btn.addClass('none');
 				fix_top_hiden.addClass('fix-top-hiden');
 
-				goods_list.html(new_lists);
-				lazy.refreshImg();
-				refresh_list();
+				// 回到顶部
+				if(iscroller) {
+					iscroller.scrollTo(0, 0);
+					goods_list.html(new_lists);
+					lazy.refreshImg();
+					refresh_list();
+					iscroller._resize();
+				}else{
+					$(window).scrollTop(0);
+					goods_list.html(new_lists);
+					lazy.refreshImg();
+				}
 				return;
 			}
 
 			goods_model.sort_goods(function(data) {
-				// 回到顶部
-				iscroller.scrollTo(0, 0);
 				go_top_btn.addClass('none');
 				fix_top_hiden.addClass('fix-top-hiden');
 
@@ -425,11 +582,20 @@ define(function (require, exports, module){
 					total_text.text($('.goods-list-data').eq(0).attr('data-total-records'));
 				}
 
-				lazy.refreshImg();
-				refresh_list();
+				if(iscroller) {
+					iscroller.scrollTo(0, 0);
+					goods_list.html(data);
+					lazy.refreshImg();
+					refresh_list();
+					iscroller._resize();
+				}else{
+					$(window).scrollTop(0);
+					goods_list.html(data);
+					lazy.refreshImg();
+				}
+
 				get_price_info();
 				get_stock_info();
-				iscroller._resize();
 			});
 		});
 	}
@@ -439,6 +605,10 @@ define(function (require, exports, module){
 	function filter_modal_event() {
 		var modal_scroller = new IScroll('#filter-content-box', {
 			click: true
+		});
+
+		modal_scroller.on('beforeScrollStart', function() {
+			modal_scroller._resize();
 		});
 
 		// 旋转设备时重新计算滚动区域尺寸
@@ -472,8 +642,6 @@ define(function (require, exports, module){
 				return;
 			}
 			goods_model.filter_confirm(function(data) {
-				// 回到顶部
-				iscroller.scrollTo(0, 0);
 				go_top_btn.addClass('none');
 				fix_top_hiden.addClass('fix-top-hiden');
 
@@ -489,11 +657,20 @@ define(function (require, exports, module){
 					total_text.text($('.goods-list-data').eq(0).attr('data-total-records'));
 				}
 
-				lazy.refreshImg();
-				refresh_list();
+				if(iscroller) {
+					iscroller.scrollTo(0, 0);
+					goods_list.html(data);
+					lazy.refreshImg();
+					refresh_list();
+					iscroller._resize();
+				}else{
+					$(window).scrollTop(0);
+					goods_list.html(data);
+					lazy.refreshImg();
+				}
+
 				get_price_info();
 				get_stock_info();
-				iscroller._resize();
 			});
 		});
 
@@ -640,6 +817,7 @@ define(function (require, exports, module){
 		get_coupons       : get_coupons,
 		get_price_info    : get_price_info,
 		get_stock_info    : get_stock_info,
-		loadJdHeadAndFooter: loadJdHeadAndFooter
+		loadJdHeadAndFooter: loadJdHeadAndFooter,
+		page_view_update  : page_view_update
 	};
 });

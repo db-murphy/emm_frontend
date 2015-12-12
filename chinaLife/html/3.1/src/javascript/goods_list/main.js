@@ -12,7 +12,7 @@ define(function (require, exports, module){
 
 	// 页面布局调整
 	// ------------------
-	//controller.page_view_update();
+	controller.page_view_update();
 
 	// 模拟页面滚动效果
 	// ------------------
